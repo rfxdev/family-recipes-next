@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Testing
+coverage/
+.vitest/
+
+# Environment
+.env*.local
+.env.production
+
+# Generated files
+next-env.d.ts
+
+# Misc
+.DS_Store
+*.log
