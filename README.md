@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Family Recipes
 
-## Getting Started
+A modern web application for storing, organising, and sharing recipes within a family.
 
-First, run the development server:
+Built for personal use and as a portfolio demonstration of modern web development practices. The web version uses Next.js, TypeScript, and Tailwind CSS, with Firebase integration planned. A companion Flutter mobile app will share the same Firebase backend.
+
+---
+
+## Project Status & Roadmap
+
+### Phase 0: Foundation 🔄 In Progress
+
+- [x] Project documentation (README)
+- [x] Next project structure with colocation strategy
+- [x] TypeScript configuration with strict settings
+- [x] Development tooling (ESLint, Prettier, Vitest, Husky, commitlint)
+- [ ] GitHub Actions for CI/CD
+- [ ] Dependabot for dependency updates
+
+### Phase 1: Core Features (Dummy Data) 🔄 In Progress
+
+**Current Focus:** Build core recipe browsing experience with static JSON data
+
+- [ ] Define TypeScript interfaces (Recipe, User, Ingredient types)
+- [ ] Create 2 sample recipes in JSON format
+- [ ] Build basic app layout (Header component)
+- [ ] Recipe list page with grid layout
+- [ ] Recipe detail page with full recipe display
+- [ ] Deploy to Vercel
+
+### Phase 2: Firebase Integration 📋 Planned
+
+- [ ] Firebase setup and configuration
+- [ ] Authentication and security rules
+- [ ] Firestore integration (replace dummy data)
+- [ ] Image storage
+
+### Phase 3: Recipe Management 📋 Planned
+
+- [ ] Create, edit, and delete recipes
+- [ ] Image upload with thumbnails
+- [ ] Structured ingredient input (groups, quantities, units)
+- [ ] Form validation
+
+### Phase 4: Advanced Features 📋 Future
+
+- [ ] Recipe scaling and unit conversion (imperial ↔ metric)
+- [ ] Search, filtering, and favorites
+- [ ] Recipe import (camera scanning and URL parsing)
+- [ ] User preferences and settings
+- [ ] UI polish (dark mode, accessibility)
+
+### Phase 5: Flutter Mobile App 📋 Future
+
+- [ ] Flutter app with Material Design
+- [ ] Native camera integration for recipe scanning
+- [ ] Shared Firebase backend with web app
+- [ ] iOS and Android support
+- [ ] Offline support with local caching
+
+---
+
+## Tech Stack
+
+**Core:** Next.js 16, TypeScript, Tailwind CSS v4  
+**Backend:** Firebase (Firestore, Auth, Storage)  
+**Development:** ESLint, Prettier, Vitest, Husky, commitlint  
+**Deployment:** Vercel
+
+---
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+app/
+├── _components/     # Global UI components (private)
+├── _lib/            # Hooks, utils, dummy data (private)
+├── _types/          # TypeScript interfaces (private)
+├── layout.tsx
+├── page.tsx
+└── recipes/
+    ├── _components/
+    ├── page.tsx
+    └── [id]/page.tsx
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Key concepts:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Private folders (`_prefix`) - not routable, for code organisation
+- Colocation - components live near their routes
+- Single alias - `@/*` maps to `app/*`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Development Workflow
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Local Development:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Conventional commits (`feat:`, `fix:`, `docs:`, `chore:`)
+- Pre-commit: lint, format, type-check
+- Pre-push: run tests
+
+**CI/CD:**
+
+- GitHub Actions on pull requests (lint, test, build)
+- Dependabot for dependency updates
+
+---
+
+## Design Decisions
+
+Architecture documented in `docs/`:
+
+- [`data-model.md`](docs/data-model.md) - Database schemas and unit conversion
+- [`security-rules.md`](docs/security-rules.md) - Firebase security and authentication
+- [`recipe-import.md`](docs/recipe-import.md) - Camera scanning and URL parsing
+
+Note: Some Flutter-specific documentation also exists for the planned mobile implementation.
+
+---
+
+## Related Projects
+
+A Flutter mobile app for iOS and Android is planned (Phase 5) to share the same Firebase backend. The `docs/` folder contains platform-agnostic specifications applicable to both implementations.
