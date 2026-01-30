@@ -47,6 +47,14 @@ const eslintConfig = defineConfig([
     },
   },
 
+  // Don't sort modules in _types files so they can be grouped more logically
+  {
+    files: ['**/_types/**/*.ts'],
+    rules: {
+      'perfectionist/sort-modules': 'off',
+    },
+  },
+
   // Vitest for test files
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],

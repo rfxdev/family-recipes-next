@@ -21,7 +21,7 @@ Built for personal use and as a portfolio demonstration of modern web developmen
 
 **Current Focus:** Build core recipe browsing experience with static JSON data
 
-- [ ] Define TypeScript interfaces (Recipe, User, Ingredient types)
+- [x] Define TypeScript interfaces (Recipe, User, Ingredient types)
 - [ ] Create 2 sample recipes in JSON format
 - [ ] Build basic app layout (Header component)
 - [ ] Recipe list page with grid layout
