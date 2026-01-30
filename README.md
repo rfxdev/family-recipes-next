@@ -14,7 +14,7 @@ Built for personal use and as a portfolio demonstration of modern web developmen
 - [x] Next project structure with colocation strategy
 - [x] TypeScript configuration with strict settings
 - [x] Development tooling (ESLint, Prettier, Vitest, Husky, commitlint)
-- [ ] GitHub Actions for CI/CD
+- [x] GitHub Actions for CI/CD
 - [x] Dependabot for dependency updates
 
 ### Phase 1: Core Features (Dummy Data) 🔄 In Progress
