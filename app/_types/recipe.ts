@@ -6,7 +6,7 @@ export interface Recipe {
   id: string;
   image_path?: string;
   ingredient_groups: IngredientGroup[];
-  instructions: string;
+  instructions: string[];
   notes?: string;
   prep_time_minutes?: number;
   servings: number;

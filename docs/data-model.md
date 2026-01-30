@@ -10,7 +10,7 @@ Three Firestore collections:
 
 - `users` — Family member profiles and preferences
 - `recipes` — Recipe content with embedded ingredient groups
-- `favorites` — User-recipe junction for bookmarking (optional, add when needed)
+- `favourites` — User-recipe junction for bookmarking (optional, add when needed)
 
 ---
 
@@ -93,7 +93,13 @@ Three Firestore collections:
     }
   ],
 
-  "instructions": "1. Brown the beef...\n2. Mix ricotta...",
+  "instructions": [
+    "Brown the beef in a large skillet over medium-high heat.",
+    "Mix ricotta with egg, parmesan, and seasonings in a bowl.",
+    "Layer noodles, meat sauce, and cheese mixture in a baking dish.",
+    "Cover with foil and bake at 375°F for 45 minutes.",
+    "Remove foil, top with mozzarella, and bake 15 minutes more until golden."
+  ],
   "servings": 8,
   "prep_time_minutes": 30,
   "cook_time_minutes": 60,
@@ -107,6 +113,8 @@ Three Firestore collections:
 ```
 
 ### Field Notes
+
+**instructions** (array of strings): Each step is a separate string. Render as ordered list (<ol>) in UI. No need to include step numbers in the text.
 
 **source** (optional object)
 

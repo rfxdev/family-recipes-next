@@ -128,7 +128,7 @@ Sites using schema.org Recipe structured data:
 | name                       | title             | Recipe title                    |
 | description                | description       | Short description               |
 | recipeIngredient           | ingredient_groups | Array of strings, needs parsing |
-| recipeInstructions         | instructions      | May be string or structured     |
+| recipeInstructions         | instructions      | Parse to array of step strings  |
 | recipeYield                | servings          | e.g., "8 servings" → 8          |
 | prepTime                   | prep_time_minutes | ISO 8601 duration → minutes     |
 | cookTime                   | cook_time_minutes | ISO 8601 duration → minutes     |
