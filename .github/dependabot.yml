@@ -1,0 +1,154 @@
+version: 2
+updates:
+  # Next.js ecosystem - group core framework dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      nextjs:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "eslint-config-next"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Testing ecosystem
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      testing:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "@testing-library/*"
+          - "jsdom"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Linting ecosystem
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "typescript-eslint"
+          - "@eslint/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Formatting ecosystem
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      prettier:
+        patterns:
+          - "prettier"
+          - "prettier-*"
+          - "eslint-config-prettier"
+          - "eslint-plugin-prettier"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Tailwind ecosystem
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      tailwind:
+        patterns:
+          - "@tailwindcss/*"
+          - "tailwind-*"
+          - "clsx"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Commit tooling
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      commit-tools:
+        patterns:
+          - "husky"
+          - "lint-staged"
+          - "@commitlint/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # TypeScript and type definitions
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      typescript:
+        patterns:
+          - "typescript"
+          - "@types/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # All other dependencies (ungrouped for visibility)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    ignore:
+      # Already handled by groups above
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "vitest"
+      - dependency-name: "@vitest/*"
+      - dependency-name: "@testing-library/*"
+      - dependency-name: "jsdom"
+      - dependency-name: "eslint"
+      - dependency-name: "eslint-*"
+      - dependency-name: "typescript-eslint"
+      - dependency-name: "prettier"
+      - dependency-name: "prettier-*"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "tailwind-*"
+      - dependency-name: "clsx"
+      - dependency-name: "husky"
+      - dependency-name: "lint-staged"
+      - dependency-name: "@commitlint/*"
+      - dependency-name: "typescript"
+      - dependency-name: "@types/*"
+
+  # GitHub Actions dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
