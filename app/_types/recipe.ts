@@ -23,10 +23,10 @@ export interface IngredientGroup {
 }
 
 export interface Ingredient {
-  item: string;
+  item: string; // Core ingredient name
   order: number;
-  quantity: number;
-  unit: Unit;
+  preparation?: string; // Optional: "chopped", "drained", etc.
+  quantity_text: string; // Flexible quantity: "2 x 400g", "6", "thumb-sized piece"
 }
 
 export interface RecipeSource {
@@ -34,24 +34,3 @@ export interface RecipeSource {
   details?: null | string;
   source_name?: string;
 }
-
-export type Unit = CountUnit | FlexibleUnit | VolumeUnit | WeightUnit;
-
-export type CountUnit =
-  | 'bunch'
-  | 'can'
-  | 'clove'
-  | 'package'
-  | 'piece'
-  | 'slice'
-  | 'whole';
-
-export type FlexibleUnit =
-  | 'as needed'
-  | 'dash'
-  | 'handful'
-  | 'pinch'
-  | 'to taste';
-
-export type VolumeUnit = 'cups' | 'fl oz' | 'L' | 'ml' | 'tbsp' | 'tsp';
-export type WeightUnit = 'g' | 'kg' | 'lb' | 'oz';
