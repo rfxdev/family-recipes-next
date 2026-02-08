@@ -2,13 +2,11 @@ import type { Recipe } from '@/_types/recipe';
 
 export const dummyRecipes: Recipe[] = [
   {
-    author_id: 'user_001',
     cook_time_minutes: 130,
     created_at: '2025-01-30T10:00:00Z',
     description:
       'A warming Moroccan-inspired one-pot dish with tender lamb, aromatic spices, and chickpeas. Perfect for making ahead as the flavours develop beautifully.',
     id: 'lamb-tagine-with-chickpeas',
-    image_path: 'recipes/recipe_001/main.jpg',
     ingredient_groups: [
       {
         ingredients: [
@@ -138,26 +136,32 @@ export const dummyRecipes: Recipe[] = [
       'Season to taste and leave the tagine to stand for 10 minutes.',
       'Scatter the tagine with coriander and flaked almonds. Serve with couscous and yogurt on the side.',
     ],
+    metadata: {
+      cuisine: 'moroccan',
+      dietary_restrictions: [],
+      difficulty: 'moderate',
+      ingredient_categories: ['lamb'],
+      meal_type: 'main',
+      recipe_author: 'Tom Kerridge',
+      source_details: undefined,
+      source_name: 'BBC Good Food',
+      source_url:
+        'https://www.bbcgoodfood.com/recipes/one-pan-lamb-tagine-with-chickpeas',
+      special_occasions: [],
+      time_category: 'long',
+    },
     prep_time_minutes: 20,
     servings: 6,
-    source: {
-      author: 'Tom Kerridge',
-      details:
-        'https://www.bbcgoodfood.com/recipes/one-pan-lamb-tagine-with-chickpeas',
-      source_name: 'BBC Good Food',
-    },
-    tags: ['moroccan', 'one-pot', 'comfort-food', 'make-ahead', 'lamb'],
     title: 'One-Pan Lamb Tagine with Chickpeas',
     updated_at: '2025-01-30T10:00:00Z',
+    uploaded_by: 'user_001',
   },
   {
-    author_id: 'user_002',
     cook_time_minutes: 15,
     created_at: '2025-01-30T11:00:00Z',
     description:
-      'Saucy, sticky, crispy, sweet and savory cashew chicken! Just like your favourite takeout, but made easy at home.',
+      'Saucy, sticky, crispy, sweet and savoury cashew chicken! Just like your favourite takeout, but made easy at home.',
     id: 'cashew-chicken',
-    image_path: 'recipes/recipe_002/main.jpg',
     ingredient_groups: [
       {
         ingredients: [
@@ -263,17 +267,521 @@ export const dummyRecipes: Recipe[] = [
       'Add the cooked chicken and toasted cashews to the pan with the sauce. Toss for about 1 minute until everything is coated.',
       'Serve immediately over steamed rice with roasted or steamed broccoli on the side.',
     ],
+    metadata: {
+      cuisine: 'chinese',
+      dietary_restrictions: [],
+      difficulty: 'moderate',
+      ingredient_categories: ['poultry'],
+      meal_type: 'main',
+      recipe_author: 'Lindsay Ostrom',
+      source_details: undefined,
+      source_name: 'Pinch of Yum',
+      source_url: 'https://pinchofyum.com/cashew-chicken',
+      special_occasions: [],
+      time_category: 'medium',
+    },
     notes:
       'This works well without the batter too - just air fry the plain chicken pieces and toss with the sauce. Lighter, quicker, and easier to make gluten-free.',
     prep_time_minutes: 15,
     servings: 4,
-    source: {
-      author: 'Lindsay Ostrom',
-      details: 'https://pinchofyum.com/cashew-chicken',
-      source_name: 'Pinch of Yum',
-    },
-    tags: ['chinese-inspired', 'takeout', 'fried', 'comfort-food', 'quick'],
     title: 'Cashew Chicken',
     updated_at: '2025-01-30T11:00:00Z',
+    uploaded_by: 'user_002',
+  },
+  {
+    cook_time_minutes: 15,
+    created_at: '2025-02-04T10:00:00Z',
+    description:
+      'Lemon zest complements sweet tomatoes perfectly in this super simple pasta dish.',
+    id: 'tomato-chilli-prawn-linguine',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'dried linguine',
+            order: 1,
+            quantity_text: '300g',
+          },
+          {
+            item: 'olive oil',
+            order: 2,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'cherry vine tomatoes',
+            order: 3,
+            quantity_text: '400g pack',
+          },
+          {
+            item: 'red chilli',
+            order: 4,
+            preparation: 'deseeded and finely chopped',
+            quantity_text: '1',
+          },
+          {
+            item: 'garlic',
+            order: 5,
+            preparation: 'sliced',
+            quantity_text: '3 cloves',
+          },
+          {
+            item: 'raw king prawns',
+            order: 6,
+            quantity_text: '150g',
+          },
+          {
+            item: 'unwaxed lemon',
+            order: 7,
+            preparation: 'zest and juice',
+            quantity_text: '½',
+          },
+          {
+            item: 'basil',
+            order: 8,
+            preparation: 'leaves torn',
+            quantity_text: '10g',
+          },
+        ],
+        name: '',
+        order: 1,
+      },
+    ],
+    instructions: [
+      'Put a large pan of salted water on to boil. Cook the pasta in the salted boiling water following pack instructions, saving a mug of the cooking water before draining. Meanwhile, heat the oil in a large frying pan, add the tomatoes and cook over a high heat for about 3 minutes until they begin to blister.',
+      'Turn the heat down a little and add the chilli and garlic, then continue to cook, stirring often, for 3-4 minutes until fragrant. Add the king prawns and cook for 1-2 minutes until they turn pink and opaque.',
+      'Tip the drained pasta straight into the tomato sauce, add the lemon zest and juice and tear in ⅔ of the basil. Stir, adding enough cooking water to make the sauce coat the pasta; season. Scatter over the remaining basil and serve.',
+    ],
+    metadata: {
+      cuisine: 'italian',
+      dietary_restrictions: [],
+      difficulty: 'easy',
+      ingredient_categories: ['seafood', 'pasta'],
+      meal_type: 'main',
+      recipe_author: 'Waitrose',
+      source_details: undefined,
+      source_name: 'Waitrose recipe',
+      source_url: undefined,
+      special_occasions: [],
+      time_category: 'quick',
+    },
+    notes:
+      'Level up: Sizzle the basil leaves in hot oil until crispy to give this simple pasta the wow factor.',
+    prep_time_minutes: 5,
+    servings: 4,
+    title: 'Tomato, Chilli & Prawn Linguine',
+    updated_at: '2025-02-04T10:00:00Z',
+    uploaded_by: 'user_001',
+  },
+  {
+    cook_time_minutes: 50,
+    created_at: '2025-02-08T10:00:00Z',
+    description:
+      "A chicken biryani homage to Britannia's chicken berry pulao, using cranberries in place of Persian barberries. Prepared kacchi-style from Hyderabad, where marinated raw meat cooks alongside the rice.",
+    id: 'chicken-berry-britannia',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'basmati rice',
+            order: 1,
+            quantity_text: '300g',
+          },
+          {
+            item: 'fine sea salt',
+            order: 2,
+            quantity_text: '2 tsp',
+          },
+          {
+            item: 'lime juice',
+            order: 3,
+            quantity_text: '½ lime',
+          },
+        ],
+        name: 'Rice',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'chicken thighs',
+            order: 1,
+            preparation: 'skinless, boneless, each cut into 3 pieces',
+            quantity_text: '500g',
+          },
+          {
+            item: 'ginger paste',
+            order: 2,
+            quantity_text: '20g',
+          },
+          {
+            item: 'garlic paste',
+            order: 3,
+            quantity_text: '25g',
+          },
+          {
+            item: 'deggi mirch chilli powder',
+            order: 4,
+            quantity_text: '1½ tsp',
+          },
+          {
+            item: 'fine sea salt',
+            order: 5,
+            quantity_text: '2 tsp',
+          },
+          {
+            item: 'ground cumin',
+            order: 6,
+            quantity_text: '2 tsp',
+          },
+          {
+            item: 'garam masala',
+            order: 7,
+            quantity_text: '1½ tsp',
+          },
+          {
+            item: 'lime juice',
+            order: 8,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'Greek yoghurt',
+            order: 9,
+            preparation: 'full-fat',
+            quantity_text: '100g',
+          },
+          {
+            item: 'vegetable oil',
+            order: 10,
+            quantity_text: '30ml',
+          },
+          {
+            item: 'green chillies',
+            order: 11,
+            preparation: 'each cut into 4 long strips',
+            quantity_text: '3',
+          },
+          {
+            item: 'fresh root ginger',
+            order: 12,
+            preparation: 'cut into fine matchsticks',
+            quantity_text: '3cm',
+          },
+          {
+            item: 'crispy fried onions',
+            order: 13,
+            quantity_text: '1 quantity',
+          },
+          {
+            item: 'mint leaves',
+            order: 14,
+            preparation: 'chopped',
+            quantity_text: '6 large',
+          },
+          {
+            item: 'coriander leaves',
+            order: 15,
+            preparation: 'chopped',
+            quantity_text: '5g',
+          },
+        ],
+        name: 'Base',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'unsalted butter',
+            order: 1,
+            quantity_text: '20g',
+          },
+          {
+            item: 'double cream',
+            order: 2,
+            quantity_text: '3 tbsp',
+          },
+          {
+            item: 'saffron water',
+            order: 3,
+            quantity_text: '1 quantity',
+          },
+          {
+            item: 'dried cranberries',
+            order: 4,
+            quantity_text: '35g',
+          },
+        ],
+        name: 'Topping',
+        order: 3,
+      },
+    ],
+    instructions: [
+      'Firstly, soak the rice. To do this, put the rice into a large bowl and cover generously with water. Using your fingers, gently move the rice around in the water to remove the starch, being careful not to break up the grains. Allow the rice to settle, then pour off the water. Repeat twice with fresh water, then cover again with fresh water and leave to soak for 45 minutes.',
+      'For the base, place the chicken in a bowl. Mix all the remaining ingredients together, add to the chicken and turn to coat. Cover and place in the fridge to marinate until you are ready to assemble the dish.',
+      'Heat the oven to 200°C/Fan 180°C/Gas 6. Drain the rice when the soaking time is up. Pour 2 litres boiling water into a large pan and add the salt and lime juice.',
+      'Transfer the chicken and marinade to your biryani cooking pot and place over a low heat to warm through while you cook the rice.',
+      "Tip the drained rice into the boiling water and stir well. Boil for 4-5 minutes until the rice is three-quarters cooked. You can tell when the rice has reached this stage by taking a grain between your forefinger and thumb, and pressing down on it with your nail; it should still be slightly firm and break into 5 or 6 pieces. Drain the rice; you don't need to shake it dry as a little extra moisture helps during cooking. Place it in the biryani pot, on top of the chicken.",
+      'In a small pan, or in the microwave, warm the butter and cream until the butter melts. Mix together, then trickle over the rice, followed by the saffron water. Scatter the cranberries over the top.',
+      'Cover tightly with two layers of foil. Place over a high heat for 2-3 minutes, until the foil puffs up and you see a little steam start to escape. Put the lid on, transfer to the oven and bake for 35-40 minutes. Let the biryani stand, still covered, for 10 minutes before serving.',
+    ],
+    metadata: {
+      cuisine: 'indian',
+      dietary_restrictions: [],
+      difficulty: 'challenging',
+      ingredient_categories: ['poultry', 'rice'],
+      meal_type: 'main',
+      recipe_author: 'Dishoom',
+      source_details: 'Page 232',
+      source_name: 'Dishoom cookbook',
+      special_occasions: [],
+      time_category: 'long',
+    },
+    notes:
+      "References to ginger paste, garlic paste, garam masala, crispy fried onions, and saffron water assume you're using Dishoom's recipes from pages 230, 353, and 356",
+    prep_time_minutes: 60,
+    servings: 6,
+    title: 'Chicken Berry Britannia',
+    updated_at: '2025-02-08T10:00:00Z',
+    uploaded_by: 'user_456',
+  },
+  {
+    cook_time_minutes: 40,
+    created_at: '2025-02-08T10:00:00Z',
+    description:
+      'These pies boast enormous flavours and release enticing mouth-watering aromas as they bake. Instead of topping the spicy lentil pie filling with pastry or mash, I spoon over saag aloo (traditionally a potato side dish in Indian cooking), which crisps up beautifully in the oven. This is comfort food that will make you smile.',
+    id: 'curried-lentil-cottage-pie',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'vegetable oil',
+            order: 1,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'onion',
+            order: 2,
+            preparation: 'finely chopped',
+            quantity_text: '1',
+          },
+          {
+            item: 'carrots',
+            order: 3,
+            preparation: 'finely chopped',
+            quantity_text: '2',
+          },
+          {
+            item: 'celery sticks',
+            order: 4,
+            preparation: 'finely chopped',
+            quantity_text: '3',
+          },
+          {
+            item: 'garlic cloves',
+            order: 5,
+            preparation: 'grated',
+            quantity_text: '2',
+          },
+          {
+            item: 'red chilli',
+            order: 6,
+            preparation: 'deseeded and finely chopped',
+            quantity_text: '1',
+          },
+          {
+            item: 'garam masala',
+            order: 7,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'tomato purée',
+            order: 8,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'tinned chopped tomatoes',
+            order: 9,
+            quantity_text: '400g',
+          },
+          {
+            item: 'tinned coconut milk',
+            order: 10,
+            quantity_text: '400ml',
+          },
+          {
+            item: 'cooked beluga lentils',
+            order: 11,
+            quantity_text: '2 x 250g pouches',
+          },
+          {
+            item: 'salt and freshly ground pepper',
+            order: 12,
+            quantity_text: 'to taste',
+          },
+        ],
+        name: 'Lentil Filling',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'potatoes',
+            order: 1,
+            preparation: 'peeled and cut into 2-3cm chunks',
+            quantity_text: '800g',
+          },
+          {
+            item: 'butter',
+            order: 2,
+            quantity_text: '30g',
+          },
+          {
+            item: 'vegetable oil',
+            order: 3,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'cumin seeds',
+            order: 4,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'black mustard seeds',
+            order: 5,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'ground turmeric',
+            order: 6,
+            quantity_text: '¼ tsp',
+          },
+          {
+            item: 'baby spinach',
+            order: 7,
+            quantity_text: '100g',
+          },
+        ],
+        name: 'Saag Aloo Topping',
+        order: 2,
+      },
+    ],
+    instructions: [
+      'Heat the oil in a large non-stick saucepan, add the onion and cook for 2 minutes. Add the carrots, celery, garlic and chilli and cook for a further 5 minutes. Add the garam masala, stir and cook for 1 minute, then add the tomato purée, stir and cook for another minute or so.',
+      'Tip in the tinned tomatoes and coconut milk and bring to a simmer, then add the lentils and stir well. Season with salt and pepper and simmer for 15 minutes until slightly thickened.',
+      'Meanwhile, for the saag aloo topping, put the potatoes into a medium saucepan, cover with water and season with 1 tsp salt. Bring to the boil, lower the heat to a simmer and cook for 15 minutes or until tender.',
+      'In the meantime, preheat the oven to 200°C/180°C Fan/Gas 6 with the grill element on.',
+      'Drain the potatoes in a colander. Put the empty pan back over a high heat and add the butter and oil. Once the butter is melted, add the cumin seeds, mustard seeds and turmeric and stir well. Add the potatoes and stir until well coated. Toss in the spinach and stir until it is wilted.',
+      'Divide the lentil filling between 4 deep individual pie dishes and top with the saag aloo, spreading it out evenly over the lentils. Stand the pie dishes on a large baking sheet, place on the middle shelf of the oven and cook for 15 minutes or until the topping is crispy and golden brown. Serve hot from the oven.',
+    ],
+    metadata: {
+      cuisine: 'british',
+      dietary_restrictions: ['vegetarian'],
+      difficulty: 'moderate',
+      ingredient_categories: ['vegetarian', 'legumes'],
+      meal_type: 'main',
+      recipe_author: 'Tom Kerridge',
+      source_details: 'Page 188',
+      source_name: 'Tom Kerridge cookbook',
+      special_occasions: [],
+      time_category: 'medium',
+    },
+    prep_time_minutes: 20,
+    servings: 4,
+    title: 'Curried Lentil Cottage Pies',
+    updated_at: '2025-02-08T10:00:00Z',
+    uploaded_by: 'user_456',
+  },
+  {
+    cook_time_minutes: 10,
+    created_at: '2025-02-08T10:00:00Z',
+    description:
+      "Galettes are traditionally made with buckwheat flour, but make sure yours is gluten-free. These are just like the galettes I had in Paris - thin and crisp, filled with an egg with runny yolk, melted cheese and ham. It's the perfect easy breakfast or brunch.",
+    id: 'ham-and-cheese-breakfast-galettes',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'gluten-free buckwheat flour',
+            order: 1,
+            quantity_text: '80g / ⅔ cup',
+          },
+          {
+            item: 'salt',
+            order: 2,
+            quantity_text: '¼ tsp',
+          },
+          {
+            item: 'egg',
+            order: 3,
+            quantity_text: '1',
+          },
+          {
+            item: 'water',
+            order: 4,
+            quantity_text: '250ml / 1 cup',
+          },
+          {
+            item: 'butter (or oil)',
+            order: 5,
+            preparation: 'for cooking',
+            quantity_text: '3 tsp',
+          },
+          {
+            item: 'black pepper',
+            order: 6,
+            quantity_text: 'to taste',
+          },
+        ],
+        name: 'Galette Batter',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'eggs',
+            order: 1,
+            quantity_text: '3',
+          },
+          {
+            item: 'hard cheese',
+            order: 2,
+            preparation: 'grated (recommend Comté)',
+            quantity_text: '75g / 3oz',
+          },
+          {
+            item: 'thick-cut ham',
+            order: 3,
+            quantity_text: '6 slices',
+          },
+        ],
+        name: 'Filling',
+        order: 2,
+      },
+    ],
+    instructions: [
+      'Add the buckwheat flour, salt, egg and water to a large mixing bowl and whisk using a fork, until you have a smooth batter. Allow to rest for 10 minutes.',
+      'Heat a large frying pan or crêpe pan over a high heat. Add 1 teaspoon of the butter and spread around so that the base of the pan is covered. Pour in enough batter to cover two-thirds of the base of the pan, then lift the pan and use a circular tilting motion to help the batter spread to the remaining third of the pan. This will help ensure a perfectly thin and crispy galette.',
+      'Allow to cook for 15-20 seconds, then reduce down to a medium heat. Crack an egg into the middle of the galette and, using a fork, carefully spread the egg white so it covers as much of the galette as possible.',
+      'Sprinkle a third of the cheese all over the egg white and place two small slices of ham on either side of the yolk. Fold the edges in using a small palette knife so that it forms a square, and cook for 2-3 minutes.',
+      'Season with a little black pepper, and transfer to a plate (serve with fresh rocket / arugula on the side). Repeat until all of your galette batter has been used, remembering to adjust the heat back to high for the start of each galette.',
+    ],
+    metadata: {
+      cuisine: 'french',
+      dietary_restrictions: ['gluten-free'],
+      difficulty: 'moderate',
+      ingredient_categories: ['eggs', 'cheese'],
+      meal_type: 'breakfast',
+      recipe_author: 'Becky Excell',
+      source_details: 'Page 74, Breakfast and Brunch section',
+      source_name: 'Becky Excell cookbook',
+      special_occasions: [],
+      time_category: 'quick',
+    },
+    notes:
+      'Using butter to fry your galettes gives them tons of flavour! For a vegan version: mix 100g / ⅔ cup gluten-free buckwheat flour with 250ml / 1 cup water (leaving out the egg!) to make lovely vegan galette batter that you can fill with whatever you like. Use oil instead of butter for frying.',
+    prep_time_minutes: 10,
+    servings: 3,
+    title: 'Ham and Cheese Breakfast Galettes',
+    updated_at: '2025-02-08T10:00:00Z',
+    uploaded_by: 'user_456',
   },
 ];

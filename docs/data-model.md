@@ -4,37 +4,46 @@ Platform-agnostic specification for the Family Recipes application data model. I
 
 ---
 
+## Implementation Notes
+
+### Optional Fields
+
+Optional fields should be **omitted entirely** when they have no value, rather than storing `null`.
+
+```
+{
+  "id": "chicken-berry-britannia",
+  "title": "Chicken Berry Britannia",
+  "prep_time_minutes": 60
+  // cook_time_minutes not included (no value)
+  // image_path not included (no value)
+  // notes not included (no value)
+}
+```
+
+When implementing in TypeScript/Dart, mark fields as optional (`?`) and simply don't include them in objects when there's no value. Firestore will automatically omit undefined fields when saving documents.
+
+### Recipe IDs and URLs
+
+The recipe `id` field serves as both the Firestore document ID and URL slug (e.g., `/recipes/chicken-berry-britannia`).
+
+**Format requirements:**
+
+- Lowercase, alphanumeric with hyphens only
+- Generated from recipe titles
+- Must be unique across all recipes (duplicates resolved by appending `-2`, `-3`, etc.)
+
+See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
+
+---
+
 ## Collections
 
 Three Firestore collections:
 
 - `users` — Family member profiles and preferences
-- `recipes` — Recipe content with embedded ingredient groups
-- `favourites` — User-recipe junction for bookmarking (optional, add when needed)
-
----
-
-## User Document
-
-```json
-{
-  "id": "user_456",
-  "email": "mom@family.com",
-  "display_name": "Mom",
-  "unit_preference": "imperial",
-  "is_active": true,
-  "created_at": "2024-12-24T10:00:00Z"
-}
-```
-
-| Field           | Type            | Notes                                               |
-| --------------- | --------------- | --------------------------------------------------- |
-| id              | string          | Matches Firebase Auth UID                           |
-| email           | string          | User's email address                                |
-| display_name    | string          | Display name for UI                                 |
-| unit_preference | string          | `"imperial"`, `"metric"`, `"both"`, or `"original"` |
-| is_active       | boolean         | Set false to revoke access without deleting account |
-| created_at      | ISO 8601 string | Account creation timestamp                          |
+- `recipes` — Recipe content with embedded ingredient groups and metadata
+- `favorites` — User-recipe junction for bookmarking (optional, add when needed)
 
 ---
 
@@ -42,16 +51,24 @@ Three Firestore collections:
 
 ```json
 {
-  "id": "recipe_123",
+  "id": "grandmas-lasagna",
   "title": "Grandma's Lasagna",
-  "description": "Family favorite comfort food",
-  "author_id": "user_456",
+  "description": "Family favourite comfort food",
+  "uploaded_by": "user_456",
 
-  "source": {
-    "author": "Grandma Maria",
+  "metadata": {
+    "cuisine": "italian",
+    "meal_type": "main",
+    "difficulty": "moderate",
+    "time_category": "long",
+    "dietary_restrictions": ["vegetarian"],
+    "ingredient_categories": ["pasta", "beef", "cheese"],
+    "special_occasions": ["christmas"],
+    "recipe_author": "Grandma Maria",
     "source_name": "handwritten note",
-    "details": null
+    "source_details": "From recipe box, 1985"
   },
+
   "notes": "I reduce the garlic by half - our family prefers it milder",
 
   "ingredient_groups": [
@@ -61,15 +78,19 @@ Three Firestore collections:
       "ingredients": [
         {
           "item": "ground beef",
-          "quantity": 1,
-          "unit": "lb",
+          "quantity_text": "1 lb",
           "order": 1
         },
         {
           "item": "ricotta cheese",
-          "quantity": 2,
-          "unit": "cups",
+          "quantity_text": "2 cups",
           "order": 2
+        },
+        {
+          "item": "onion",
+          "quantity_text": "1 large",
+          "preparation": "finely chopped",
+          "order": 3
         }
       ]
     },
@@ -78,15 +99,14 @@ Three Firestore collections:
       "order": 2,
       "ingredients": [
         {
-          "item": "marinara sauce",
-          "quantity": 24,
-          "unit": "oz",
+          "item": "tinned tomatoes",
+          "quantity_text": "2 x 400g",
+          "preparation": "drained",
           "order": 1
         },
         {
           "item": "salt",
-          "quantity": 1,
-          "unit": "to taste",
+          "quantity_text": "to taste",
           "order": 2
         }
       ]
@@ -94,124 +114,101 @@ Three Firestore collections:
   ],
 
   "instructions": [
-    "Brown the beef in a large skillet over medium-high heat.",
-    "Mix ricotta with egg, parmesan, and seasonings in a bowl.",
-    "Layer noodles, meat sauce, and cheese mixture in a baking dish.",
-    "Cover with foil and bake at 375°F for 45 minutes.",
-    "Remove foil, top with mozzarella, and bake 15 minutes more until golden."
+    "Brown the beef in a large pan over medium-high heat.",
+    "Mix ricotta with egg and herbs.",
+    "Layer sauce, noodles, meat, and cheese mixture.",
+    "Bake at 180°C for 45 minutes until golden."
   ],
   "servings": 8,
   "prep_time_minutes": 30,
   "cook_time_minutes": 60,
 
-  "image_path": "recipes/recipe_123/main.jpg",
+  "image_path": "recipes/grandmas-lasagna/main.jpg",
 
-  "tags": ["italian", "comfort-food"],
   "created_at": "2024-12-24T10:00:00Z",
   "updated_at": "2024-12-24T10:00:00Z"
 }
 ```
 
-### Field Notes
-
-**instructions** (array of strings): Each step is a separate string. Render as ordered list (<ol>) in UI. No need to include step numbers in the text.
-
-**source** (optional object)
-
-- `author`: Who created the recipe (chef name, family member, "Unknown")
-- `source_name`: Where it came from (book title, website, "handwritten note")
-- `details`: Additional context (page number, URL, date)
-
-**notes** (optional string): User's personal modifications, distinct from source attribution.
-
-**image_path**: Firebase Storage path, not URL. URLs include expiring security tokens. Thumbnails auto-generated as `_200x200.jpg`, `_800x800.jpg`.
-
-**ingredient_groups**: Nested array for sectioned recipes. Simple recipes use a single group with empty name: `{"name": "", "order": 1, "ingredients": [...]}`.
+**Note:** This example includes all fields for documentation purposes. In practice, optional fields without values should be omitted entirely.
 
 ---
 
-## Unit Lists
+## Recipe Field Notes
 
-### Volume
+### Core Recipe Content
 
-`cups`, `tbsp`, `tsp`, `ml`, `L`, `fl oz`
+**id** (required string): URL-safe slug used as both Firestore document ID and URL path. Lowercase alphanumeric with hyphens only. Must be unique. See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
 
-### Weight
+**uploaded_by** (required string): Firebase Auth UID of the user who owns this recipe. Used for edit permissions in security rules.
 
-`lb`, `oz`, `g`, `kg`
+**notes** (optional string): User's personal modifications or cooking tips, distinct from source attribution.
 
-### Count
+**instructions** (required array of strings): Each string represents a step. Displayed as numbered list in UI.
 
-`whole`, `clove`, `piece`, `slice`, `can`, `package`, `bunch`
+**image_path** (optional string): Firebase Storage path, not URL. URLs include expiring security tokens. Thumbnails auto-generated as `_200x200.jpg`, `_800x800.jpg`.
 
-### Flexible (non-scaling)
+**ingredient_groups** (required array): Nested array for sectioned recipes. Simple recipes use a single group with empty name: `{"name": "", "order": 1, "ingredients": [...]}`.
 
-`to taste`, `as needed`, `pinch`, `dash`, `handful`
+### Metadata Object
+
+All descriptive and categorisation data about the recipe, including both structured filters and supplementary information.
+
+#### Structured Filters (Required)
+
+**cuisine** (required, single-select):
+
+- Allowed values: `american`, `british`, `chinese`, `french`, `indian`, `italian`, `japanese`, `mediterranean`, `mexican`, `moroccan`, `thai`, `other`
+
+**meal_type** (required, single-select):
+
+- Allowed values: `appetiser`, `breakfast`, `condiment`, `dessert`, `drink`, `main`, `side`, `snack`
+
+**difficulty** (required, single-select):
+
+- Allowed values: `easy`, `moderate`, `challenging`
+
+**time_category** (required, auto-calculated):
+
+- Allowed values: `quick`, `medium`, `long`
+- Auto-calculated from `prep_time_minutes + cook_time_minutes`. See [`recipe-management.md`](recipe-management.md) for calculation logic.
+
+#### Structured Filters (Optional)
+
+**dietary_restrictions** (optional, multi-select array):
+
+- Allowed values: `dairy-free`, `egg-free`, `gluten-free`, `low-carb`, `nut-free`, `pescatarian`, `vegan`, `vegetarian`
+
+**ingredient_categories** (optional, multi-select array):
+
+- Allowed values: `beef`, `cheese`, `eggs`, `fish`, `lamb`, `legumes`, `pasta`, `pork`, `poultry`, `rice`, `seafood`, `vegan`, `vegetarian`
+- Used for queries like "what can I make with chicken?"
+
+**special_occasions** (optional, multi-select array):
+
+- Allowed values: `barbecue`, `birthday`, `christmas`, `easter`, `fathers-day`, `mothers-day`, `new-year`, `picnic`, `sunday-roast`, `thanksgiving`, `valentines`
+
+#### Supplementary Information (Optional)
+
+**recipe_author** (optional, freeform string): Who created the recipe originally. Examples: "Grandma Maria", "Jamie Oliver"
+
+**source_name** (optional, freeform string): Where the recipe came from. Examples: "handwritten note", "BBC Good Food", "30 Minute Meals cookbook"
+
+**source_url** (optional, string): URL if recipe was imported from a website.
+
+**source_details** (optional, freeform string): Additional context about the recipe's origin. Examples: "Page 42", "From recipe box, 1985", "Adapted from original"
 
 ---
 
-## Scaling Logic
+## Ingredient Structure
 
-**Concept:** Flexible units don't scale. All others scale proportionally based on servings ratio.
+Each ingredient has:
 
-**Algorithm:**
+- **item** (required): Core ingredient name, e.g., "minced beef", "tinned tomatoes"
+- **quantity_text** (required): Flexible quantity as text, e.g., "2 cups", "1 lb", "2 x 400g", "to taste", "thumb-sized piece"
+- **preparation** (optional): How to prepare the ingredient, e.g., "chopped", "drained", "at room temperature"
+- **order** (required): Display order within the group
 
-1. Check if unit is in non-scaling list (flexible units)
-2. If yes: display as-is with no quantity change
-3. If no: multiply quantity by (new servings / original servings)
+The free-text `quantity_text` approach handles complex real-world quantities that don't fit structured formats (e.g., "2 x 400g tins", "thumb-sized piece of ginger", "to taste"). This simplifies input and display at the cost of programmatic scaling and unit conversion.
 
-**Example:**
-
-- Original: 2 cups flour for 4 servings
-- Scaled to 8 servings: 4 cups flour
-- "Salt to taste" remains "to taste" regardless of servings
-
----
-
-## Unit Conversion
-
-**Principle:** Store ingredients in original units as entered. Convert at display time based on user preference.
-
-**Conversion Factors:**
-
-| From    | To  | Factor |
-| ------- | --- | ------ |
-| 1 cup   | ml  | 240    |
-| 1 tbsp  | ml  | 15     |
-| 1 tsp   | ml  | 5      |
-| 1 fl oz | ml  | 30     |
-| 1 lb    | g   | 450    |
-| 1 oz    | g   | 28     |
-
-**Non-converting units**: Count-based and flexible units display as-is regardless of user preference.
-
-**Example:**
-
-- Database: `{"quantity": 2, "unit": "cups", "item": "flour"}`
-- User preference "imperial": Display "2 cups flour"
-- User preference "metric": Display "480 ml flour"
-- User preference "both": Display "2 cups (480 ml) flour"
-- User preference "original": Display "2 cups flour"
-
----
-
-## Ingredient Input UX Concept
-
-**Goal:** Structured input that guides users to proper quantity + unit + item format.
-
-**Recommended approach:**
-
-1. Ingredient name text field (free text)
-2. Measurement type selector (Volume, Weight, Count, Flexible)
-3. Quantity field (number input, disabled for flexible)
-4. Unit dropdown (filtered by measurement type)
-
-**Smart defaults** based on ingredient name patterns:
-
-- "milk", "water", "oil" → Volume
-- "flour", "sugar", "paprika" → Volume
-- "beef", "chicken", "cheese" → Weight
-- "garlic", "onion", "egg" → Count
-- "salt" (without amount context) → Flexible
-
-**Implementation:** Adapt this concept to your platform's UI patterns (radio buttons, segmented controls, dropdowns, etc.).
+**Display format:** `[quantity_text] [item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained"

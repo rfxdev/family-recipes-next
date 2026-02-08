@@ -2,69 +2,23 @@
 
 A modern web application for storing, organising, and sharing recipes within a family.
 
-Built for personal use and as a portfolio demonstration of modern web development practices. The web version uses Next.js, TypeScript, and Tailwind CSS, with Firebase integration planned. A companion Flutter mobile app will share the same Firebase backend.
+Built for personal use and as a portfolio demonstration of modern web development practices. The web version uses Next.js, TypeScript, and Tailwind CSS, with Firebase integration planned. A companion Flutter mobile app is planned to share the same Firebase backend.
 
 ---
 
-## Project Status & Roadmap
+## Project Status
 
-### Phase 0: Foundation 🔄 In Progress
+Phase 1 (core recipe browsing with dummy data) is complete — currently preparing for Vercel deployment. Next up is a design pass and adding search/filters.
 
-- [x] Project documentation (README)
-- [x] Next project structure with colocation strategy
-- [x] TypeScript configuration with strict settings
-- [x] Development tooling (ESLint, Prettier, Vitest, Husky, commitlint)
-- [x] GitHub Actions for CI/CD
-- [x] Dependabot for dependency updates
-
-### Phase 1: Core Features (Dummy Data) 🔄 In Progress
-
-**Current Focus:** Build core recipe browsing experience with static JSON data
-
-- [x] Define TypeScript interfaces (Recipe, User, Ingredient types)
-- [x] Create 2 sample recipes in JSON format
-- [ ] Build basic app layout (Header component)
-- [ ] Recipe list page with grid layout
-- [ ] Recipe detail page with full recipe display
-- [ ] Deploy to Vercel
-
-### Phase 2: Firebase Integration 📋 Planned
-
-- [ ] Firebase setup and configuration
-- [ ] Authentication and security rules
-- [ ] Firestore integration (replace dummy data)
-- [ ] Image storage
-
-### Phase 3: Recipe Management 📋 Planned
-
-- [ ] Create, edit, and delete recipes
-- [ ] Image upload with thumbnails
-- [ ] Structured ingredient input (groups, quantities, units)
-- [ ] Form validation
-
-### Phase 4: Advanced Features 📋 Future
-
-- [ ] Recipe scaling and unit conversion (imperial ↔ metric)
-- [ ] Search, filtering, and favorites
-- [ ] Recipe import (camera scanning and URL parsing)
-- [ ] User preferences and settings
-- [ ] UI polish (dark mode, accessibility)
-
-### Phase 5: Flutter Mobile App 📋 Future
-
-- [ ] Flutter app with Material Design
-- [ ] Native camera integration for recipe scanning
-- [ ] Shared Firebase backend with web app
-- [ ] iOS and Android support
-- [ ] Offline support with local caching
+See [`roadmap.md`](docs/roadmap.md) for the full development plan.
 
 ---
 
 ## Tech Stack
 
-**Core:** Next.js 16, TypeScript, Tailwind CSS v4  
-**Backend:** Firebase (Firestore, Auth, Storage)  
-**Development:** ESLint, Prettier, Vitest, Husky, commitlint  
+**Core:** Next.js 16, TypeScript, Tailwind CSS v4
+**Backend:** Firebase (Firestore, Auth, Storage)
+**Development:** ESLint, Prettier, Vitest, Husky, commitlint
 **Deployment:** Vercel
 
 ---
@@ -97,9 +51,9 @@ app/
 
 **Key concepts:**
 
-- Private folders (`_prefix`) - not routable, for code organisation
-- Colocation - components live near their routes
-- Single alias - `@/*` maps to `app/*`
+- Private folders (`_prefix`) — not routable, for code organisation
+- Colocation — components live near their routes
+- Single alias — `@/*` maps to `app/*`
 
 ---
 
@@ -118,18 +72,13 @@ app/
 
 ---
 
-## Design Decisions
+## Documentation
 
-Architecture documented in `docs/`:
+Architecture decisions and specifications:
 
-- [`data-model.md`](docs/data-model.md) - Database schemas and unit conversion
-- [`security-rules.md`](docs/security-rules.md) - Firebase security and authentication
-- [`recipe-import.md`](docs/recipe-import.md) - Camera scanning and URL parsing
+- [`data-model.md`](docs/data-model.md) — Database schemas and field definitions
+- [`recipe-management.md`](docs/recipe-management.md) — Manual entry, editing, import methods, and shared utilities
+- [`security-rules.md`](docs/security-rules.md) — Firebase security and authentication
+- [`roadmap.md`](docs/roadmap.md) — Development phases and priorities
 
-Note: Some Flutter-specific documentation also exists for the planned mobile implementation.
-
----
-
-## Related Projects
-
-A Flutter mobile app for iOS and Android is planned (Phase 5) to share the same Firebase backend. The `docs/` folder contains platform-agnostic specifications applicable to both implementations.
+Documentation is platform-agnostic where possible, applicable to both the web and planned mobile implementations.

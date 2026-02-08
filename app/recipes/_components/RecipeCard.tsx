@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Recipe } from '@/_types/recipe';
 
 import { routes } from '@/_lib/routes';
+import { formatLabel } from '@/_lib/utils/formatLabel';
 import { formatTime } from '@/_lib/utils/formatTime';
 
 interface RecipeCardProps {
@@ -92,19 +93,18 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           </div>
         </div>
 
-        {/* Tags */}
-        {recipe.tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {recipe.tags.slice(0, 3).map((tag) => (
-              <span
-                className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600"
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {/* Metadata badges */}
+        <div className="mt-3 flex flex-wrap gap-2">
+          <span className="rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-700">
+            {formatLabel(recipe.metadata.cuisine)}
+          </span>
+          <span className="rounded-full bg-purple-50 px-2 py-1 text-xs text-purple-700">
+            {formatLabel(recipe.metadata.difficulty)}
+          </span>
+          <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-green-700">
+            {formatLabel(recipe.metadata.time_category)}
+          </span>
+        </div>
       </div>
     </Link>
   );

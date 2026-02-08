@@ -78,7 +78,7 @@ No public signup. Accounts created manually via Firebase Console.
 1. Valid Firebase Authentication session
 2. User document in `users` collection with `is_active: true`
 
-This double verification enables easy access revocation without deleting accounts or breaking `author_id` references.
+This double verification enables easy access revocation without deleting accounts or breaking `uploaded_by` references.
 
 ### Phase 2: Invite-Based System
 
@@ -115,12 +115,12 @@ service cloud.firestore {
       allow write: if isSignedIn() && request.auth.uid == userId;
     }
 
-    // Recipes collection: all family can read, only author can modify
+    // Recipes collection: all family can read, only uploader can modify
     match /recipes/{recipeId} {
       allow read: if isAllowedUser();
       allow create: if isAllowedUser();
       allow update, delete: if isAllowedUser() &&
-                              resource.data.author_id == request.auth.uid;
+                              resource.data.uploaded_by == request.auth.uid;
     }
 
     // Favorites collection: user's own only
@@ -179,7 +179,7 @@ Camera uploads and image viewing require authentication in both environments.
 
 **Via Firebase Console:**
 
-1. Navigate to Authentication → Users → Add User
+1. Navigate to Authentication â†’ Users â†’ Add User
 2. Enter email and temporary password
 3. Send credentials to family member securely
 4. Create matching user document in Firestore `users` collection
@@ -204,7 +204,7 @@ Set `is_active: false` in the user's Firestore document. Security rules will imm
 
 **Why not delete from Authentication:**
 
-- Preserves `author_id` references in recipes
+- Preserves `uploaded_by` references in recipes
 - Maintains audit trail
 - Can reactivate if needed
 - Simpler than cascading deletes
@@ -233,8 +233,8 @@ Set `is_active: false` in the user's Firestore document. Security rules will imm
 - [ ] Test: Unauthenticated access blocked
 - [ ] Test: Authenticated user without user document blocked
 - [ ] Test: Inactive user (`is_active: false`) blocked
-- [ ] Test: Recipe author can edit their recipes
-- [ ] Test: Non-author cannot edit others' recipes
+- [ ] Test: Recipe uploader can edit their recipes
+- [ ] Test: Non-uploader cannot edit others' recipes
 - [ ] Test: All family members can read all recipes
 
 ### Development Experience

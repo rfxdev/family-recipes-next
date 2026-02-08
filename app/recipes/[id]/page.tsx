@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 
 import { dummyRecipes } from '@/_lib/data/dummy-recipes';
 import { formatIngredient } from '@/_lib/utils/formatIngredient';
+import { formatLabel } from '@/_lib/utils/formatLabel';
 import { formatTime } from '@/_lib/utils/formatTime';
-import { isUrl } from '@/_lib/utils/isUrl';
 
 interface RecipePageProps {
   params: Promise<{ id: string }>;
@@ -17,6 +17,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
     notFound();
   }
 
+  const totalTime =
+    (recipe.prep_time_minutes ?? 0) + (recipe.cook_time_minutes ?? 0);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
@@ -24,7 +27,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
         <h1 className="text-4xl font-bold text-gray-900">{recipe.title}</h1>
         <p className="mt-3 text-lg text-gray-600">{recipe.description}</p>
 
-        {/* Meta info */}
+        {/* Time and servings info */}
         <div className="mt-4 flex flex-wrap gap-6 text-sm text-gray-600">
           {recipe.prep_time_minutes && (
             <div className="flex items-center gap-2">
@@ -38,25 +41,39 @@ export default async function RecipePage({ params }: RecipePageProps) {
               <span>{formatTime(recipe.cook_time_minutes)}</span>
             </div>
           )}
+          {totalTime > 0 && (
+            <div className="flex items-center gap-2">
+              <span className="font-medium">Total:</span>
+              <span>{formatTime(totalTime)}</span>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <span className="font-medium">Servings:</span>
             <span>{recipe.servings}</span>
           </div>
         </div>
 
-        {/* Tags */}
-        {recipe.tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {recipe.tags.map((tag) => (
+        {/* Metadata badges */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+            {formatLabel(recipe.metadata.cuisine)}
+          </span>
+          <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800">
+            {formatLabel(recipe.metadata.difficulty)}
+          </span>
+          <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
+            {formatLabel(recipe.metadata.time_category)}
+          </span>
+          {recipe.metadata.dietary_restrictions.length > 0 &&
+            recipe.metadata.dietary_restrictions.map((restriction) => (
               <span
-                className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
-                key={tag}
+                className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800"
+                key={restriction}
               >
-                {tag}
+                {formatLabel(restriction)}
               </span>
             ))}
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Image */}
@@ -132,39 +149,48 @@ export default async function RecipePage({ params }: RecipePageProps) {
       </div>
 
       {/* Source and Notes */}
-      {(recipe.source || recipe.notes) && (
+      {(recipe.metadata.recipe_author ||
+        recipe.metadata.source_name ||
+        recipe.metadata.source_url ||
+        recipe.notes) && (
         <div className="mt-8 space-y-4 border-t pt-8">
-          {recipe.source && (
+          {/* Source information */}
+          {(recipe.metadata.recipe_author ||
+            recipe.metadata.source_name ||
+            recipe.metadata.source_url) && (
             <div className="rounded-lg bg-gray-50 p-4">
               <h3 className="mb-2 font-medium text-gray-900">Source</h3>
               <p className="text-sm text-gray-700">
-                {recipe.source.author && <span>By {recipe.source.author}</span>}
-                {recipe.source.author && recipe.source.source_name && (
-                  <span> • </span>
+                {recipe.metadata.recipe_author && (
+                  <span>By {recipe.metadata.recipe_author}</span>
                 )}
-                {recipe.source.source_name && (
-                  <span>{recipe.source.source_name}</span>
+                {recipe.metadata.recipe_author &&
+                  recipe.metadata.source_name && <span> • </span>}
+                {recipe.metadata.source_name && (
+                  <span>{recipe.metadata.source_name}</span>
                 )}
               </p>
-              {recipe.source.details && (
+              {recipe.metadata.source_url && (
+                <p className="mt-1 text-sm">
+                  <a
+                    className="text-blue-600 hover:underline"
+                    href={recipe.metadata.source_url}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    View original recipe
+                  </a>
+                </p>
+              )}
+              {recipe.metadata.source_details && (
                 <p className="mt-1 text-sm text-gray-600">
-                  {isUrl(recipe.source.details) ? (
-                    <a
-                      className="text-blue-600 hover:underline"
-                      href={recipe.source.details}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      View original recipe
-                    </a>
-                  ) : (
-                    recipe.source.details
-                  )}
+                  {recipe.metadata.source_details}
                 </p>
               )}
             </div>
           )}
 
+          {/* User notes */}
           {recipe.notes && (
             <div className="rounded-lg bg-amber-50 p-4">
               <h3 className="mb-2 font-medium text-gray-900">Notes</h3>
