@@ -20,7 +20,7 @@ Development phases for the Family Recipes application.
 - [x] App layout and navigation (Header component)
 - [x] Recipe list page with grid layout
 - [x] Recipe detail page with full recipe display
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel
 
 ## Phase 2: Design & Discovery — Next
 

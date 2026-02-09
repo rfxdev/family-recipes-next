@@ -4,11 +4,15 @@ A modern web application for storing, organising, and sharing recipes within a f
 
 Built for personal use and as a portfolio demonstration of modern web development practices. The web version uses Next.js, TypeScript, and Tailwind CSS, with Firebase integration planned. A companion Flutter mobile app is planned to share the same Firebase backend.
 
+**Live Demo:** [lovegrills-recipes.vercel.app](https://lovegrills-recipes.vercel.app)
+
 ---
 
 ## Project Status
 
-Phase 1 (core recipe browsing with dummy data) is complete — currently preparing for Vercel deployment. Next up is a design pass and adding search/filters.
+Phase 1 complete! Live at [lovegrills-recipes.vercel.app](https://lovegrills-recipes.vercel.app).
+
+Next up: design refresh and search/filtering features.
 
 See [`roadmap.md`](docs/roadmap.md) for the full development plan.
 
