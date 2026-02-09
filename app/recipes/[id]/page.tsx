@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import { dummyRecipes } from '@/_lib/data/dummy-recipes';
@@ -77,11 +78,14 @@ export default async function RecipePage({ params }: RecipePageProps) {
       </div>
 
       {/* Image */}
-      <div className="mb-8 aspect-video overflow-hidden rounded-lg bg-gray-100">
+      <div className="relative mb-8 aspect-video overflow-hidden rounded-lg bg-gray-100">
         {recipe.image_path ? (
-          <img
+          <Image
             alt={recipe.title}
             className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
             src={recipe.image_path}
           />
         ) : (

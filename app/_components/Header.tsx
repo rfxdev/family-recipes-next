@@ -11,11 +11,11 @@ export function Header() {
   const isRecipesActive = pathname.startsWith('/recipes');
 
   return (
-    <header className="border-b bg-white">
+    <header className="border-border bg-card border-b">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between">
           <Link
-            className="text-xl font-semibold text-gray-900"
+            className="text-foreground text-xl font-semibold"
             href={routes.home}
           >
             Family Recipes
@@ -26,8 +26,8 @@ export function Header() {
               className={cn(
                 'transition-colors',
                 isRecipesActive
-                  ? 'font-semibold text-gray-900'
-                  : 'text-gray-600 hover:text-gray-900',
+                  ? 'text-primary font-semibold'
+                  : 'text-muted-foreground hover:text-foreground',
               )}
               href={routes.recipes}
             >
