@@ -23,7 +23,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
       href={routes.recipeDetail(recipe.id)}
     >
       {/* Image */}
-      <div className="bg-muted relative aspect-[4/3] overflow-hidden">
+      <div className="bg-muted relative aspect-4/3 overflow-hidden">
         {recipe.image_path ? (
           <Image
             alt={recipe.title}

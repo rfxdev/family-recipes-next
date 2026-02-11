@@ -547,7 +547,7 @@ export const dummyRecipes: Recipe[] = [
     cook_time_minutes: 40,
     created_at: '2025-02-08T10:00:00Z',
     description:
-      'These pies boast enormous flavours and release enticing mouth-watering aromas as they bake. Instead of topping the spicy lentil pie filling with pastry or mash, I spoon over saag aloo (traditionally a potato side dish in Indian cooking), which crisps up beautifully in the oven. This is comfort food that will make you smile.',
+      'These pies boast enormous flavours and release enticing mouth-watering aromas as they bake. Instead of topping the spicy lentil pie filling with pastry or mash, I spoon over saag aloo, which crisps up beautifully in the oven. This is comfort food that will make you smile.',
     id: 'curried-lentil-cottage-pie',
     ingredient_groups: [
       {

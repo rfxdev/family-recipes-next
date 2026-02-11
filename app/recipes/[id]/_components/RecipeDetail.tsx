@@ -1,15 +1,12 @@
 'use client';
 
-import { ArrowLeft, Clock, UtensilsCrossed } from 'lucide-react';
+import { UtensilsCrossed } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 
 import type { Recipe } from '@/_types/recipe';
 
-import { Badge } from '@/_components/ui/badge';
 import { Checkbox } from '@/_components/ui/checkbox';
-import { routes } from '@/_lib/routes';
 import { cn } from '@/_lib/utils/cn';
 import { formatIngredient } from '@/_lib/utils/formatIngredient';
 import { formatLabel } from '@/_lib/utils/formatLabel';
@@ -24,9 +21,6 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
     new Set(),
   );
 
-  const totalTime =
-    (recipe.prep_time_minutes ?? 0) + (recipe.cook_time_minutes ?? 0);
-
   const toggleIngredient = (id: string) => {
     setCheckedIngredients((prev) => {
       const next = new Set(prev);
@@ -40,20 +34,11 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Back link */}
-      <Link
-        className="text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-1.5 text-sm transition-colors"
-        href={routes.recipes}
-      >
-        <ArrowLeft className="size-4" />
-        Back to Recipes
-      </Link>
-
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       {/* Row 1: Title + author left, image right */}
-      <div className="grid gap-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
+      <div className="grid gap-6 lg:grid-cols-[3fr_5fr] lg:gap-12">
         <div className="flex flex-col justify-center">
-          <h1 className="text-foreground mb-4 text-3xl font-bold lg:text-5xl">
+          <h1 className="text-foreground mb-1 text-3xl font-bold lg:mb-2 lg:text-5xl">
             {recipe.title}
           </h1>
 
@@ -93,37 +78,47 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
       </div>
 
       {/* Row 2: Metadata left, description right */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
-        <div className="text-muted-foreground flex flex-col gap-2 text-sm">
-          {totalTime > 0 && (
-            <span className="inline-flex items-center gap-1">
-              <Clock className="size-4" />
-              {formatTime(totalTime)}
-            </span>
-          )}
-          <span className="inline-flex items-center gap-1">
-            <UtensilsCrossed className="size-4" />
-            {recipe.servings} servings
-          </span>
-          <span>{formatLabel(recipe.metadata.difficulty)}</span>
-          {recipe.metadata.dietary_restrictions.map((restriction) => (
-            <Badge
-              className="bg-primary/10 text-primary border-primary/20 w-fit"
-              key={restriction}
-              variant="outline"
-            >
-              {formatLabel(restriction)}
-            </Badge>
-          ))}
+      <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
+        <div className="text-foreground text-sm">
+          <dl className="lg:border-border grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:border-y lg:py-3">
+            {recipe.prep_time_minutes != null &&
+              recipe.prep_time_minutes > 0 && (
+                <>
+                  <dt className="font-bold">Prep Time</dt>
+                  <dd>{formatTime(recipe.prep_time_minutes)}</dd>
+                </>
+              )}
+            {recipe.cook_time_minutes != null &&
+              recipe.cook_time_minutes > 0 && (
+                <>
+                  <dt className="font-bold">Cook Time</dt>
+                  <dd>{formatTime(recipe.cook_time_minutes)}</dd>
+                </>
+              )}
+            <dt className="font-bold">Servings</dt>
+            <dd>{recipe.servings}</dd>
+            <dt className="font-bold">Difficulty</dt>
+            <dd>{formatLabel(recipe.metadata.difficulty)}</dd>
+            {recipe.metadata.dietary_restrictions.length > 0 && (
+              <>
+                <dt className="font-bold">Dietary</dt>
+                <dd>
+                  {recipe.metadata.dietary_restrictions
+                    .map(formatLabel)
+                    .join(', ')}
+                </dd>
+              </>
+            )}
+          </dl>
         </div>
 
-        <p className="text-muted-foreground text-base leading-relaxed lg:text-lg">
+        <p className="text-foreground text-base leading-relaxed lg:text-lg">
           {recipe.description}
         </p>
       </div>
 
       {/* Ingredients & Method */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
+      <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
         <div>
           <h2 className="text-foreground mb-6 text-2xl font-semibold">
             Ingredients
@@ -182,7 +177,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
           <ol className="list-none space-y-6">
             {recipe.instructions.map((step, index) => (
               <li className="flex gap-4" key={index}>
-                <span className="text-muted-foreground shrink-0 text-lg font-medium">
+                <span className="text-primary shrink-0 text-lg font-bold">
                   {index + 1}.
                 </span>
                 <p className="text-foreground text-base leading-relaxed lg:text-lg">
