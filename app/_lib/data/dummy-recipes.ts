@@ -7,6 +7,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       'A warming Moroccan-inspired one-pot dish with tender lamb, aromatic spices, and chickpeas. Perfect for making ahead as the flavours develop beautifully.',
     id: 'lamb-tagine-with-chickpeas',
+    image_path: '/images/recipes/lamb-tagine.jpg',
     ingredient_groups: [
       {
         ingredients: [
@@ -162,6 +163,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       'Saucy, sticky, crispy, sweet and savoury cashew chicken! Just like your favourite takeout, but made easy at home.',
     id: 'cashew-chicken',
+    image_path: '/images/recipes/cashew-chicken.webp',
     ingredient_groups: [
       {
         ingredients: [
@@ -294,6 +296,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       'Lemon zest complements sweet tomatoes perfectly in this super simple pasta dish.',
     id: 'tomato-chilli-prawn-linguine',
+    image_path: '/images/recipes/tomato-chilli-prawn-linguine.jpg',
     ingredient_groups: [
       {
         ingredients: [
@@ -378,6 +381,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       "A chicken biryani homage to Britannia's chicken berry pulao, using cranberries in place of Persian barberries. Prepared kacchi-style from Hyderabad, where marinated raw meat cooks alongside the rice.",
     id: 'chicken-berry-britannia',
+    image_path: '/images/recipes/chicken-berry-britannia.webp',
     ingredient_groups: [
       {
         ingredients: [
@@ -549,6 +553,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       'These pies boast enormous flavours and release enticing mouth-watering aromas as they bake. Instead of topping the spicy lentil pie filling with pastry or mash, I spoon over saag aloo, which crisps up beautifully in the oven. This is comfort food that will make you smile.',
     id: 'curried-lentil-cottage-pie',
+    image_path: '/images/recipes/curried-lentil-cottage-pie.webp',
     ingredient_groups: [
       {
         ingredients: [
@@ -696,6 +701,7 @@ export const dummyRecipes: Recipe[] = [
     description:
       "Galettes are traditionally made with buckwheat flour, but make sure yours is gluten-free. These are just like the galettes I had in Paris - thin and crisp, filled with an egg with runny yolk, melted cheese and ham. It's the perfect easy breakfast or brunch.",
     id: 'ham-and-cheese-breakfast-galettes',
+    image_path: '/images/recipes/ham-and-cheese-galettes.webp',
     ingredient_groups: [
       {
         ingredients: [
