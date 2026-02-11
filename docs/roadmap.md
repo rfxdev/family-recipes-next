@@ -1,10 +1,10 @@
 # Roadmap
 
-Development phases for the Family Recipes application.
+Development phases for the Kitchen Companion application.
 
 ---
 
-## Phase 0: Foundation — Complete
+## Phase 0: Foundation - Complete
 
 - [x] Project documentation (README)
 - [x] Next.js project structure with colocation strategy
@@ -13,7 +13,7 @@ Development phases for the Family Recipes application.
 - [x] GitHub Actions for CI/CD
 - [x] Dependabot for dependency updates
 
-## Phase 1: Core Features (Dummy Data) — In progress
+## Phase 1: Core Features (Dummy Data) - Complete
 
 - [x] TypeScript interfaces (Recipe types)
 - [x] Sample recipes in JSON format
@@ -22,7 +22,7 @@ Development phases for the Family Recipes application.
 - [x] Recipe detail page with full recipe display
 - [x] Deploy to Vercel
 
-## Phase 2: Design & Discovery — Next
+## Phase 2: Design & Discovery - In Progress
 
 Visual design pass and recipe browsing features.
 
@@ -41,16 +41,24 @@ Backend integration and CRUD functionality.
 - [ ] Image upload and storage
 - [ ] Security rules deployment
 
-## Phase 4: Advanced Features
+## Phase 4: Recipe Features
 
 Import methods and user experience improvements.
 
 - [ ] URL import (schema.org structured data)
 - [ ] Camera scanning / OCR import
-- [ ] User preferences and settings
 - [ ] Favourites
 
-## Phase 5: Flutter Mobile App — Future
+## Phase 5: Meal Planning & Extensions
+
+Build incrementally: meal planner → shopping list → meal tracker.
+
+- [ ] Meal planner (assign recipes to dates/meal slots)
+- [ ] Shopping list generation from planned meals
+- [ ] Meal history tracker with usage statistics
+- [ ] Discovery prompts (try new recipes, revisit favourites)
+
+## Phase 6: Flutter Mobile App - Future
 
 - [ ] Flutter app with Material Design
 - [ ] Shared Firebase backend with web app

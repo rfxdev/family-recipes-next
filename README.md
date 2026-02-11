@@ -1,6 +1,6 @@
-# Family Recipes
+# Kitchen Companion
 
-A modern web application for storing, organising, and sharing recipes within a family.
+A modern web application for storing, organising, and sharing recipes within a family. Beyond a digital cookbook, the app helps families plan meals, generate shopping lists, and track cooking history to encourage trying new recipes.
 
 Built for personal use and as a portfolio demonstration of modern web development practices. The web version uses Next.js, TypeScript, and Tailwind CSS, with Firebase integration planned. A companion Flutter mobile app is planned to share the same Firebase backend.
 
@@ -20,10 +20,10 @@ See [`roadmap.md`](docs/roadmap.md) for the full development plan.
 
 ## Tech Stack
 
-**Core:** Next.js 16, TypeScript, Tailwind CSS v4
-**Backend:** Firebase (Firestore, Auth, Storage)
-**Development:** ESLint, Prettier, Vitest, Husky, commitlint
-**Deployment:** Vercel
+- **Core:** Next.js 16, TypeScript, Tailwind CSS v4
+- **Backend:** Firebase (Firestore, Auth, Storage)
+- **Development:** ESLint, Prettier, Vitest, Husky, commitlint
+- **Deployment:** Vercel
 
 ---
 
@@ -80,9 +80,9 @@ app/
 
 Architecture decisions and specifications:
 
-- [`data-model.md`](docs/data-model.md) — Database schemas and field definitions
-- [`recipe-management.md`](docs/recipe-management.md) — Manual entry, editing, import methods, and shared utilities
-- [`security-rules.md`](docs/security-rules.md) — Firebase security and authentication
-- [`roadmap.md`](docs/roadmap.md) — Development phases and priorities
+- [`data-model.md`](docs/data-model.md) - Database schemas and field definitions
+- [`recipe-management.md`](docs/recipe-management.md) - Manual entry, editing, import methods, and shared utilities
+- [`security-rules.md`](docs/security-rules.md) - Firebase security and authentication
+- [`roadmap.md`](docs/roadmap.md) - Development phases and priorities
 
 Documentation is platform-agnostic where possible, applicable to both the web and planned mobile implementations.
