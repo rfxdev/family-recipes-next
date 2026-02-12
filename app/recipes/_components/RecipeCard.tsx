@@ -19,7 +19,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Link
-      className="group border-border bg-card flex flex-col overflow-hidden rounded-lg border transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="group border-border bg-card flex flex-col overflow-hidden rounded-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg lg:border"
       href={routes.recipeDetail(recipe.id)}
     >
       {/* Image */}
@@ -41,27 +41,27 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         {/* Easy badge overlay */}
         {recipe.metadata.difficulty === 'easy' && (
           <div className="absolute top-3 left-3">
-            <Badge className="bg-emerald-600 text-white shadow-md">Easy</Badge>
+            <Badge className="shadow-md">Easy</Badge>
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex flex-1 flex-col gap-1.5 pt-3 lg:p-3">
         {/* Category label */}
-        <p className="text-primary flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase">
+        <p className="text-accent-foreground flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase">
           <span>{formatLabel(recipe.metadata.cuisine)}</span>
           <span className="text-muted-foreground">·</span>
           <span>{formatLabel(recipe.metadata.meal_type)}</span>
         </p>
 
         {/* Title */}
-        <h2 className="text-card-foreground group-hover:text-primary text-xl leading-tight font-semibold transition-colors">
+        <h2 className="text-card-foreground group-hover:text-accent-foreground text-xl leading-tight font-semibold transition-colors">
           {recipe.title}
         </h2>
 
         {/* Description */}
-        <p className="text-muted-foreground line-clamp-2 text-sm leading-relaxed">
+        <p className="text-card-foreground line-clamp-2 text-sm leading-relaxed">
           {recipe.description}
         </p>
 
@@ -69,7 +69,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         <div className="mt-auto" />
 
         {/* Metadata row */}
-        <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
+        <div className="text-card-foreground flex flex-wrap items-center gap-2 text-sm">
           {totalTime > 0 && (
             <span className="inline-flex items-center gap-1">
               <Clock className="size-3.5" />
@@ -77,11 +77,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
             </span>
           )}
           {recipe.metadata.dietary_restrictions.map((restriction) => (
-            <Badge
-              className="bg-primary/10 text-primary border-primary/20"
-              key={restriction}
-              variant="outline"
-            >
+            <Badge className="text-xs" key={restriction} variant="secondary">
               {formatLabel(restriction)}
             </Badge>
           ))}

@@ -8,6 +8,7 @@ Comprehensive specs live in `docs/` — read these before making changes:
 - `docs/data-model.md` — Database schemas and field definitions
 - `docs/recipe-management.md` — Entry, editing, and import specs
 - `docs/security-rules.md` — Firebase security and authentication
+- `docs/design-system.md` — Colour tokens, badge variants, and component styling
 
 These are platform-agnostic (shared with a planned Flutter app) — keep them in sync when making changes that deviate from the specs.
 

@@ -34,7 +34,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <>
       {/* Row 1: Title + author left, image right */}
       <div className="grid gap-6 lg:grid-cols-[3fr_5fr] lg:gap-12">
         <div className="flex flex-col justify-center">
@@ -80,7 +80,8 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
       {/* Row 2: Metadata left, description right */}
       <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[3fr_5fr] lg:gap-12">
         <div className="text-foreground text-sm">
-          <dl className="lg:border-border grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:border-y lg:py-3">
+          {/*<dl className="lg:border-border grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:border-y lg:py-3">*/}
+          <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
             {recipe.prep_time_minutes != null &&
               recipe.prep_time_minutes > 0 && (
                 <>
@@ -177,7 +178,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
           <ol className="list-none space-y-6">
             {recipe.instructions.map((step, index) => (
               <li className="flex gap-4" key={index}>
-                <span className="text-primary shrink-0 text-lg font-bold">
+                <span className="text-accent-foreground shrink-0 text-lg font-bold">
                   {index + 1}.
                 </span>
                 <p className="text-foreground text-base leading-relaxed lg:text-lg">
@@ -199,6 +200,6 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
