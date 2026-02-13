@@ -26,7 +26,7 @@ Development phases for the Kitchen Companion application.
 
 Visual design pass and recipe browsing features.
 
-- [ ] Design refresh (layout, typography, colour, spacing)
+- [x] Design refresh (layout, typography, colour, spacing)
 - [ ] Search functionality
 - [ ] Filtering by metadata (cuisine, meal type, difficulty, time, dietary, etc.)
 

@@ -37,17 +37,7 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
 
 ---
 
-## Collections
-
-Three Firestore collections:
-
-- `users` — Family member profiles and preferences
-- `recipes` — Recipe content with embedded ingredient groups and metadata
-- `favorites` — User-recipe junction for bookmarking (optional, add when needed)
-
----
-
-## Recipe Document
+## Recipe Example
 
 ```json
 {
@@ -106,18 +96,17 @@ Three Firestore collections:
         },
         {
           "item": "salt",
-          "quantity_text": "to taste",
           "order": 2
         }
       ]
     }
   ],
 
-  "instructions": [
+  "method": [
     "Brown the beef in a large pan over medium-high heat.",
     "Mix ricotta with egg and herbs.",
     "Layer sauce, noodles, meat, and cheese mixture.",
-    "Bake at 180°C for 45 minutes until golden."
+    "Bake at 180°C (160°C fan) for 45 minutes until golden."
   ],
   "servings": 8,
   "prep_time_minutes": 30,
@@ -134,9 +123,11 @@ Three Firestore collections:
 
 ---
 
-## Recipe Field Notes
+## Recipe Type Details
 
-### Core Recipe Content
+Field definitions for the Recipe type (implemented in `app/_types/recipe.ts`).
+
+### Core Fields
 
 **id** (required string): URL-safe slug used as both Firestore document ID and URL path. Lowercase alphanumeric with hyphens only. Must be unique. See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
 
@@ -144,11 +135,24 @@ Three Firestore collections:
 
 **notes** (optional string): User's personal modifications or cooking tips, distinct from source attribution.
 
-**instructions** (required array of strings): Each string represents a step. Displayed as numbered list in UI.
+**method** (required array of strings): Each string represents a step. Displayed as a numbered list in the UI.
 
 **image_path** (optional string): Firebase Storage path, not URL. URLs include expiring security tokens. Thumbnails auto-generated as `_200x200.jpg`, `_800x800.jpg`.
 
 **ingredient_groups** (required array): Nested array for sectioned recipes. Simple recipes use a single group with empty name: `{"name": "", "order": 1, "ingredients": [...]}`.
+
+### Ingredient Fields
+
+Each ingredient within a group has:
+
+- **item** (required string): Core ingredient name, e.g., "minced beef", "tinned tomatoes"
+- **quantity_text** (optional string): Flexible quantity as text, e.g., "2 x 400g", "thumb-sized piece". Omit for ingredients that don't need a quantity (e.g., salt, pepper)
+- **preparation** (optional string): How to prepare the ingredient, e.g., "chopped", "drained", "at room temperature"
+- **order** (required number): Display order within the group
+
+The free-text `quantity_text` approach handles complex real-world quantities that don't fit structured formats. This simplifies input and display at the cost of programmatic scaling and unit conversion. See [`style-guide.md`](style-guide.md) for formatting conventions and examples.
+
+**Display format:** `[quantity_text ][item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained", "salt"
 
 ### Metadata Object
 
@@ -197,18 +201,3 @@ All descriptive and categorisation data about the recipe, including both structu
 **source_url** (optional, string): URL if recipe was imported from a website.
 
 **source_details** (optional, freeform string): Additional context about the recipe's origin. Examples: "Page 42", "From recipe box, 1985", "Adapted from original"
-
----
-
-## Ingredient Structure
-
-Each ingredient has:
-
-- **item** (required): Core ingredient name, e.g., "minced beef", "tinned tomatoes"
-- **quantity_text** (required): Flexible quantity as text, e.g., "2 cups", "1 lb", "2 x 400g", "to taste", "thumb-sized piece"
-- **preparation** (optional): How to prepare the ingredient, e.g., "chopped", "drained", "at room temperature"
-- **order** (required): Display order within the group
-
-The free-text `quantity_text` approach handles complex real-world quantities that don't fit structured formats (e.g., "2 x 400g tins", "thumb-sized piece of ginger", "to taste"). This simplifies input and display at the cost of programmatic scaling and unit conversion.
-
-**Display format:** `[quantity_text] [item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained"

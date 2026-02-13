@@ -8,12 +8,15 @@ import type { Ingredient } from '@/_types/recipe';
  *   "thumb-sized piece ginger, peeled and grated"
  */
 export function formatIngredient(ingredient: Ingredient): string {
-  const parts = [ingredient.quantity_text, ingredient.item];
+  let result = ingredient.item;
 
-  if (ingredient.preparation) {
-    parts.push(ingredient.preparation);
-    return `${parts[0]} ${parts[1]}, ${parts[2]}`;
+  if (ingredient.quantity_text) {
+    result = `${ingredient.quantity_text} ${result}`;
   }
 
-  return parts.join(' ');
+  if (ingredient.preparation) {
+    result = `${result}, ${ingredient.preparation}`;
+  }
+
+  return result;
 }

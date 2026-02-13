@@ -5,8 +5,8 @@ export interface Recipe {
   id: string; // Firestore document ID that doubles up as URL-friendly slug
   image_path?: string;
   ingredient_groups: IngredientGroup[];
-  instructions: string[];
   metadata: RecipeMetadata;
+  method: string[];
   notes?: string;
   prep_time_minutes?: number;
   servings: number;
@@ -17,7 +17,7 @@ export interface Recipe {
 
 export interface RecipeMetadata {
   cuisine: Cuisine;
-  dietary_restrictions: DietaryRestriction[];
+  dietary_restrictions?: DietaryRestriction[];
   difficulty: Difficulty;
   ingredient_categories: IngredientCategory[];
   meal_type: MealType;
@@ -25,7 +25,7 @@ export interface RecipeMetadata {
   source_details?: string; // Additional context
   source_name?: string; // Freeform: "BBC Good Food", "handwritten note"
   source_url?: string; // URL if imported
-  special_occasions: SpecialOccasion[];
+  special_occasions?: SpecialOccasion[];
   time_category: TimeCategory; // Auto-calculated
 }
 
@@ -39,7 +39,7 @@ export interface Ingredient {
   item: string; // Core ingredient name
   order: number;
   preparation?: string; // Optional: "chopped", "drained", etc.
-  quantity_text: string; // Flexible quantity: "2 x 400g", "6", "thumb-sized piece"
+  quantity_text?: string; // Flexible quantity: "2 x 400g", "6", "thumb-sized piece"
 }
 
 export type Cuisine =

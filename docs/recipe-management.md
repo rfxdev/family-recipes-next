@@ -30,7 +30,7 @@ Editing uses the same form as manual entry, pre-populated with the existing reci
    - **Times**: Prep time, cook time (optional, in minutes)
    - **Servings**: Number of servings (required)
    - **Ingredient Groups**: Add groups (optional grouping), add ingredients within groups
-   - **Instructions**: Add numbered steps
+   - **Method**: Add numbered steps
    - **Optional Fields**: Notes, recipe author, source information
    - **Image**: Upload photo (optional)
 4. Form validation checks required fields
@@ -54,15 +54,12 @@ Editing uses the same form as manual entry, pre-populated with the existing reci
 
 ### Ingredient Input
 
-Based on the flexible `quantity_text` approach (see `data-model.md`):
+Three text fields per ingredient row: **Quantity** (optional), **Item** (required), and **Preparation** (optional). See [`style-guide.md`](style-guide.md) for content formatting conventions.
 
-- **Quantity** (required text input): "2 cups", "1 lb", "2 x 400g tins", "to taste"
-- **Item** (required text input): "flour", "ground beef", "tinned tomatoes"
-- **Preparation** (optional text input): "chopped", "drained", "at room temperature"
 - **Add to group** button: Creates new ingredient row
 - **Reorder** controls: Drag handles or up/down buttons
 
-**Display format:** `[quantity_text] [item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained"
+**Display format:** `[quantity_text ][item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained", "salt"
 
 ---
 
@@ -94,7 +91,7 @@ Import methods pre-populate the manual entry form with extracted data. Users rev
 | name                       | title             | Recipe title                               |
 | description                | description       | Short description                          |
 | recipeIngredient           | ingredient_groups | Array of strings, parse into ingredients   |
-| recipeInstructions         | instructions      | Convert to array (split on newlines/steps) |
+| recipeInstructions         | method            | Convert to array (split on newlines/steps) |
 | recipeYield                | servings          | e.g., "8 servings" → 8                     |
 | prepTime                   | prep_time_minutes | ISO 8601 duration → minutes                |
 | cookTime                   | cook_time_minutes | ISO 8601 duration → minutes                |
@@ -118,7 +115,7 @@ Web browsers block cross-origin requests to recipe sites. Options include a serv
 
 **Technology:** OCR text recognition (e.g., Firebase ML Kit on mobile, Tesseract.js on web).
 
-**Approach:** Capture or upload a photo of a recipe (from a book, magazine, or card), extract text via OCR, then present the raw text for the user to copy into the recipe form fields. The user handles organising text into structured fields — no automatic parsing of ingredients vs instructions.
+**Approach:** Capture or upload a photo of a recipe (from a book, magazine, or card), extract text via OCR, then present the raw text for the user to copy into the recipe form fields. The user handles organising text into structured fields — no automatic parsing of ingredients vs method steps.
 
 **Limitations:** Best with clear, printed text. Poor accuracy on handwritten recipes or decorative fonts.
 

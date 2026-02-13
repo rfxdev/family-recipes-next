@@ -100,16 +100,17 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
             <dd>{recipe.servings}</dd>
             <dt className="font-bold">Difficulty</dt>
             <dd>{formatLabel(recipe.metadata.difficulty)}</dd>
-            {recipe.metadata.dietary_restrictions.length > 0 && (
-              <>
-                <dt className="font-bold">Dietary</dt>
-                <dd>
-                  {recipe.metadata.dietary_restrictions
-                    .map(formatLabel)
-                    .join(', ')}
-                </dd>
-              </>
-            )}
+            {recipe.metadata.dietary_restrictions &&
+              recipe.metadata.dietary_restrictions.length > 0 && (
+                <>
+                  <dt className="font-bold">Dietary</dt>
+                  <dd>
+                    {recipe.metadata.dietary_restrictions
+                      .map(formatLabel)
+                      .join(', ')}
+                  </dd>
+                </>
+              )}
           </dl>
         </div>
 
@@ -176,7 +177,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
             Method
           </h2>
           <ol className="list-none space-y-6">
-            {recipe.instructions.map((step, index) => (
+            {recipe.method.map((step, index) => (
               <li className="flex gap-4" key={index}>
                 <span className="text-accent-foreground shrink-0 text-lg font-bold">
                   {index + 1}.
