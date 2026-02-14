@@ -19,7 +19,7 @@ export interface RecipeMetadata {
   cuisine: Cuisine;
   dietary_restrictions?: DietaryRestriction[];
   difficulty: Difficulty;
-  ingredient_categories: IngredientCategory[];
+  ingredient_categories?: IngredientCategory[];
   meal_type: MealType;
   recipe_author?: string; // Freeform: "Grandma Maria", "Jamie Oliver"
   source_details?: string; // Additional context
@@ -60,9 +60,9 @@ export type MealType =
   | 'appetiser'
   | 'breakfast'
   | 'condiment'
-  | 'dessert'
   | 'drink'
   | 'main'
+  | 'pudding'
   | 'side'
   | 'snack';
 
@@ -91,9 +91,7 @@ export type IngredientCategory =
   | 'pork'
   | 'poultry'
   | 'rice'
-  | 'seafood'
-  | 'vegan'
-  | 'vegetarian';
+  | 'seafood';
 
 export type SpecialOccasion =
   | 'barbecue'

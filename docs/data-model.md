@@ -45,7 +45,6 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
   "title": "Grandma's Lasagna",
   "description": "Family favourite comfort food",
   "uploaded_by": "user_456",
-
   "metadata": {
     "cuisine": "italian",
     "meal_type": "main",
@@ -58,9 +57,7 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
     "source_name": "handwritten note",
     "source_details": "From recipe box, 1985"
   },
-
   "notes": "I reduce the garlic by half - our family prefers it milder",
-
   "ingredient_groups": [
     {
       "name": "Main Layers",
@@ -101,7 +98,6 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
       ]
     }
   ],
-
   "method": [
     "Brown the beef in a large pan over medium-high heat.",
     "Mix ricotta with egg and herbs.",
@@ -111,9 +107,7 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
   "servings": 8,
   "prep_time_minutes": 30,
   "cook_time_minutes": 60,
-
   "image_path": "recipes/grandmas-lasagna/main.jpg",
-
   "created_at": "2024-12-24T10:00:00Z",
   "updated_at": "2024-12-24T10:00:00Z"
 }
@@ -166,7 +160,7 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **meal_type** (required, single-select):
 
-- Allowed values: `appetiser`, `breakfast`, `condiment`, `dessert`, `drink`, `main`, `side`, `snack`
+- Allowed values: `appetiser`, `breakfast`, `condiment`, `pudding`, `drink`, `main`, `side`, `snack`
 
 **difficulty** (required, single-select):
 
@@ -185,7 +179,7 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **ingredient_categories** (optional, multi-select array):
 
-- Allowed values: `beef`, `cheese`, `eggs`, `fish`, `lamb`, `legumes`, `pasta`, `pork`, `poultry`, `rice`, `seafood`, `vegan`, `vegetarian`
+- Allowed values: `beef`, `cheese`, `eggs`, `fish`, `lamb`, `legumes`, `pasta`, `pork`, `poultry`, `rice`, `seafood`
 - Used for queries like "what can I make with chicken?"
 
 **special_occasions** (optional, multi-select array):

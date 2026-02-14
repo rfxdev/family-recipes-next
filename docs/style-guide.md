@@ -42,6 +42,50 @@ Write 1–2 sentences that capture what makes the recipe appealing. Focus on fla
 
 ---
 
+## Metadata
+
+### Ingredient Categories
+
+Tag ingredients that define what type of dish this is or what you'd search for when looking for recipes. Don't tag incidental supporting ingredients.
+
+**Tag these:**
+
+- Star proteins: the seafood in this linguine, the chicken in a curry, the beef in a stew
+- Pasta in pasta dishes: linguine, penne, lasagne — pasta defines the dish type
+- Rice cooked into the dish: risotto, paella, biryani, fried rice — rice is the main component, not an accompaniment
+- Main legumes: the chickpeas in a chickpea curry, the lentils in dal
+- Hero ingredients: the cheese in mac & cheese, the eggs in a frittata
+
+**Don't tag these:**
+
+- Rice served on the side: curry with rice, chilli served over rice — rice is just the vehicle
+- Incidental additions: cheese sprinkled on top of soup, eggs as binder in cakes
+- Generic aromatics: onions, garlic, ginger, celery — these are in everything
+- Condiments and seasonings: soy sauce, stock, herbs, spices
+
+**Examples:**
+
+- Chicken biryani → tag `poultry` and `rice` (rice is cooked into the dish)
+- Thai green curry → tag `poultry` only (rice is served alongside)
+- Mushroom risotto → tag `rice` only (rice is the star, mushrooms are the flavouring)
+- This clam linguine → tag `seafood` and `pasta` (both define the dish)
+- Lasagne → tag `pasta` and `beef` (or just `pasta` if vegetarian)
+- Mac & cheese → tag `cheese` and `pasta` (cheese is the hero, pasta is the vehicle)
+
+The test: "Would someone searching for [category] recipes want to find this dish?" If yes, tag it.
+
+### Dietary Restrictions
+
+Tag recipes for filtering purposes only. Mark what the recipe satisfies as-written, not potential substitutions.
+
+**Hierarchy:** If a recipe is `vegan`, tag only as vegan (it's inherently vegetarian, dairy-free, and egg-free). If `vegetarian`, tag only as vegetarian unless it also happens to be `dairy-free`, `gluten-free`, etc.
+
+**Be accurate:** A vegetable soup made with chicken stock is not vegetarian. Pasta with butter is vegetarian but not vegan or dairy-free.
+
+**Other tags:** Apply `pescatarian`, `nut-free`, `gluten-free`, `low-carb` independently based on ingredients and preparation.
+
+---
+
 ## Ingredients
 
 ### Item Names
@@ -51,6 +95,15 @@ Use lowercase for all ingredient names: "basmati rice", "garlic cloves", "olive 
 Be specific enough to avoid ambiguity but don't over-qualify. Include the form when necessary for clarity: "dried linguine" vs "fresh pasta", "passata" vs "chopped tomatoes". For items with an obvious form (like "chopped tomatoes" which are typically tinned), there's no need to specify "tinned".
 
 Leave out unnecessary qualifiers: "olive oil" not "extra virgin olive oil" unless the distinction matters for the recipe.
+
+### Generic Seasoning
+
+Omit "salt and pepper" or "season to taste" from the ingredients list when it's not a measured quantity. The method should still mention seasoning at the appropriate step.
+
+Include salt and pepper in ingredients only when:
+
+- A specific quantity is given (e.g., "1 tsp salt", "½ tsp black pepper")
+- The recipe requires a specific type (e.g., "sea salt flakes", "pink peppercorns")
 
 ### Quantity Text
 
@@ -94,9 +147,11 @@ Keep preparation concise. If an ingredient needs extensive preparation, describe
 
 Use named groups when a recipe has distinct components: "Sauce", "Filling", "Topping", "To Serve". Use title case for group names.
 
+When a recipe has multiple groups, ALL groups must have descriptive names. Use specific names rather than generic labels: "Steak" not "Main Ingredients", "Chicken" not "Main".
+
 For simple recipes with no logical groupings, use a single group with an empty name (`""`).
 
-Don't over-group — a recipe with 8 ungrouped ingredients is clearer than one split into 3 groups of 2–3 items each.
+Don't over-group - a recipe with 8 ungrouped ingredients is clearer than one split into 3 groups of 2-3 items each.
 
 ---
 

@@ -76,11 +76,6 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
               {formatTime(totalTime)}
             </span>
           )}
-          {recipe.metadata.dietary_restrictions?.map((restriction) => (
-            <Badge className="text-xs" key={restriction} variant="secondary">
-              {formatLabel(restriction)}
-            </Badge>
-          ))}
         </div>
       </div>
     </Link>

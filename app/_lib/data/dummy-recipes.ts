@@ -91,7 +91,7 @@ export const dummyRecipes: Recipe[] = [
             quantity_text: '100g',
           },
         ],
-        name: 'Main Ingredients',
+        name: 'Tagine',
         order: 1,
       },
       {
@@ -121,7 +121,7 @@ export const dummyRecipes: Recipe[] = [
     metadata: {
       cuisine: 'moroccan',
       difficulty: 'moderate',
-      ingredient_categories: ['lamb'],
+      ingredient_categories: ['lamb', 'legumes'],
       meal_type: 'main',
       recipe_author: 'Tom Kerridge',
       source_name: 'BBC Good Food',
@@ -176,7 +176,7 @@ export const dummyRecipes: Recipe[] = [
             quantity_text: '150g',
           },
         ],
-        name: 'Main ingredients',
+        name: 'Chicken',
         order: 1,
       },
       {
@@ -621,7 +621,7 @@ export const dummyRecipes: Recipe[] = [
       cuisine: 'british',
       dietary_restrictions: ['vegetarian'],
       difficulty: 'moderate',
-      ingredient_categories: ['vegetarian', 'legumes'],
+      ingredient_categories: ['legumes'],
       meal_type: 'main',
       recipe_author: 'Tom Kerridge',
       source_details: 'Page 188',
@@ -819,7 +819,6 @@ export const dummyRecipes: Recipe[] = [
       cuisine: 'indian',
       dietary_restrictions: ['vegetarian'],
       difficulty: 'easy',
-      ingredient_categories: ['vegetarian'],
       meal_type: 'side',
       source_name: 'Dishoom',
       source_url:
@@ -874,7 +873,7 @@ export const dummyRecipes: Recipe[] = [
             order: 4,
           },
         ],
-        name: 'Main ingredients',
+        name: 'Cod',
         order: 1,
       },
       {
@@ -929,5 +928,488 @@ export const dummyRecipes: Recipe[] = [
     title: 'Cod with Roasted Chilli Butter',
     updated_at: '2025-02-13T10:00:00Z',
     uploaded_by: 'user_456',
+  },
+  {
+    cook_time_minutes: 20,
+    created_at: '2026-02-14T10:00:00Z',
+    description:
+      "This luxuriously creamy pasta is packed with the flavours you would expect from a bowl of comforting seafood. You simply can't go wrong with a white wine, fish stock, caper and cream combo.",
+    id: 'creamy-prawn-tagliatelle',
+    image_path: '/images/recipes/creamy-prawn-tagliatelle.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'tagliatelle',
+            order: 1,
+            quantity_text: '200g',
+          },
+          {
+            item: 'olive oil',
+            order: 2,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'butter',
+            order: 3,
+            quantity_text: '30g',
+          },
+          {
+            item: 'garlic cloves',
+            order: 4,
+            preparation: 'finely chopped',
+            quantity_text: '2',
+          },
+          {
+            item: 'raw tiger prawns',
+            order: 5,
+            preparation: 'peeled, with tails left on',
+            quantity_text: '16 large',
+          },
+          {
+            item: 'white wine',
+            order: 6,
+            quantity_text: '150ml',
+          },
+          {
+            item: 'fish stock',
+            order: 7,
+            quantity_text: '100ml',
+          },
+          {
+            item: 'baby capers',
+            order: 8,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'double cream',
+            order: 9,
+            quantity_text: '100ml',
+          },
+          {
+            item: 'parmesan',
+            order: 10,
+            preparation: 'finely grated',
+            quantity_text: '20g',
+          },
+          {
+            item: 'crème fraîche',
+            order: 11,
+            quantity_text: '3 tbsp',
+          },
+          {
+            item: 'chervil',
+            order: 12,
+            preparation: 'finely chopped',
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'chives',
+            order: 13,
+            preparation: 'finely chopped',
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'salt and freshly ground pepper',
+            order: 14,
+          },
+          {
+            item: 'pink peppercorns',
+            order: 15,
+            preparation: 'to sprinkle (optional)',
+          },
+        ],
+        name: '',
+        order: 1,
+      },
+    ],
+    metadata: {
+      cuisine: 'italian',
+      dietary_restrictions: ['pescatarian'],
+      difficulty: 'moderate',
+      ingredient_categories: ['seafood', 'pasta'],
+      meal_type: 'main',
+      recipe_author: 'Tom Kerridge',
+      source_name: 'Pub Kitchen',
+      time_category: 'medium',
+    },
+    method: [
+      'Bring a large saucepan of salted water to the boil for the pasta. Add the tagliatelle to the boiling salted water and cook for 9-11 minutes until al dente (cooked but still with a bite).',
+      'Meanwhile, heat the olive oil and butter in a large sauté pan over a medium heat. When the butter is melted and foaming, add the garlic and cook for 1-2 minutes.',
+      'Add the prawns to the sauté pan and cook for 1-2 minutes or until they turn pink. Take the pan off the heat and transfer the prawns to a plate using a slotted spoon.',
+      'Place the pan back over a high heat, pour in the wine and let it bubble to reduce by half. Add the fish stock and continue to simmer until the liquor is reduced by half again. Add the capers and cream and cook until the sauce is thickened.',
+      'Drain the pasta, saving a small ladleful of the cooking water. Take the sauté pan off the heat and add the pasta directly to it, along with the reserved pasta water. Tip the prawns back into the pan and add the grated parmesan, crème fraîche and half of the chopped herbs. Stir until the sauce coats the tagliatelle. Season with salt and pepper.',
+      'Divide between warmed serving bowls and sprinkle with the remaining chopped herbs and some pink peppercorns if you fancy.',
+    ],
+    prep_time_minutes: 10,
+    servings: 2,
+    title: 'Creamy Prawn Tagliatelle',
+    updated_at: '2026-02-14T10:00:00Z',
+    uploaded_by: 'user_123',
+  },
+  {
+    cook_time_minutes: 20,
+    created_at: '2026-02-14T10:00:00Z',
+    description:
+      'Tender bavette steak topped with rich Cheddar rarebit and sweet onion chutney. The watercress cuts through the richness beautifully.',
+    id: 'steak-rarebit',
+    image_path: '/images/recipes/steak-rarebit.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'bavette steak',
+            order: 1,
+            quantity_text: '400g',
+          },
+          {
+            item: 'olive oil',
+            order: 2,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'rosemary',
+            order: 3,
+            preparation: 'leaves picked and roughly chopped',
+            quantity_text: '1 sprig',
+          },
+          {
+            item: 'salt and freshly ground pepper',
+            order: 4,
+          },
+        ],
+        name: 'Steak',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'butter',
+            order: 1,
+            quantity_text: '20g',
+          },
+          {
+            item: 'plain flour',
+            order: 2,
+            quantity_text: '20g',
+          },
+          {
+            item: 'stout',
+            order: 3,
+            quantity_text: '125ml',
+          },
+          {
+            item: 'mature cheddar',
+            order: 4,
+            preparation: 'grated',
+            quantity_text: '100g',
+          },
+          {
+            item: 'English mustard',
+            order: 5,
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'worcestershire sauce',
+            order: 6,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'egg yolks',
+            order: 7,
+            quantity_text: '2 large',
+          },
+        ],
+        name: 'Cheddar Rarebit',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'sourdough',
+            order: 1,
+            quantity_text: '2 large slices',
+          },
+          {
+            item: 'butter',
+            order: 2,
+            preparation: 'softened',
+            quantity_text: '20g',
+          },
+          {
+            item: 'red onion chutney',
+            order: 3,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'watercress',
+            order: 4,
+          },
+        ],
+        name: 'To Serve',
+        order: 3,
+      },
+    ],
+    metadata: {
+      cuisine: 'british',
+      difficulty: 'moderate',
+      ingredient_categories: ['beef', 'cheese'],
+      meal_type: 'main',
+      time_category: 'medium',
+    },
+    method: [
+      'Trickle the bavette steak with the olive oil and sprinkle with the chopped rosemary and some salt and pepper.',
+      'For the rarebit, melt the butter in a small saucepan and stir in the flour. Cook, stirring, for 1-2 minutes, then gradually add the stout, stirring all the time. Cook, stirring, over a low heat for 5 minutes.',
+      'Add the grated cheese, mustard and worcestershire sauce, then stir until the cheese is fully melted. Remove the pan from the heat and leave the rarebit to cool slightly, then beat in the egg yolks and season with salt and pepper to taste.',
+      'Heat the grill to 200°C (180°C fan).',
+      "When you're ready to serve, heat a griddle pan over a high heat. When it is smoking hot, add the steak and cook for 3-4 minutes on each side. Transfer the steak to a warmed plate and set aside to rest in a warm place.",
+      'Meanwhile, toast the sourdough on the griddle until well coloured on each side, then spread each slice with butter and red onion chutney. Slice the bavette steak and arrange the slices over the chutney.',
+      'Spoon the rarebit sauce on top of the steak and spread it thinly to cover the meat. Carefully transfer the steak rarebits to a baking tray and place under the grill for a few minutes until the sauce starts to bubble and turn golden brown. Serve at once, with lots of watercress on the side.',
+    ],
+    notes:
+      'Bavette is a tasty, affordable cut from the skirt or flank - keep it pink as it can overcook easily. The rarebit can be frozen, so you might want to make a double batch and freeze half.',
+    prep_time_minutes: 15,
+    servings: 2,
+    title: 'Steak Rarebit',
+    updated_at: '2026-02-14T10:00:00Z',
+    uploaded_by: 'user_123',
+  },
+  {
+    cook_time_minutes: 35,
+    created_at: '2026-02-14T10:00:00Z',
+    description:
+      'A boozy, indulgent date pudding with caramelised bananas and toffee sauce. This pub classic is perfect for special occasions.',
+    id: 'sticky-date-and-banana-pudding',
+    image_path: '/images/recipes/sticky-date-and-banana-pudding.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'butter',
+            order: 1,
+            preparation: 'softened',
+            quantity_text: '1 tbsp',
+          },
+          {
+            item: 'plain white flour',
+            order: 2,
+            quantity_text: '100g',
+          },
+          {
+            item: 'dark rum',
+            order: 3,
+            quantity_text: '100ml',
+          },
+          {
+            item: 'bicarbonate of soda',
+            order: 4,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'pitted dates',
+            order: 5,
+            preparation: 'chopped',
+            quantity_text: '150g',
+          },
+          {
+            item: 'vegetable suet',
+            order: 6,
+            quantity_text: '85g',
+          },
+          {
+            item: 'soft dark brown sugar',
+            order: 7,
+            quantity_text: '85g',
+          },
+          {
+            item: 'vanilla extract',
+            order: 8,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'free-range eggs',
+            order: 9,
+            quantity_text: '2 large',
+          },
+        ],
+        name: 'Pudding',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'double cream',
+            order: 1,
+            quantity_text: '200ml',
+          },
+          {
+            item: 'soft dark brown sugar',
+            order: 2,
+            quantity_text: '100g',
+          },
+          {
+            item: 'butter',
+            order: 3,
+            quantity_text: '75g',
+          },
+          {
+            item: 'salt',
+            order: 4,
+            quantity_text: 'small pinch',
+          },
+        ],
+        name: 'Toffee Sauce',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'bananas',
+            order: 1,
+            quantity_text: '2 small',
+          },
+          {
+            item: 'demerara sugar',
+            order: 2,
+            quantity_text: '2 tbsp',
+          },
+        ],
+        name: 'To Finish',
+        order: 3,
+      },
+    ],
+    metadata: {
+      cuisine: 'british',
+      difficulty: 'moderate',
+      meal_type: 'pudding',
+      recipe_author: 'Tom Kerridge',
+      source_name: 'Pub Kitchen',
+      time_category: 'medium',
+    },
+    method: [
+      'Brush 4 individual ovenproof dishes (250ml capacity) with the softened butter and dust lightly with 1 tbsp flour, shaking out any excess.',
+      'Pour the rum and 100ml water into a saucepan and bring to the boil, then take off the heat and add the bicarbonate of soda and dates. Put a lid on the pan and leave to stand for 10-15 minutes to allow the dates to soak up the liquid and cool down.',
+      'Meanwhile, preheat the oven to 180°C (160°C fan).',
+      'Tip the dates and liquid into a large bowl and add the flour, suet, brown sugar, vanilla extract and eggs. Beat until evenly combined. Spoon the mixture into the prepared dishes and bake for 30-35 minutes until golden brown.',
+      'Meanwhile, to make the toffee sauce, pour the cream into a saucepan and add the brown sugar, butter and salt. Place over a low heat, stirring until the sugar is dissolved, then bring to the boil. Simmer for 2-3 minutes, then remove from the heat.',
+      "Peel and thinly slice the bananas. Once you've removed the puddings from the oven, arrange the banana slices, overlapping, around the edge of each dish. Sprinkle the banana slices liberally with demerara sugar and run a cook's blowtorch over them to caramelise the sugar.",
+      'Serve the puddings with the toffee sauce in a jug on the side.',
+    ],
+    prep_time_minutes: 25,
+    servings: 4,
+    title: 'Sticky Date and Banana Pudding',
+    updated_at: '2026-02-14T10:00:00Z',
+    uploaded_by: 'user_123',
+  },
+  {
+    cook_time_minutes: 25,
+    created_at: '2025-02-15T00:00:00Z',
+    description:
+      'Shellfish cooked super fresh and super simple. This pasta dish is a variation on the classic Italian vongole, packed with bold flavours.',
+    id: 'clam-prawn-chorizo-linguine',
+    image_path: '/images/recipes/clam-prawn-chorizo-linguine.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'clams',
+            order: 1,
+            quantity_text: '1kg',
+          },
+          {
+            item: 'white wine',
+            order: 2,
+            quantity_text: '150ml',
+          },
+          {
+            item: 'dried linguine',
+            order: 3,
+            quantity_text: '200g',
+          },
+          {
+            item: 'olive oil',
+            order: 4,
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'chorizo picante',
+            order: 5,
+            preparation: 'quartered lengthways and finely chopped',
+            quantity_text: '1',
+          },
+          {
+            item: 'banana shallot',
+            order: 6,
+            preparation: 'finely diced',
+            quantity_text: '1 large',
+          },
+          {
+            item: 'garlic cloves',
+            order: 7,
+            preparation: 'thinly sliced',
+            quantity_text: '2',
+          },
+          {
+            item: 'shelled raw prawns',
+            order: 8,
+            preparation: 'cut in half lengthways',
+            quantity_text: '120g',
+          },
+          {
+            item: 'cherry tomatoes',
+            order: 9,
+            preparation: 'quartered',
+            quantity_text: '100g',
+          },
+          {
+            item: 'butter',
+            order: 10,
+            quantity_text: '50g',
+          },
+          {
+            item: 'long red chilli',
+            order: 11,
+            preparation: 'deseeded and finely sliced',
+            quantity_text: '1',
+          },
+          {
+            item: 'flat-leaf parsley',
+            order: 12,
+            preparation: 'finely chopped',
+            quantity_text: '2 tbsp',
+          },
+          {
+            item: 'olive oil',
+            order: 13,
+            preparation: 'for drizzling (optional)',
+          },
+        ],
+        name: '',
+        order: 1,
+      },
+    ],
+    metadata: {
+      cuisine: 'italian',
+      difficulty: 'moderate',
+      ingredient_categories: ['seafood', 'pasta'],
+      meal_type: 'main',
+      recipe_author: 'Tom Kerridge',
+      source_name: 'Pub Kitchen, p.105',
+      special_occasions: ['valentines'],
+      time_category: 'medium',
+    },
+    method: [
+      'Wash the clams in a colander under cold running water. Heat a large saucepan over a high heat. When the pan is smoking hot, tip in the clams and wine and cover with a tight-fitting lid. Allow the clams to steam for 3-4 minutes until they open.',
+      'Drain the clams in a muslin-lined colander over a bowl or jug to collect the liquor. Leave the clams to cool for a few minutes and discard any that remain closed after cooking. Set aside 6-8 clams in their open shells for serving, then pick the clam meat from the remaining shells and place in a bowl. Discard the empty shells.',
+      'Bring a large saucepan of salted water to the boil for the linguine. Add the linguine and cook for 10-12 minutes until al dente. While the pasta is cooking, make the sauce.',
+      'Heat the olive oil in a sauté pan over a medium heat, add the chorizo and shallot and cook for 3-4 minutes until softened. Increase the heat, add the garlic, pour in the reserved clam liquor and cook until the liquid reduces by half. Add the cherry tomatoes, butter and prawns. Continue to cook until the prawns turn pink, then add the picked clam meat. Taste the sauce and season with salt if needed — you might not need any due to the clam liquor being naturally quite salty.',
+      'Drain the linguine, making sure to save a cupful of the cooking water. Add the linguine to the sauce and stir well. Add the chilli and reserved clams in their shells, and toss to combine, loosening with a splash more pasta water if necessary.',
+      'Divide between two warmed serving bowls and top with the parsley.',
+    ],
+    prep_time_minutes: 20,
+    servings: 2,
+    title: 'Clam, Prawn & Chorizo Linguine',
+    updated_at: '2025-02-15T00:00:00Z',
+    uploaded_by: 'user_placeholder',
   },
 ];
