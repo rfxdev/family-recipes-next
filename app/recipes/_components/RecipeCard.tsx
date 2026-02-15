@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { Recipe } from '@/_types/recipe';
 
 import { Badge } from '@/_components/ui/badge';
-import { routes } from '@/_lib/routes';
+import { routes } from '@/_config/routes';
 import { formatLabel } from '@/_lib/utils/formatLabel';
 import { formatTime } from '@/_lib/utils/formatTime';
 

@@ -11,6 +11,7 @@ import { cn } from '@/_lib/utils/cn';
 import { formatIngredient } from '@/_lib/utils/formatIngredient';
 import { formatLabel } from '@/_lib/utils/formatLabel';
 import { formatTime } from '@/_lib/utils/formatTime';
+import { sortByOrder } from '@/_lib/utils/sortByOrder';
 
 interface RecipeDetailProps {
   recipe: Recipe;
@@ -126,7 +127,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
             Ingredients
           </h2>
           <div className="space-y-6">
-            {recipe.ingredient_groups.map((group) => (
+            {sortByOrder(recipe.ingredient_groups).map((group) => (
               <div key={group.order}>
                 {group.name && (
                   <h3 className="text-foreground mt-6 mb-3 text-lg font-semibold first:mt-0">
@@ -134,7 +135,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
                   </h3>
                 )}
                 <div className="space-y-2">
-                  {group.ingredients.map((ingredient) => {
+                  {sortByOrder(group.ingredients).map((ingredient) => {
                     const ingredientId = `ingredient-${group.order}-${ingredient.order}`;
                     const isChecked = checkedIngredients.has(ingredientId);
 

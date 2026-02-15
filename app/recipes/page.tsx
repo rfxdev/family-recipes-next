@@ -1,23 +1,36 @@
+import { Suspense } from 'react';
+
+import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
 import { dummyRecipes } from '@/_lib/data/dummy-recipes';
 
-import { RecipeCard } from './_components/RecipeCard';
+import { RecipeHomepage } from './_components/RecipeHomepage';
+import { RecipeList } from './_components/RecipeList';
 
-export default function RecipesPage() {
+interface RecipesPageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+export default async function RecipesPage({ searchParams }: RecipesPageProps) {
+  const params = await searchParams;
+  // Show the recipe list when ?all is set (browse all) or a category filter
+  // is active (e.g. ?cuisine=italian). Otherwise show the homepage grid.
+  const hasFilter =
+    params.all !== undefined ||
+    CATEGORY_FILTER_KEYS.some((key) => params[key] !== undefined);
+
   return (
     <>
-      <div className="mb-4">
-        <h1 className="text-foreground text-3xl font-bold">Recipes</h1>
-        <p className="text-muted-foreground mt-2">
-          {dummyRecipes.length}{' '}
-          {dummyRecipes.length === 1 ? 'recipe' : 'recipes'}
-        </p>
-      </div>
+      <h1 className="text-foreground mb-4 text-3xl font-bold">Recipes</h1>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {dummyRecipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </div>
+      {hasFilter ? (
+        <Suspense>
+          <RecipeList recipes={dummyRecipes} />
+        </Suspense>
+      ) : (
+        <Suspense>
+          <RecipeHomepage />
+        </Suspense>
+      )}
     </>
   );
 }

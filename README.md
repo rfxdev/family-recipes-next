@@ -10,9 +10,7 @@ Built for personal use and as a portfolio demonstration of modern web developmen
 
 ## Project Status
 
-Phase 1 complete! Live at [lovegrills-recipes.vercel.app](https://lovegrills-recipes.vercel.app).
-
-Next up: design refresh and search/filtering features.
+Phase 2 in progress — building the browsing, filtering, and navigation experience.
 
 See [`roadmap.md`](docs/roadmap.md) for the full development plan.
 
@@ -42,9 +40,12 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ```
 app/
-├── _components/     # Global UI components (private)
-├── _lib/            # Hooks, utils, dummy data (private)
-├── _types/          # TypeScript interfaces (private)
+├── _components/     # Global UI components
+├── _config/         # Static configuration (routes, recipe categories)
+├── _lib/
+│   ├── data/        # Dummy/seed data
+│   └── utils/       # Utility/helper functions
+├── _types/          # TypeScript interfaces and type unions
 ├── layout.tsx
 ├── page.tsx
 └── recipes/

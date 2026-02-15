@@ -22,13 +22,385 @@ Development phases for the Kitchen Companion application.
 - [x] Recipe detail page with full recipe display
 - [x] Deploy to Vercel
 
-## Phase 2: Design & Discovery - In Progress
+## Phase 2: Design & Discovery
 
-Visual design pass and recipe browsing features.
+### Route Architecture
 
-- [x] Design refresh (layout, typography, colour, spacing)
-- [ ] Search functionality
-- [ ] Filtering by metadata (cuisine, meal type, difficulty, time, dietary, etc.)
+**Three distinct pages:**
+
+- `/recipes` — Homepage with category cards (no params)
+- `/recipes?{filters}` — Curated browsing via predefined categories
+- `/recipes/search?q={term}&{filters}` — Search results (optionally refined with filters)
+
+**Shared utilities:**
+
+- `filterRecipes(recipes, filters)` — used by both filtered browsing and search
+- `searchRecipes(recipes, query)` — used only by search route
+- Filter UI components (sidebar/drawer) — used by both routes
+- Sort logic — used by both routes
+
+---
+
+### ✅ 2.0 Design Refresh
+
+- [x] Apply warm colour palette from design system
+- [x] Typography polish (headings, body text)
+- [x] Spacing consistency
+- [x] Layout and design system tokens
+
+### ✅ 2.1 Component & Config Foundation
+
+- [x] RecipeCard component
+- [x] RecipeList component
+- [x] RecipeCategoryCard component (homepage category cards with image)
+- [x] Recipe config (`app/_config/recipes.ts`)
+  - `CATEGORY_SECTIONS` array with id, title, order, showInMenu properties
+  - Sections: cuisine, meal_type, dietary_restrictions (only values with matching recipes)
+  - Each item has label, filter (key/value), and representative recipe image
+  - Types (`CategorySection`, `CategoryItem`) in `app/_types/recipe.ts`
+- [x] `buildRecipeUrl(filters)` helper (`app/_lib/utils/buildRecipeUrl.ts`)
+- [x] Routes config (`app/_config/routes.ts`)
+  - URL params match metadata field names: `cuisine`, `meal_type`, `dietary_restrictions`
+
+### ✅ 2.2 Recipe Homepage & Filtered Results
+
+- [x] RecipeHomepage component (`app/recipes/_components/RecipeHomepage.tsx`)
+  - Renders category sections sorted by order via `sortByOrder` utility
+  - Each section: h2 heading + grid of RecipeCategoryCard components
+  - "Browse All Recipes" link to `/recipes?all=true`
+- [x] `app/recipes/page.tsx` conditional rendering
+  - No params → `<RecipeHomepage />`
+  - `?all` or any category filter → `<RecipeList />`
+- [x] Config-driven filtering (`app/_lib/utils/filterRecipes.ts`)
+  - Filter keys derived from `CATEGORY_SECTIONS` ids (`CATEGORY_FILTER_KEYS`)
+  - Matches search params against recipe metadata (array fields use `.includes()`, scalars use equality)
+  - All active filters combine with AND logic
+- [x] Result count display and empty state
+
+### 2.3 Search Route & Functionality
+
+Build search as a separate route with distinct behaviour from curated browsing.
+
+**Create Search Route**
+
+- [ ] Create `app/recipes/search/page.tsx`
+- [ ] Extract search params: `q` (required), filter params (optional)
+- [ ] Handle missing `q` param → redirect to `/recipes`
+
+**Search Input (Global Header)**
+
+- [ ] Add search input to header component
+  - Visible on all pages
+  - Placeholder: "Search recipes…"
+  - Submit navigates to `/recipes/search?q={term}`
+  - Preserve any active filters when searching from filtered view
+
+**Search Implementation**
+
+- [ ] Create `searchRecipes(recipes, query)` utility (`app/_lib/utils/searchRecipes.ts`)
+  - Search across: title, description, ingredient items, method steps
+  - Case-insensitive matching
+  - Return recipes with any match
+  - Used only on search route
+
+**Search + Filter Combination**
+
+- [ ] Apply search first, then filters
+  - `searchRecipes(allRecipes, query)` → `filterRecipes(searchResults, filters)`
+  - Example: `/recipes/search?q=curry&cuisine=indian&dietary=vegetarian`
+  - Both use AND logic
+
+**Search Results View**
+
+- [ ] Create SearchResults component (`app/recipes/search/_components/SearchResults.tsx`)
+  - Reuses RecipeList/RecipeCard components
+  - Shows "X results for 'curry'" heading
+  - Shows result count reflecting search + filters
+  - Empty state: "No recipes found for 'curry'"
+
+**Implementation Notes:**
+
+- Search route is distinct from curated browsing (`/recipes?cuisine=italian`)
+- Shared components/utilities minimise duplication
+- Clear semantic difference: search is free-form, filters are curated
+
+### 2.4 Desktop Filter Sidebar
+
+Persistent sidebar for refining results (both filtered browsing and search).
+
+**Create Shared Component**
+
+- [ ] Create FilterSidebar component (`app/_components/FilterSidebar.tsx`)
+  - Shared by both `/recipes?{filters}` and `/recipes/search?q=...`
+  - Takes current filters and recipes as props
+  - Returns updated filter state
+
+**Layout Integration**
+
+- [ ] Add to `/recipes/page.tsx` when params present
+- [ ] Add to `/recipes/search/page.tsx`
+- [ ] Desktop only (min-width breakpoint)
+- [ ] Sticky positioning
+
+**Sort Section**
+
+- [ ] Radio buttons at top of sidebar
+  - Best Match (default for search)
+  - Title A–Z (default for filtered browsing)
+  - Title Z–A
+  - Newest First
+  - Oldest First
+- [ ] Sync with `?sort=` URL param
+- [ ] Extract sort logic to shared utility (`app/_lib/utils/sortRecipes.ts`)
+
+**Filter Sections**
+
+- [ ] Collapsible sections (Radix UI Accordion)
+  - By Cuisine
+  - By Meal Type
+  - By Dietary
+  - By Difficulty
+  - By Cook Time (Quick / Medium / Long)
+  - Optional: By Ingredients, By Occasions
+
+**Checkbox Behaviour**
+
+- [ ] Multi-select within dimensions
+- [ ] Show counts reflecting current result set
+  - On search route: counts show "curry + Italian" not just "Italian"
+  - Disabled/dimmed when count is 0
+- [ ] Immediate URL updates on check/uncheck
+- [ ] URL params: `?cuisine=italian&cuisine=thai` for multi-select
+
+**Sidebar Actions**
+
+- [ ] "Clear all filters" button (bottom)
+  - On filtered browsing: navigates to `/recipes`
+  - On search: clears filters, keeps `?q=term`
+
+**Implementation Notes:**
+
+- Same component, different context (browsing vs search)
+- Counts are dynamic based on current recipe set
+- Sort default differs by route (Best Match for search, A–Z for browsing)
+
+### 2.5 Mobile Filter Drawer & Pills
+
+Mobile-specific filter UI with visibility layer.
+
+**Filter Pills Component**
+
+- [ ] Create FilterPills component (`app/_components/FilterPills.tsx`)
+- [ ] Show below search/above results (mobile only)
+- [ ] Active filter pills with × remove button
+  - Format: "Italian ×", "Vegetarian ×", "Quick ×"
+  - Click × updates URL
+- [ ] Search pill (search route only)
+  - Format: "Searching for 'curry' ×"
+  - Click × navigates to `/recipes`
+- [ ] Used on both `/recipes?{filters}` and `/recipes/search`
+
+**Filters Button**
+
+- [ ] Add to both filtered browsing and search routes
+- [ ] Mobile only, sticky position
+- [ ] Badge count: "Filters (3)" when active
+- [ ] Opens drawer on click
+
+**Filter Drawer Component**
+
+- [ ] Create FilterDrawer component (`app/_components/FilterDrawer.tsx`)
+- [ ] Full-screen bottom drawer (mobile)
+- [ ] Same sections as desktop sidebar
+  - Sort options
+  - Filter checkboxes with counts
+- [ ] Local state until "See Results" clicked
+
+**Drawer Actions**
+
+- [ ] "See Results" button (primary, bottom)
+  - Updates URL with selected filters
+  - Closes drawer
+- [ ] "Clear all filters" button
+  - On filtered browsing: navigates to `/recipes`
+  - On search: clears filters, keeps `?q=`
+- [ ] Close on backdrop click
+
+**Implementation Notes:**
+
+- Shared components between filtered browsing and search routes
+- Pills provide visibility without opening drawer
+- Drawer batches URL updates (vs desktop immediate updates)
+
+### 2.6 Header Menu Updates
+
+Curated navigation entry points (distinct from search).
+
+**Mobile Menu (Hamburger)**
+
+- [ ] Add "Recipes" accordion item
+- [ ] Sections from `CATEGORY_SECTIONS` where `showInMenu === true`
+  - "By Cuisine" → British, Chinese, French, Indian, Italian, Moroccan
+  - "By Meal Type" → Breakfast, Main, Pudding
+  - "By Dietary" → Vegetarian, Vegan, Gluten-Free
+- [ ] Links to `/recipes?{filter}` via `buildRecipeUrl()`
+  - Clears any existing filters (fresh curated experience)
+- [ ] "Recipes" top-level → `/recipes` (homepage)
+
+**Desktop Menu (Mega Dropdown)**
+
+- [ ] Dropdown on "Recipes" nav item
+- [ ] Three-column layout from `CATEGORY_SECTIONS`
+- [ ] Same category links as mobile
+- [ ] Closes on link click or outside click
+- [ ] "Recipes" nav link → `/recipes`
+
+**Interaction with Search**
+
+- [ ] Clicking menu category clears active search
+  - If on `/recipes/search?q=curry`, clicking "Italian" → `/recipes?cuisine=italian`
+- [ ] Menu provides fresh start for curated browsing
+
+### 2.7 Empty States & Polish
+
+Context-aware empty states for different scenarios.
+
+**Filtered Browsing Empty States** (`/recipes?{filters}`)
+
+- [ ] No results with filters
+  - "No recipes match these filters"
+  - "Try removing some filters"
+  - "Clear filters" button → `/recipes`
+
+**Search Empty States** (`/recipes/search`)
+
+- [ ] Search with no results (no filters)
+  - "No recipes found for 'curry'"
+  - "Try a different search term"
+  - Input to try new search
+
+- [ ] Search + filters with no results
+  - "No recipes found for 'curry' with these filters"
+  - "Try a different search term or fewer filters"
+  - Clear search button → `/recipes`
+  - Clear filters button → `/recipes/search?q=curry`
+
+**Result Count Display**
+
+- [ ] Filtered browsing: "8 recipes"
+- [ ] Search: "12 results for 'curry'"
+- [ ] Both reflect combined state
+
+### 2.8 Testing & Polish
+
+Comprehensive testing across both routes.
+
+**Route Behaviour**
+
+- [ ] `/recipes` → homepage (no params)
+- [ ] `/recipes?cuisine=italian` → filtered browsing
+- [ ] `/recipes?cuisine=italian&cuisine=indian` → multi-select works
+- [ ] `/recipes/search` (no q param) → redirects to `/recipes`
+- [ ] `/recipes/search?q=curry` → search results
+- [ ] `/recipes/search?q=curry&cuisine=indian` → search + filters
+
+**Filter Combinations** (both routes)
+
+- [ ] Single filter
+- [ ] Multi-select within dimension
+- [ ] Multi-dimension filters
+- [ ] Clear filters from sidebar vs pills vs drawer
+- [ ] URL direct access
+- [ ] Invalid filter values gracefully ignored
+
+**Search Specific**
+
+- [ ] Search from homepage
+- [ ] Search from filtered browsing (preserves filters)
+- [ ] Search then add filters
+- [ ] Clear search (keeps filters on search route)
+- [ ] Clear filters (keeps search term)
+
+**Navigation Flows**
+
+- [ ] Homepage → category card → filtered browsing
+- [ ] Filtered browsing → search (filters carry over)
+- [ ] Search → menu category → filtered browsing (clears search)
+- [ ] Browser back/forward across routes
+
+**Responsiveness**
+
+- [ ] Sidebar (desktop only, both routes)
+- [ ] Drawer (mobile only, both routes)
+- [ ] Pills (mobile only, both routes)
+- [ ] Search input (all screens)
+- [ ] Results grid (1/2/3 columns based on viewport)
+- [ ] Homepage category cards
+
+**Interaction Polish**
+
+- [ ] Keyboard navigation (checkboxes, search input, menu)
+- [ ] Focus states (checkboxes, buttons, links)
+- [ ] Loading states if needed (probably not with client-side filtering)
+- [ ] Smooth transitions (drawer slide, accordion expand)
+
+**URL & Sharing**
+
+- [ ] URLs are shareable
+- [ ] Browser back/forward works
+- [ ] Bookmarking works correctly
+- [ ] URL is readable (`cuisine=italian` not `c=it`)
+
+---
+
+## Architecture Decisions
+
+**Route Separation**
+
+- `/recipes` — Homepage only, no params
+- `/recipes?{filters}` — Curated browsing via predefined categories
+- `/recipes/search?q={term}` — Free-form search, optionally refined
+
+**Shared Utilities**
+
+- `filterRecipes(recipes, filters)` — both routes
+- `searchRecipes(recipes, query)` — search route only
+- `sortRecipes(recipes, sortBy)` — both routes
+- `buildRecipeUrl(filters)` — generates filter URLs
+- FilterSidebar, FilterDrawer, FilterPills — used by both routes
+
+**Search Preservation**
+
+When searching from filtered browsing, filters carry over:
+
+- `/recipes?cuisine=italian` → search "pasta" → `/recipes/search?q=pasta&cuisine=italian`
+- Makes sense: "search within Italian recipes"
+
+**Menu Navigation**
+
+Menu items always clear existing filters (fresh curated experience):
+
+- Clicking "Italian" from anywhere → `/recipes?cuisine=italian`
+
+**Mobile vs Desktop**
+
+- Desktop: persistent sidebar, immediate URL updates
+- Mobile: drawer + pills, URL updates on "See Results"
+- Same underlying filter logic, different interaction patterns
+
+**Result Count Philosophy**
+
+Counts in sidebar/drawer reflect current result set:
+
+- Example: searching "pasta" shows "Italian (12)" not "Italian (18)"
+- Helps users understand what's available given their current query
+
+**Future Flexibility**
+
+"Collections" could be `/recipes/collections/{slug}` with pre-configured filters:
+
+- Example: `/recipes/collections/quick-weeknight-dinners`
+- Collections route would also use shared filter/sort utilities
 
 ## Phase 3: Firebase Integration & Recipe Management
 

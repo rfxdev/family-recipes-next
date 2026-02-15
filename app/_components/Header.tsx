@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { routes } from '@/_lib/routes';
+import { routes } from '@/_config/routes';
 import { cn } from '@/_lib/utils/cn';
 
 export function Header() {

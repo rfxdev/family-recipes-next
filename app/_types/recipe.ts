@@ -80,18 +80,21 @@ export type DietaryRestriction =
   | 'vegan'
   | 'vegetarian';
 
-export type IngredientCategory =
-  | 'beef'
-  | 'cheese'
-  | 'eggs'
-  | 'fish'
-  | 'lamb'
-  | 'legumes'
-  | 'pasta'
-  | 'pork'
-  | 'poultry'
-  | 'rice'
-  | 'seafood';
+export const INGREDIENT_CATEGORIES = [
+  'beef',
+  'cheese',
+  'eggs',
+  'fish',
+  'lamb',
+  'legumes',
+  'pasta',
+  'pork',
+  'poultry',
+  'rice',
+  'seafood',
+] as const;
+
+export type IngredientCategory = (typeof INGREDIENT_CATEGORIES)[number];
 
 export type SpecialOccasion =
   | 'barbecue'
@@ -105,3 +108,17 @@ export type SpecialOccasion =
   | 'sunday-roast'
   | 'thanksgiving'
   | 'valentines';
+
+export interface CategoryItem {
+  filter: { key: string; value: string };
+  image: string;
+  label: string;
+}
+
+export interface CategorySection {
+  id: string;
+  items: CategoryItem[];
+  order: number;
+  showInMenu: boolean;
+  title: string;
+}
