@@ -101,7 +101,7 @@ Build search as a separate route with distinct behaviour from curated browsing.
 - [x] Create `searchRecipes(recipes, searchParams)` utility (`app/_lib/utils/searchRecipes.ts`)
   - Extracts `q` param internally
   - Search across: title, description, ingredient items, method steps
-  - Case-insensitive matching
+  - Case-insensitive whole-word matching (word boundaries prevent partial matches)
   - Short-circuits on first match per recipe
   - Returns all recipes if query is empty/whitespace
 
@@ -377,7 +377,7 @@ Comprehensive testing across both routes.
 **Shared Utilities**
 
 - `applyRecipeParams(recipes, searchParams)` — orchestrates search + filter, used by both routes
-- `searchRecipes(recipes, searchParams)` — extracts `q`, free-text matching
+- `searchRecipes(recipes, searchParams)` — extracts `q`, whole-word matching
 - `filterRecipes(recipes, searchParams)` — extracts category keys, metadata matching
 - `sortRecipes(recipes, sortBy)` — both routes (planned)
 - `buildRecipeUrl(filters)` — generates filter URLs

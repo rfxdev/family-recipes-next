@@ -111,4 +111,23 @@ describe('searchRecipes', () => {
     expect(results).toHaveLength(1);
     expect(results[0]?.id).toBe('r2');
   });
+
+  it('matches whole words only, not substrings within other words', () => {
+    const testRecipes = [
+      makeRecipe({ id: 'pie', title: 'Steak Pie' }),
+      makeRecipe({
+        id: 'pieces',
+        method: ['Cut into pieces.'],
+        title: 'Chicken Bites',
+      }),
+    ];
+    const results = searchRecipes(testRecipes, params('pie'));
+    expect(results).toHaveLength(1);
+    expect(results[0]?.id).toBe('pie');
+  });
+
+  it('does not match partial words', () => {
+    const results = searchRecipes(recipes, params('car'));
+    expect(results).toHaveLength(0);
+  });
 });
