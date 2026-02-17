@@ -4,4 +4,5 @@ export const routes = {
   home: '/recipes',
   recipeDetail: (id: string) => `/recipes/${id}`,
   recipes: '/recipes',
+  search: '/recipes/search',
 } as const;

@@ -34,8 +34,9 @@ Development phases for the Kitchen Companion application.
 
 **Shared utilities:**
 
-- `filterRecipes(recipes, filters)` — used by both filtered browsing and search
-- `searchRecipes(recipes, query)` — used only by search route
+- `applyRecipeParams(recipes, searchParams)` — orchestrates search then filter, used by both routes
+- `searchRecipes(recipes, searchParams)` — extracts `q` param internally, free-text matching
+- `filterRecipes(recipes, searchParams)` — extracts category params internally, metadata matching
 - Filter UI components (sidebar/drawer) — used by both routes
 - Sort logic — used by both routes
 
@@ -77,52 +78,64 @@ Development phases for the Kitchen Companion application.
   - All active filters combine with AND logic
 - [x] Result count display and empty state
 
-### 2.3 Search Route & Functionality
+### ✅ 2.3 Search Route & Functionality
 
 Build search as a separate route with distinct behaviour from curated browsing.
 
 **Create Search Route**
 
-- [ ] Create `app/recipes/search/page.tsx`
-- [ ] Extract search params: `q` (required), filter params (optional)
-- [ ] Handle missing `q` param → redirect to `/recipes`
+- [x] Create `app/recipes/search/page.tsx`
+- [x] Extract search params: `q` (required), filter params (optional)
+- [x] Handle missing `q` param → redirect to `/recipes`
 
 **Search Input (Global Header)**
 
-- [ ] Add search input to header component
-  - Visible on all pages
-  - Placeholder: "Search recipes…"
+- [x] Add search input to header component
+  - Visible on all pages and screen sizes
+  - Placeholder: "What would you like to cook?"
   - Submit navigates to `/recipes/search?q={term}`
-  - Preserve any active filters when searching from filtered view
+  - Preserve any active category filters when searching from filtered view
 
 **Search Implementation**
 
-- [ ] Create `searchRecipes(recipes, query)` utility (`app/_lib/utils/searchRecipes.ts`)
+- [x] Create `searchRecipes(recipes, searchParams)` utility (`app/_lib/utils/searchRecipes.ts`)
+  - Extracts `q` param internally
   - Search across: title, description, ingredient items, method steps
   - Case-insensitive matching
-  - Return recipes with any match
-  - Used only on search route
+  - Short-circuits on first match per recipe
+  - Returns all recipes if query is empty/whitespace
 
 **Search + Filter Combination**
 
-- [ ] Apply search first, then filters
-  - `searchRecipes(allRecipes, query)` → `filterRecipes(searchResults, filters)`
-  - Example: `/recipes/search?q=curry&cuisine=indian&dietary=vegetarian`
+- [x] `applyRecipeParams(recipes, searchParams)` orchestrates search then filter
+  - Both `searchRecipes` and `filterRecipes` receive `searchParams` and extract the params they need
+  - Example: `/recipes/search?q=curry&cuisine=indian`
   - Both use AND logic
+- [x] `RecipeList` and `SearchResults` both use `applyRecipeParams` — single entry point for URL param handling
 
 **Search Results View**
 
-- [ ] Create SearchResults component (`app/recipes/search/_components/SearchResults.tsx`)
-  - Reuses RecipeList/RecipeCard components
-  - Shows "X results for 'curry'" heading
+- [x] Create SearchResults component (`app/recipes/search/_components/SearchResults.tsx`)
+  - Reuses RecipeCard component
+  - Shows "X results for 'query'" heading
   - Shows result count reflecting search + filters
-  - Empty state: "No recipes found for 'curry'"
+  - Empty state: "No recipes found for 'query'"
 
 **Implementation Notes:**
 
 - Search route is distinct from curated browsing (`/recipes?cuisine=italian`)
 - Shared components/utilities minimise duplication
 - Clear semantic difference: search is free-form, filters are curated
+- Header wrapped in `<Suspense>` in layout due to `useSearchParams()` usage
+
+### ✅ 2.3.1 Mobile Search: Expandable Search Icon
+
+- [x] Install `@radix-ui/react-collapsible` and create `app/_components/ui/collapsible.tsx` wrapper
+- [x] Mobile: search icon button in header expands full-width input below nav bar
+- [x] Desktop: no change — inline input always visible
+- [x] On search results page (`/recipes/search`): input stays expanded with current query, no close button
+- [x] Collapsible slide-down/slide-up animation via `data-state` attributes
+- [x] Query syncs from URL params for browser back/forward support
 
 ### 2.4 Desktop Filter Sidebar
 
@@ -363,11 +376,12 @@ Comprehensive testing across both routes.
 
 **Shared Utilities**
 
-- `filterRecipes(recipes, filters)` — both routes
-- `searchRecipes(recipes, query)` — search route only
-- `sortRecipes(recipes, sortBy)` — both routes
+- `applyRecipeParams(recipes, searchParams)` — orchestrates search + filter, used by both routes
+- `searchRecipes(recipes, searchParams)` — extracts `q`, free-text matching
+- `filterRecipes(recipes, searchParams)` — extracts category keys, metadata matching
+- `sortRecipes(recipes, sortBy)` — both routes (planned)
 - `buildRecipeUrl(filters)` — generates filter URLs
-- FilterSidebar, FilterDrawer, FilterPills — used by both routes
+- FilterSidebar, FilterDrawer, FilterPills — used by both routes (planned)
 
 **Search Preservation**
 
@@ -409,6 +423,7 @@ Backend integration and CRUD functionality.
 - [ ] Firebase setup and configuration (demo + production projects)
 - [ ] Authentication (admin-managed users)
 - [ ] Firestore integration (replace dummy data)
+- [ ] Error boundaries for data-fetching routes (search, filtered browsing, recipe detail)
 - [ ] Create, edit, and delete recipes via forms
 - [ ] Image upload and storage
 - [ ] Security rules deployment

@@ -6,17 +6,17 @@ import { useMemo } from 'react';
 import type { Recipe } from '@/_types/recipe';
 
 import { applyRecipeParams } from '@/_lib/utils/applyRecipeParams';
+import { RecipeCard } from '@/recipes/_components/RecipeCard';
 
-import { RecipeCard } from './RecipeCard';
-
-interface RecipeListProps {
+interface SearchResultsProps {
   recipes: Recipe[];
 }
 
-export function RecipeList({ recipes }: RecipeListProps) {
+export function SearchResults({ recipes }: SearchResultsProps) {
   const searchParams = useSearchParams();
+  const query = searchParams.get('q') ?? '';
 
-  const filteredRecipes = useMemo(
+  const results = useMemo(
     () => applyRecipeParams(recipes, searchParams),
     [recipes, searchParams],
   );
@@ -24,19 +24,19 @@ export function RecipeList({ recipes }: RecipeListProps) {
   return (
     <>
       <p className="text-muted-foreground mb-4">
-        {filteredRecipes.length}{' '}
-        {filteredRecipes.length === 1 ? 'recipe' : 'recipes'}
+        {results.length} {results.length === 1 ? 'result' : 'results'} for
+        &lsquo;{query}&rsquo;
       </p>
 
-      {filteredRecipes.length > 0 ? (
+      {results.length > 0 ? (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredRecipes.map((recipe) => (
+          {results.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
       ) : (
         <p className="text-muted-foreground py-12 text-center">
-          No recipes found for this category.
+          No recipes found for &lsquo;{query}&rsquo;
         </p>
       )}
     </>
