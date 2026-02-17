@@ -7,6 +7,7 @@ import type { Recipe } from '@/_types/recipe';
 
 import { applyRecipeParams } from '@/_lib/utils/applyRecipeParams';
 import { RecipeCard } from '@/recipes/_components/RecipeCard';
+import { FilterSidebar } from '@/recipes/search/_components/FilterSidebar';
 
 interface SearchResultsProps {
   recipes: Recipe[];
@@ -22,23 +23,27 @@ export function SearchResults({ recipes }: SearchResultsProps) {
   );
 
   return (
-    <>
-      <p className="text-muted-foreground mb-4">
-        {results.length} {results.length === 1 ? 'result' : 'results'} for
-        &lsquo;{query}&rsquo;
-      </p>
+    <div className="flex gap-8">
+      <FilterSidebar recipes={recipes} />
 
-      {results.length > 0 ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {results.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))}
-        </div>
-      ) : (
-        <p className="text-muted-foreground py-12 text-center">
-          No recipes found for &lsquo;{query}&rsquo;
+      <div className="min-w-0 flex-1">
+        <p className="text-muted-foreground mb-4">
+          {results.length} {results.length === 1 ? 'result' : 'results'} for
+          &lsquo;{query}&rsquo;
         </p>
-      )}
-    </>
+
+        {results.length > 0 ? (
+          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+            {results.map((recipe) => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted-foreground py-12 text-center">
+            No recipes found for &lsquo;{query}&rsquo;
+          </p>
+        )}
+      </div>
+    </div>
   );
 }

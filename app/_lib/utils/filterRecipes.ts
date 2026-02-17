@@ -1,28 +1,31 @@
-import type { Recipe, RecipeMetadata } from '@/_types/recipe';
+import type { Recipe } from '@/_types/recipe';
 
-import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
+import { FILTER_KEYS } from '@/_config/filters';
 
 /** Filters recipes by matching search params against recipe metadata. */
 export function filterRecipes(
   recipes: Recipe[],
   searchParams: URLSearchParams,
 ): Recipe[] {
-  // Collect active filters by checking which category keys have a URL param value
-  // e.g. ?cuisine=italian&meal_type=main → [{ key: 'cuisine', value: 'italian' }, ...]
-  const activeFilters = CATEGORY_FILTER_KEYS.map((key) => ({
+  // Collect active filters using getAll() for multi-select support
+  // e.g. ?cuisine=italian&cuisine=thai&meal_type=main
+  const activeFilters = FILTER_KEYS.map((key) => ({
     key,
-    value: searchParams.get(key),
-  })).filter((f): f is { key: string; value: string } => f.value !== null);
+    values: searchParams.getAll(key),
+  })).filter((f) => f.values.length > 0);
 
   if (activeFilters.length === 0) return recipes;
 
-  // Every active filter must match (AND logic).
-  // Array fields (e.g. dietary_restrictions) use .includes(), scalars use equality.
+  // AND across dimensions, OR within a dimension
   return recipes.filter((recipe) =>
-    activeFilters.every(({ key, value }) => {
-      const field = recipe.metadata[key as keyof RecipeMetadata];
-      if (Array.isArray(field)) return (field as string[]).includes(value);
-      return field === value;
+    activeFilters.every(({ key, values }) => {
+      const field = recipe.metadata[key];
+      if (Array.isArray(field)) {
+        // Array field (e.g. dietary_restrictions): at least one selected value must be present
+        return values.some((v) => (field as string[]).includes(v));
+      }
+      // Scalar field: value must match one of the selected values
+      return values.includes(field as string);
     }),
   );
 }

@@ -1,4 +1,4 @@
-import type { CategorySection } from '@/_types/recipe';
+import type { CategorySection } from '@/_types/filters';
 
 // Only values with matching dummy recipes are included.
 // Images are picked from a representative recipe for each value.
@@ -96,6 +96,6 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
 ];
 
 /** Category section ids used as metadata filter keys (e.g. cuisine, meal_type). */
-export const CATEGORY_FILTER_KEYS: string[] = CATEGORY_SECTIONS.map(
+export const CATEGORY_FILTER_KEYS = CATEGORY_SECTIONS.map(
   (section) => section.id,
 );

@@ -37,8 +37,8 @@ Development phases for the Kitchen Companion application.
 - `applyRecipeParams(recipes, searchParams)` — orchestrates search then filter, used by both routes
 - `searchRecipes(recipes, searchParams)` — extracts `q` param internally, free-text matching
 - `filterRecipes(recipes, searchParams)` — extracts category params internally, metadata matching
-- Filter UI components (sidebar/drawer) — used by both routes
-- Sort logic — used by both routes
+- Filter UI components (sidebar on search route, drawer/pills planned)
+- Sort logic — integrated into `applyRecipeParams`
 
 ---
 
@@ -58,7 +58,7 @@ Development phases for the Kitchen Companion application.
   - `CATEGORY_SECTIONS` array with id, title, order, showInMenu properties
   - Sections: cuisine, meal_type, dietary_restrictions (only values with matching recipes)
   - Each item has label, filter (key/value), and representative recipe image
-  - Types (`CategorySection`, `CategoryItem`) in `app/_types/recipe.ts`
+  - Types (`CategorySection`, `CategoryItem`) in `app/_types/filters.ts`
 - [x] `buildRecipeUrl(filters)` helper (`app/_lib/utils/buildRecipeUrl.ts`)
 - [x] Routes config (`app/_config/routes.ts`)
   - URL params match metadata field names: `cuisine`, `meal_type`, `dietary_restrictions`
@@ -137,65 +137,51 @@ Build search as a separate route with distinct behaviour from curated browsing.
 - [x] Collapsible slide-down/slide-up animation via `data-state` attributes
 - [x] Query syncs from URL params for browser back/forward support
 
-### 2.4 Desktop Filter Sidebar
+### ✅ 2.4 Desktop Filter Sidebar
 
-Persistent sidebar for refining results (both filtered browsing and search).
+Persistent sidebar for refining search results on the search route only.
 
-**Create Shared Component**
+**Scope:** Search route (`/recipes/search?q=...`) only. Browse route (`/recipes?{filters}`) is unchanged.
 
-- [ ] Create FilterSidebar component (`app/_components/FilterSidebar.tsx`)
-  - Shared by both `/recipes?{filters}` and `/recipes/search?q=...`
-  - Takes current filters and recipes as props
-  - Returns updated filter state
+**Filter Config**
 
-**Layout Integration**
+- [x] `FILTER_SECTIONS` config in `app/_config/filters.ts` (separate from `CATEGORY_SECTIONS`)
+  - Sections: cuisine, meal_type, dietary_restrictions, difficulty, time_category
+  - `FilterSection`, `FilterItem`, and `SortValue` types in `app/_types/filters.ts`
+  - `FILTER_KEYS` derived from section ids
 
-- [ ] Add to `/recipes/page.tsx` when params present
-- [ ] Add to `/recipes/search/page.tsx`
-- [ ] Desktop only (min-width breakpoint)
-- [ ] Sticky positioning
+**Sort Utility**
 
-**Sort Section**
+- [x] `sortRecipes(recipes, sortBy)` utility (`app/_lib/utils/sortRecipes.ts`)
+  - Options: best-match (passthrough), title-asc, title-desc, newest, oldest
+  - Immutable — returns new array
+- [x] Integrated into `applyRecipeParams`: search → filter → sort
 
-- [ ] Radio buttons at top of sidebar
-  - Best Match (default for search)
-  - Title A–Z (default for filtered browsing)
-  - Title Z–A
-  - Newest First
-  - Oldest First
-- [ ] Sync with `?sort=` URL param
-- [ ] Extract sort logic to shared utility (`app/_lib/utils/sortRecipes.ts`)
+**Filter Utility Updates**
 
-**Filter Sections**
+- [x] `filterRecipes` updated to use `FILTER_KEYS` (superset of `CATEGORY_FILTER_KEYS`)
+  - Multi-select via `searchParams.getAll(key)`
+  - AND across dimensions, OR within a dimension
+- [x] `computeFilterCounts(recipes, filterKey)` utility for faceted counting
 
-- [ ] Collapsible sections (Radix UI Accordion)
-  - By Cuisine
-  - By Meal Type
-  - By Dietary
-  - By Difficulty
-  - By Cook Time (Quick / Medium / Long)
-  - Optional: By Ingredients, By Occasions
+**FilterSidebar Component** (`app/_components/FilterSidebar.tsx`)
 
-**Checkbox Behaviour**
+- [x] Sort section with radio buttons, synced with `?sort=` URL param
+- [x] Collapsible accordion filter sections (all open by default)
+- [x] Checkboxes with faceted counts (per-dimension counts exclude own active filters)
+- [x] Immediate URL updates on check/uncheck and sort change
+- [x] "Clear all filters" button — keeps `?q=term`, clears filter and sort params
+- [x] Desktop only (`hidden lg:block`, `sticky top-8`, `w-64`)
 
-- [ ] Multi-select within dimensions
-- [ ] Show counts reflecting current result set
-  - On search route: counts show "curry + Italian" not just "Italian"
-  - Disabled/dimmed when count is 0
-- [ ] Immediate URL updates on check/uncheck
-- [ ] URL params: `?cuisine=italian&cuisine=thai` for multi-select
+**UI Components**
 
-**Sidebar Actions**
+- [x] `app/_components/ui/accordion.tsx` — Radix Accordion wrapper
+- [x] `app/_components/ui/radio-group.tsx` — Radix Radio Group wrapper
 
-- [ ] "Clear all filters" button (bottom)
-  - On filtered browsing: navigates to `/recipes`
-  - On search: clears filters, keeps `?q=term`
+**Integration**
 
-**Implementation Notes:**
-
-- Same component, different context (browsing vs search)
-- Counts are dynamic based on current recipe set
-- Sort default differs by route (Best Match for search, A–Z for browsing)
+- [x] `SearchResults.tsx` updated with flex layout and sidebar
+- [x] Grid adjusted: `sm:grid-cols-2 xl:grid-cols-3` to account for sidebar width
 
 ### 2.5 Mobile Filter Drawer & Pills
 
@@ -379,9 +365,11 @@ Comprehensive testing across both routes.
 - `applyRecipeParams(recipes, searchParams)` — orchestrates search + filter, used by both routes
 - `searchRecipes(recipes, searchParams)` — extracts `q`, whole-word matching
 - `filterRecipes(recipes, searchParams)` — extracts category keys, metadata matching
-- `sortRecipes(recipes, sortBy)` — both routes (planned)
+- `sortRecipes(recipes, sortBy)` — immutable sort by title, date, or passthrough
+- `computeFilterCounts(recipes, filterKey)` — faceted counting per filter dimension
 - `buildRecipeUrl(filters)` — generates filter URLs
-- FilterSidebar, FilterDrawer, FilterPills — used by both routes (planned)
+- FilterSidebar — desktop sidebar on search route (implemented)
+- FilterDrawer, FilterPills — mobile UI (planned)
 
 **Search Preservation**
 

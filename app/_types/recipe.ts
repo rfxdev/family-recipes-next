@@ -108,17 +108,3 @@ export type SpecialOccasion =
   | 'sunday-roast'
   | 'thanksgiving'
   | 'valentines';
-
-export interface CategoryItem {
-  filter: { key: string; value: string };
-  image: string;
-  label: string;
-}
-
-export interface CategorySection {
-  id: string;
-  items: CategoryItem[];
-  order: number;
-  showInMenu: boolean;
-  title: string;
-}

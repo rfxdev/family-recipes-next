@@ -19,10 +19,10 @@ These are platform-agnostic (shared with a planned Flutter app) — keep them in
 - **Tailwind class merging** via `cn()` utility (clsx + tailwind-merge)
 - **Single source of truth** — reuse existing constants, arrays, and types rather than duplicating values. Derive new constants from existing ones (e.g. `CATEGORY_FILTER_KEYS` is derived from `CATEGORY_SECTIONS`), never hardcode the same list in two places
 - **Code organisation** — keep files focused on one concern:
-  - `app/_config/` — static configuration data (routes, recipe category sections)
+  - `app/_config/` — static configuration data (routes, category sections, filter sections, sort options)
   - `app/_lib/utils/` — utility/helper functions (one function per file). Extract non-trivial logic from components into utils so it can be tested independently
   - `app/_lib/data/` — dummy/seed data
-  - `app/_types/` — TypeScript interfaces and type unions
+  - `app/_types/` — TypeScript interfaces and type unions. Split by concern: `recipe.ts` for the data model, `filters.ts` for filter/browse/sort display types
   - Don't mix types, config, and utils in one file — types go in `_types/`, helpers go in `_lib/utils/`
 - **Comments** — prefer inline comments inside functions to explain non-obvious logic, rather than lengthy JSDoc blocks above the function. Keep the JSDoc summary to one line
 - **UI components** — the `shadcn` CLI is not compatible with this project (no Babel). Install Radix UI primitives directly (`npm install @radix-ui/react-*`) and create the wrapper component in `app/_components/ui/` manually
