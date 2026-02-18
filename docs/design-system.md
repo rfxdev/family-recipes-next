@@ -79,3 +79,15 @@ Defined in `app/_components/ui/badge.tsx`:
 ## Checkbox
 
 Uses `accent-foreground` for border and checked fill, with `accent` as the check icon colour. Focus ring uses `ring` (same red).
+
+## Drawer
+
+Bottom-sheet component built on `@radix-ui/react-dialog` (`app/_components/ui/drawer.tsx`). Slides up from the bottom on mobile, with a backdrop overlay. Max height `85dvh` with `overflow-y-auto` for scrollable content. Rounded top corners (`rounded-t-2xl`). Uses `tw-animate-css` slide/fade animations.
+
+## Filter Pills
+
+Active filter pills use `bg-accent-foreground text-background` with `rounded-full` and a × icon for removal. Displayed in a horizontally-scrollable row (`overflow-x-auto`) on mobile only (`lg:hidden`).
+
+## Filter Button
+
+Mobile-only sticky button (`fixed inset-x-0 bottom-0`) using `bg-accent-foreground text-background` with a pill shape (`rounded-full`). Shows active filter count as a badge suffix: "Filters (3)".

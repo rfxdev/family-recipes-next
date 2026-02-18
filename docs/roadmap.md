@@ -164,7 +164,7 @@ Persistent sidebar for refining search results on the search route only.
   - AND across dimensions, OR within a dimension
 - [x] `computeFilterCounts(recipes, filterKey)` utility for faceted counting
 
-**FilterSidebar Component** (`app/_components/FilterSidebar.tsx`)
+**DesktopFilters Component** (`app/_components/DesktopFilters.tsx`)
 
 - [x] Sort section with radio buttons, synced with `?sort=` URL param
 - [x] Collapsible accordion filter sections (all open by default)
@@ -183,53 +183,92 @@ Persistent sidebar for refining search results on the search route only.
 - [x] `SearchResults.tsx` updated with flex layout and sidebar
 - [x] Grid adjusted: `sm:grid-cols-2 xl:grid-cols-3` to account for sidebar width
 
-### 2.5 Mobile Filter Drawer & Pills
+### ✅ 2.5 Mobile Filter Drawer & Pills
 
-Mobile-specific filter UI with visibility layer.
+Mobile-specific filter UI with visibility layer on the search route.
+
+**Shared Filter Infrastructure**
+
+- [x] Extract `FilterContent` component (`app/recipes/search/_components/FilterContent.tsx`)
+  - Render-only: accordion filter sections + clear button (no sort)
+  - Receives all state via props — no hooks, no URL access
+  - Used by `DesktopFilters` only
+- [x] Extract `useFilterState` hook (`app/_lib/hooks/useFilterState.ts`)
+  - Derives faceted counts, active filters, and section data from URL search params
+  - Shared by `DesktopFilters`, `MobileFilters`, and `FilterDrawer`
+- [x] Refactor `DesktopFilters` to delegate rendering to `FilterContent`
+
+**UI Primitives**
+
+- [x] Install `@radix-ui/react-dialog`
+- [x] Install `vaul` — replaces Radix Dialog as the drawer primitive
+- [x] Create `app/_components/ui/drawer.tsx` — bottom-sheet drawer built on vaul
+  - Slide-up from bottom, drag handle, backdrop overlay, close button in header
+- [x] Install `@radix-ui/react-popover`
+- [x] Create `app/_components/ui/popover.tsx` — Radix Popover wrapper
 
 **Filter Pills Component**
 
-- [ ] Create FilterPills component (`app/_components/FilterPills.tsx`)
-- [ ] Show below search/above results (mobile only)
-- [ ] Active filter pills with × remove button
+- [x] Create FilterPills component (`app/recipes/search/_components/FilterPills.tsx`)
+- [x] Show below search/above results (mobile only, `lg:hidden`)
+- [x] Active filter pills with × remove button
   - Format: "Italian ×", "Vegetarian ×", "Quick ×"
-  - Click × updates URL
-- [ ] Search pill (search route only)
-  - Format: "Searching for 'curry' ×"
-  - Click × navigates to `/recipes`
-- [ ] Used on both `/recipes?{filters}` and `/recipes/search`
+  - Styled `bg-accent-foreground text-background` (brick red, white text)
+  - Click × updates URL (removes single filter value)
+- [x] Horizontally scrollable pill row
 
-**Filters Button**
+**Mobile Sort**
 
-- [ ] Add to both filtered browsing and search routes
-- [ ] Mobile only, sticky position
-- [ ] Badge count: "Filters (3)" when active
-- [ ] Opens drawer on click
+- [x] Create MobileSort component (`app/recipes/search/_components/MobileSort.tsx`)
+- [x] Popover trigger showing current sort label + sort icon
+- [x] Popover lists all sort options with checkmark on active selection
+- [x] Immediate URL update on selection (no batching)
+- [x] Shown on mobile only (wrapped in `lg:hidden` in `SearchResults`)
+
+**Desktop Sort**
+
+- [x] Create DesktopSort component (`app/recipes/search/_components/DesktopSort.tsx`)
+- [x] Sort radio group, self-contained URL updates
+- [x] Rendered as sibling above `FilterContent` inside `DesktopFilters`
+
+**Mobile Filters**
+
+- [x] Create MobileFilters component (`app/recipes/search/_components/MobileFilters.tsx`)
+- [x] Mobile only (`lg:hidden`), fixed at bottom of viewport
+- [x] Badge count: "Filters (3)" when active
+- [x] Opens drawer on click
+
+**Mobile Filter Sections Component**
+
+- [x] Create `MobileFilterSections` component (`app/recipes/search/_components/MobileFilterSections.tsx`)
+  - Render-only: flat sections with no accordions
+  - Sections flow in two columns (`columns-2`) with `break-inside-avoid` per section
+  - Each item: checkbox + label + inline count in parentheses
+  - Receives all state via props — no hooks, no URL access
 
 **Filter Drawer Component**
 
-- [ ] Create FilterDrawer component (`app/_components/FilterDrawer.tsx`)
-- [ ] Full-screen bottom drawer (mobile)
-- [ ] Same sections as desktop sidebar
-  - Sort options
-  - Filter checkboxes with counts
-- [ ] Local state until "See Results" clicked
+- [x] Create FilterDrawer component (`app/recipes/search/_components/FilterDrawer.tsx`)
+- [x] Bottom drawer (mobile), filter management only (no sort)
+- [x] Renders `MobileFilterSections` — flat layout, no accordions
+- [x] URL-derived state via `useFilterState` — no local filter state, no re-sync on open
+- [x] Immediate URL updates on each checkbox toggle (same pattern as `DesktopFilters`)
 
 **Drawer Actions**
 
-- [ ] "See Results" button (primary, bottom)
-  - Updates URL with selected filters
-  - Closes drawer
-- [ ] "Clear all filters" button
-  - On filtered browsing: navigates to `/recipes`
-  - On search: clears filters, keeps `?q=`
-- [ ] Close on backdrop click
+- [x] "See Results" button (primary) — closes drawer; results already reflect URL state
+- [x] "Clear all filters" button (secondary, outline) — removes filter params, preserves `q` and `sort`
+- [x] Close on backdrop click or drag handle
+
+**Integration**
+
+- [x] `SearchResults.tsx` updated: `FilterPills` above results, results count + `MobileSort` on same row, `MobileFilters` trigger fixed at bottom
 
 **Implementation Notes:**
 
-- Shared components between filtered browsing and search routes
-- Pills provide visibility without opening drawer
-- Drawer batches URL updates (vs desktop immediate updates)
+- Sort is a distinct concern from filtering — kept in separate components (`DesktopSort`, `MobileSort`)
+- Desktop sort and filters update URL immediately; mobile filters are batched via drawer
+- `FilterContent` is render-only for filter sections only — sort is never passed through it
 
 ### 2.6 Header Menu Updates
 
@@ -368,8 +407,15 @@ Comprehensive testing across both routes.
 - `sortRecipes(recipes, sortBy)` — immutable sort by title, date, or passthrough
 - `computeFilterCounts(recipes, filterKey)` — faceted counting per filter dimension
 - `buildRecipeUrl(filters)` — generates filter URLs
-- FilterSidebar — desktop sidebar on search route (implemented)
-- FilterDrawer, FilterPills — mobile UI (planned)
+- FilterContent — render-only filter UI for desktop (accordion checkboxes + clear button, no sort)
+- MobileFilterSections — render-only filter UI for drawer (flat columns layout, checkboxes + inline counts)
+- DesktopSort — desktop sort radio group, self-contained URL updates
+- DesktopFilters — desktop sidebar (DesktopSort + FilterContent, immediate URL updates)
+- MobileSort — mobile sort popover, self-contained URL updates
+- MobileFilters — mobile sticky trigger + FilterDrawer
+- FilterDrawer — mobile bottom-sheet drawer (MobileFilterSections, immediate URL updates, two footer CTAs)
+- FilterPills — mobile active filter pill row with removal
+- useFilterState — shared hook deriving filter/section state from URL params
 
 **Search Preservation**
 
@@ -387,8 +433,8 @@ Menu items always clear existing filters (fresh curated experience):
 **Mobile vs Desktop**
 
 - Desktop: persistent sidebar, immediate URL updates
-- Mobile: drawer + pills, URL updates on "See Results"
-- Same underlying filter logic, different interaction patterns
+- Mobile: drawer + pills, immediate URL updates on each toggle; "See Results" closes the drawer
+- Same underlying filter logic, same URL update pattern — different presentation only
 
 **Result Count Philosophy**
 

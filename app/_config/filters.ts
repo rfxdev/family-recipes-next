@@ -14,7 +14,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Moroccan', value: 'moroccan' },
     ],
     order: 1,
-    title: 'By Cuisine',
+    title: 'Cuisine',
   },
   {
     id: 'meal_type',
@@ -25,7 +25,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Side', value: 'side' },
     ],
     order: 2,
-    title: 'By Meal Type',
+    title: 'Meal Type',
   },
   {
     id: 'dietary_restrictions',
@@ -35,7 +35,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Vegetarian', value: 'vegetarian' },
     ],
     order: 3,
-    title: 'By Dietary',
+    title: 'Dietary',
   },
   {
     id: 'difficulty',
@@ -45,7 +45,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Challenging', value: 'challenging' },
     ],
     order: 4,
-    title: 'By Difficulty',
+    title: 'Difficulty',
   },
   {
     id: 'time_category',
@@ -55,7 +55,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Long', value: 'long' },
     ],
     order: 5,
-    title: 'By Cook Time',
+    title: 'Cook Time',
   },
 ];
 

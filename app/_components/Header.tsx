@@ -21,7 +21,7 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(searchParams.get('q') ?? '');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [prevSearchParams, setPrevSearchParams] = useState(searchParams);
   const mobileInputRef = useRef<HTMLInputElement>(null);

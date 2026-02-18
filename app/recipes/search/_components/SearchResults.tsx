@@ -7,7 +7,10 @@ import type { Recipe } from '@/_types/recipe';
 
 import { applyRecipeParams } from '@/_lib/utils/applyRecipeParams';
 import { RecipeCard } from '@/recipes/_components/RecipeCard';
-import { FilterSidebar } from '@/recipes/search/_components/FilterSidebar';
+import { DesktopFilters } from '@/recipes/search/_components/DesktopFilters';
+import { FilterPills } from '@/recipes/search/_components/FilterPills';
+import { MobileFilters } from '@/recipes/search/_components/MobileFilters';
+import { MobileSort } from '@/recipes/search/_components/MobileSort';
 
 interface SearchResultsProps {
   recipes: Recipe[];
@@ -24,13 +27,24 @@ export function SearchResults({ recipes }: SearchResultsProps) {
 
   return (
     <div className="flex gap-8">
-      <FilterSidebar recipes={recipes} />
+      <DesktopFilters recipes={recipes} />
 
       <div className="min-w-0 flex-1">
-        <p className="text-muted-foreground mb-4">
-          {results.length} {results.length === 1 ? 'result' : 'results'} for
-          &lsquo;{query}&rsquo;
-        </p>
+        <FilterPills />
+
+        <h1 className="text-foreground mb-4 text-3xl font-bold">
+          Search Results
+        </h1>
+
+        <div className="mb-4 flex items-center justify-between">
+          <p className="text-muted-foreground">
+            {results.length} {results.length === 1 ? 'result' : 'results'} for
+            &lsquo;{query}&rsquo;
+          </p>
+          <div className="lg:hidden">
+            <MobileSort />
+          </div>
+        </div>
 
         {results.length > 0 ? (
           <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
@@ -44,6 +58,8 @@ export function SearchResults({ recipes }: SearchResultsProps) {
           </p>
         )}
       </div>
+
+      <MobileFilters recipes={recipes} />
     </div>
   );
 }

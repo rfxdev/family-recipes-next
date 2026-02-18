@@ -17,14 +17,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   if (!query) redirect(routes.recipes);
 
   return (
-    <>
-      <h1 className="text-foreground mb-4 text-3xl font-bold">
-        Search Results
-      </h1>
-
-      <Suspense>
-        <SearchResults recipes={dummyRecipes} />
-      </Suspense>
-    </>
+    <Suspense>
+      <SearchResults recipes={dummyRecipes} />
+    </Suspense>
   );
 }
