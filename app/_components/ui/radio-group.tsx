@@ -2,8 +2,8 @@
 
 import type { ComponentPropsWithoutRef, ComponentRef } from 'react';
 
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Circle } from 'lucide-react';
+import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 import { forwardRef } from 'react';
 
 import { cn } from '@/_lib/utils/cn';

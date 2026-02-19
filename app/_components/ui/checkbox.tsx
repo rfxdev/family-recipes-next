@@ -2,8 +2,8 @@
 
 import type { ComponentPropsWithoutRef, ComponentRef } from 'react';
 
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
+import { Checkbox as CheckboxPrimitive } from 'radix-ui';
 import { forwardRef } from 'react';
 
 import { cn } from '@/_lib/utils/cn';

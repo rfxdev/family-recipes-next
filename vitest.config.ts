@@ -11,7 +11,12 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      exclude: ['*.interface.ts'],
+      exclude: [
+        'app/_components/ui/**', // radix primitives copied into project
+        'app/_config/**',
+        'app/_lib/data/**',
+        'app/_types/**',
+      ],
       include: ['app/**/*.{ts,tsx}'],
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

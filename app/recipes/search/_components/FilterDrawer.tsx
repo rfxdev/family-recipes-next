@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 
 import type { Recipe } from '@/_types/recipe';
 
+import { Button } from '@/_components/ui/button';
 import {
   Drawer,
   DrawerClose,
@@ -80,20 +81,20 @@ export function FilterDrawer({
 
         <DrawerFooter>
           <div className="flex gap-3">
-            <button
-              className="border-input text-foreground flex-1 rounded-lg border py-2.5 text-sm font-medium"
+            <Button
+              className="flex-1 rounded-lg"
               onClick={handleClearAll}
-              type="button"
+              variant="outline"
             >
               Clear all filters
-            </button>
-            <button
-              className="bg-accent-foreground text-background flex-1 rounded-lg py-2.5 text-sm font-medium"
+            </Button>
+            <Button
+              className="flex-1 rounded-lg"
               onClick={() => onOpenChange(false)}
-              type="button"
+              variant="accent"
             >
               See Results
-            </button>
+            </Button>
           </div>
         </DrawerFooter>
       </DrawerContent>

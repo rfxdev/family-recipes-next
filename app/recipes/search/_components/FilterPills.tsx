@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
+import { Button } from '@/_components/ui/button';
 import { FILTER_KEYS } from '@/_config/filters';
 import { getFilterLabel } from '@/_lib/utils/getFilterLabel';
 
@@ -46,15 +47,15 @@ export function FilterPills() {
   return (
     <div className="mb-4 flex gap-2 overflow-x-auto lg:hidden">
       {pills.map((pill) => (
-        <button
-          className="bg-accent-foreground text-background flex shrink-0 items-center gap-1 rounded-full px-3 py-1 text-sm"
+        <Button
+          className="h-auto gap-1 rounded-full px-3 py-1"
           key={`${pill.key}-${pill.value}`}
           onClick={() => handleRemoveFilter(pill.key, pill.value)}
-          type="button"
+          variant="accent"
         >
           {pill.label}
           <X className="size-3.5" />
-        </button>
+        </Button>
       ))}
     </div>
   );

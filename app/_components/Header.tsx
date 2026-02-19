@@ -11,6 +11,7 @@ import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
 import { cn } from '@/_lib/utils/cn';
 
+import { Button } from './ui/button';
 import {
   Collapsible,
   CollapsibleContent,
@@ -141,14 +142,14 @@ export function Header() {
                 />
               </div>
               {!isOnSearchPage && (
-                <button
-                  className="text-muted-foreground hover:text-foreground"
+                <Button
                   onClick={() => setIsSearchOpen(false)}
-                  type="button"
+                  size="icon"
+                  variant="ghost"
                 >
                   <X className="size-5" />
                   <span className="sr-only">Close search</span>
-                </button>
+                </Button>
               )}
             </form>
           </div>

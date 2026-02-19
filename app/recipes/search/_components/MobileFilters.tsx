@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import type { Recipe } from '@/_types/recipe';
 
+import { Button } from '@/_components/ui/button';
 import { useFilterState } from '@/_lib/hooks/useFilterState';
 import { FilterDrawer } from '@/recipes/search/_components/FilterDrawer';
 
@@ -18,15 +19,15 @@ export function MobileFilters({ recipes }: MobileFiltersProps) {
 
   return (
     <>
-      <div className="fixed inset-x-0 bottom-0 z-40 p-4 lg:hidden">
-        <button
-          className="bg-accent-foreground text-background mx-auto flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium shadow-lg"
+      <div className="fixed inset-x-0 bottom-4 z-40 flex justify-center p-4 lg:hidden">
+        <Button
+          className="rounded-full px-5 shadow-lg"
           onClick={() => setOpen(true)}
-          type="button"
+          variant="accent"
         >
           <SlidersHorizontal className="size-4" />
           Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
-        </button>
+        </Button>
       </div>
 
       <FilterDrawer onOpenChange={setOpen} open={open} recipes={recipes} />

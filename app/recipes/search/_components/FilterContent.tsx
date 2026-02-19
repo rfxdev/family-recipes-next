@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/_components/ui/accordion';
+import { Button } from '@/_components/ui/button';
 import { Checkbox } from '@/_components/ui/checkbox';
 
 interface FilterContentProps {
@@ -72,13 +73,9 @@ export function FilterContent({
       </Accordion>
 
       {hasActiveFilters && (
-        <button
-          className="text-accent-foreground mt-4 text-sm underline underline-offset-2"
-          onClick={onClearAll}
-          type="button"
-        >
+        <Button className="mt-4" onClick={onClearAll} variant="link">
           Clear all filters
-        </button>
+        </Button>
       )}
     </>
   );

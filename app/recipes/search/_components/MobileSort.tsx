@@ -4,6 +4,7 @@ import { ArrowUpDown, Check } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 
+import { Button } from '@/_components/ui/button';
 import {
   Popover,
   PopoverContent,
@@ -45,10 +46,10 @@ export function MobileSort() {
         <ul>
           {SORT_OPTIONS.map((option) => (
             <li key={option.value}>
-              <button
-                className="hover:bg-accent flex w-full items-center gap-2 rounded px-3 py-2 text-sm"
+              <Button
+                className="w-full justify-start px-3"
                 onClick={() => handleSortChange(option.value)}
-                type="button"
+                variant="ghost"
               >
                 <Check
                   className={cn(
@@ -57,7 +58,7 @@ export function MobileSort() {
                   )}
                 />
                 {option.label}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>
