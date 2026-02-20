@@ -1412,4 +1412,167 @@ export const dummyRecipes: Recipe[] = [
     updated_at: '2025-02-15T00:00:00Z',
     uploaded_by: 'user_placeholder',
   },
+  {
+    cook_time_minutes: 25,
+    created_at: '2025-02-16T00:00:00Z',
+    description:
+      "Crispy fried chicken in a bold, savoury sauce with ginger, garlic and green chillies. Inspired by the Indo-Chinese classic from Bombay's Leopold Cafe.",
+    id: 'chilli-chicken',
+    image_path: '/images/recipes/chilli-chicken.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'skinless, boneless chicken thighs',
+            order: 1,
+            preparation: 'cut into bite-size pieces',
+            quantity_text: '500g',
+          },
+          {
+            item: 'vegetable oil',
+            order: 2,
+            preparation: 'for deep frying',
+          },
+        ],
+        name: 'Chicken',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'malt vinegar',
+            order: 1,
+            quantity_text: '20ml',
+          },
+          {
+            item: 'dark soy sauce',
+            order: 2,
+            quantity_text: '20ml',
+          },
+          {
+            item: 'white pepper',
+            order: 3,
+            quantity_text: '5g',
+          },
+          {
+            item: 'salt',
+            order: 4,
+            quantity_text: 'pinch',
+          },
+          {
+            item: 'coriander stalks',
+            order: 5,
+            preparation: 'finely chopped',
+            quantity_text: '15g',
+          },
+          {
+            item: 'free range egg',
+            order: 6,
+            quantity_text: '1 small',
+          },
+          {
+            item: 'cornflour',
+            order: 7,
+            quantity_text: '85g',
+          },
+          {
+            item: 'strong flour',
+            order: 8,
+            quantity_text: '40g',
+          },
+        ],
+        name: 'Marinade',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'vegetable oil',
+            order: 1,
+            quantity_text: '3 tbsp',
+          },
+          {
+            item: 'red onions',
+            order: 2,
+            preparation: 'finely chopped',
+            quantity_text: '250g',
+          },
+          {
+            item: 'ginger',
+            order: 3,
+            preparation: 'grated',
+            quantity_text: '60g',
+          },
+          {
+            item: 'garlic',
+            order: 4,
+            preparation: 'chopped',
+            quantity_text: '60g',
+          },
+          {
+            item: 'green chillies',
+            order: 5,
+            preparation: 'very finely chopped',
+            quantity_text: '35g',
+          },
+          {
+            item: 'rice vinegar',
+            order: 6,
+            quantity_text: '35ml',
+          },
+          {
+            item: 'dark soy sauce',
+            order: 7,
+            quantity_text: '60ml',
+          },
+          {
+            item: 'sugar',
+            order: 8,
+            quantity_text: '1 tsp',
+          },
+        ],
+        name: 'Sauce',
+        order: 3,
+      },
+      {
+        ingredients: [
+          {
+            item: 'spring onions',
+            order: 1,
+            preparation: 'finely chopped',
+          },
+          {
+            item: 'lime wedges',
+            order: 2,
+          },
+        ],
+        name: 'To Serve',
+        order: 4,
+      },
+    ],
+    metadata: {
+      cuisine: 'indian',
+      difficulty: 'moderate',
+      ingredient_categories: ['poultry'],
+      meal_type: 'main',
+      recipe_author: 'Chef Naved',
+      source_name: 'Dishoom',
+      source_url:
+        'https://www.dishoom.com/journal/recipes/dishoom-chilli-chicken-recipe/',
+      time_category: 'medium',
+    },
+    method: [
+      'In a large bowl, mix the vinegar, soy sauce, white pepper, salt, coriander stalks and egg. Add the chicken pieces and toss until evenly coated. Add the cornflour and strong flour, and mix thoroughly. Cover and refrigerate for at least 6 hours, or ideally overnight.',
+      'For the sauce, heat the oil in a large, heavy-bottomed pan over medium heat. Add the garlic and fry until golden brown, stirring almost constantly. Remove the garlic with a slotted spoon and set aside, leaving the oil in the pan. Add the onions and ginger and fry, stirring frequently, until the onions are soft and translucent. Add the soy sauce and cook for 2 minutes, then add the remaining sauce ingredients and the fried garlic. Cook for 10 minutes until the oil separates, then spoon off any excess oil and reduce the heat to keep the sauce warm.',
+      'Heat the oil to 160°C in a deep-fryer or other suitable deep, heavy-based pan. Carefully lower the chicken pieces into the hot oil and deep-fry for 3-4 minutes until crispy, golden and cooked through.',
+      'Lift the chicken pieces out of the oil and drain well. Add them to the sauce and toss to coat thoroughly. Serve garnished with chopped spring onions and lime wedges for squeezing.',
+    ],
+    notes:
+      'This recipe requires at least 6 hours marinating time (ideally overnight), so plan ahead.',
+    prep_time_minutes: 15,
+    servings: 3,
+    title: 'Chilli Chicken',
+    updated_at: '2025-02-16T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
 ];
