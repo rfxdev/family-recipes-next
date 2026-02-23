@@ -147,7 +147,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 6,
     title: 'One-Pan Lamb Tagine with Chickpeas',
     updated_at: '2025-01-30T10:00:00Z',
-    uploaded_by: 'user_001',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 15,
@@ -243,7 +243,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Cashew Chicken',
     updated_at: '2025-01-30T11:00:00Z',
-    uploaded_by: 'user_002',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 15,
@@ -324,7 +324,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Tomato, Chilli & Prawn Linguine',
     updated_at: '2025-02-04T10:00:00Z',
-    uploaded_by: 'user_001',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 50,
@@ -494,7 +494,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 6,
     title: 'Chicken Berry Britannia',
     updated_at: '2025-02-08T10:00:00Z',
-    uploaded_by: 'user_456',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 40,
@@ -640,7 +640,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Curried Lentil Cottage Pies',
     updated_at: '2025-02-08T10:00:00Z',
-    uploaded_by: 'user_456',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 10,
@@ -733,7 +733,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 3,
     title: 'Ham & Cheese Breakfast Galettes',
     updated_at: '2025-02-08T10:00:00Z',
-    uploaded_by: 'user_456',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 30,
@@ -840,7 +840,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Gunpowder Potatoes',
     updated_at: '2025-02-12T10:00:00Z',
-    uploaded_by: 'user_456',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 35,
@@ -927,7 +927,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Cod with Roasted Chilli Butter',
     updated_at: '2025-02-13T10:00:00Z',
-    uploaded_by: 'user_456',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 20,
@@ -1045,7 +1045,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 2,
     title: 'Creamy Prawn Tagliatelle',
     updated_at: '2026-02-14T10:00:00Z',
-    uploaded_by: 'user_123',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 20,
@@ -1172,7 +1172,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 2,
     title: 'Steak Rarebit',
     updated_at: '2026-02-14T10:00:00Z',
-    uploaded_by: 'user_123',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 35,
@@ -1299,7 +1299,7 @@ export const dummyRecipes: Recipe[] = [
     servings: 4,
     title: 'Sticky Date and Banana Pudding',
     updated_at: '2026-02-14T10:00:00Z',
-    uploaded_by: 'user_123',
+    uploaded_by: 'user_placeholder',
   },
   {
     cook_time_minutes: 25,
@@ -1573,6 +1573,99 @@ export const dummyRecipes: Recipe[] = [
     servings: 3,
     title: 'Chilli Chicken',
     updated_at: '2025-02-16T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
+  {
+    cook_time_minutes: 20,
+    created_at: '2026-02-23T00:00:00Z',
+    description:
+      'Fragrant basmati rice cooked with whole and ground spices, delivering fluffy, subtly golden grains. An essential side for curries and other Indian-inspired dishes.',
+    id: 'pilau-rice',
+    image_path: '/images/recipes/pilau-rice.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'basmati rice',
+            order: 1,
+            quantity_text: '300g',
+          },
+          {
+            item: 'butter or sunflower oil',
+            order: 2,
+            quantity_text: '30g / 2 tbsp',
+          },
+          {
+            item: 'onion',
+            order: 3,
+            preparation: 'finely chopped',
+            quantity_text: '1 large',
+          },
+          {
+            item: 'cinnamon stick',
+            order: 4,
+            quantity_text: '1',
+          },
+          {
+            item: 'cumin seeds',
+            order: 5,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'cardamom pods',
+            order: 6,
+            preparation: 'bashed',
+            quantity_text: '6',
+          },
+          {
+            item: 'cloves',
+            order: 7,
+            quantity_text: '4',
+          },
+          {
+            item: 'bay leaves',
+            order: 8,
+            quantity_text: '2',
+          },
+          {
+            item: 'ground coriander',
+            order: 9,
+            quantity_text: '½ tsp',
+          },
+          {
+            item: 'ground turmeric',
+            order: 10,
+            quantity_text: '½ tsp',
+          },
+          {
+            item: 'vegetable stock or water',
+            order: 11,
+            quantity_text: '500ml',
+          },
+        ],
+        name: '',
+        order: 1,
+      },
+    ],
+    metadata: {
+      cuisine: 'indian',
+      dietary_restrictions: ['vegetarian'],
+      difficulty: 'easy',
+      ingredient_categories: ['rice'],
+      meal_type: 'side',
+      recipe_author: 'Barney Desmazery',
+      source_name: 'BBC Good Food',
+      time_category: 'quick',
+    },
+    method: [
+      'Tip the rice into a large bowl and soak in cold water for 30 minutes if you have time. Rinse under cold running water, then drain well. Repeat until the water runs only slightly cloudy, then leave the rice in a sieve set over the sink to drain completely.',
+      'Heat the butter or oil in a lidded pan over a medium heat and gently fry the onion with a large pinch of salt for 10 minutes, stirring occasionally, until soft and golden. Stir in the whole spices and bay leaves and cook for 2 minutes more. Add the ground coriander and turmeric and cook for 1 minute more. Gently stir in the drained rice to coat it in the onion mixture, then pour over the stock or water and stir well.',
+      'Cover the pan and turn up the heat. Once hot, remove the lid, stir the rice, then replace the lid and reduce the heat to low. Cook for 2 minutes, then turn the heat off completely and leave to stand, covered, for 10 minutes. Uncover, stir well, then cover again and leave for a final 5 minutes. Fluff up with a fork before serving.',
+    ],
+    prep_time_minutes: 5,
+    servings: 4,
+    title: 'Pilau Rice',
+    updated_at: '2026-02-23T00:00:00Z',
     uploaded_by: 'user_placeholder',
   },
 ];
