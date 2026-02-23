@@ -68,14 +68,16 @@ export function NavDrawer() {
         >
           <TabsList className="w-full rounded-full">
             <TabsTrigger
-              className="data-[state=active]:bg-accent-foreground data-[state=active]:text-background data-[state=active]:hover:bg-accent-foreground/90 flex-1 rounded-full text-sm"
+              className="flex-1 rounded-full text-sm"
               value="recipes"
+              variant="accent"
             >
               Recipes
             </TabsTrigger>
             <TabsTrigger
-              className="data-[state=active]:bg-accent-foreground data-[state=active]:text-background data-[state=active]:hover:bg-accent-foreground/90 flex-1 rounded-full text-sm"
+              className="flex-1 rounded-full text-sm"
               value="planner"
+              variant="accent"
             >
               Planner
             </TabsTrigger>

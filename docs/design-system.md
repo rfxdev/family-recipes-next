@@ -23,6 +23,8 @@ Primitive UI components live in `app/_components/ui/`. These are thin wrappers o
 
 **Do not** put bespoke application components in this folder. Components with business logic, application-specific props, or that compose multiple primitives belong elsewhere in `app/_components/`.
 
+**Colour overrides via `className` — use `cva` variants instead.** tailwind-merge cannot detect conflicts between custom CSS variable colour classes (e.g. `bg-background` vs `bg-accent-foreground`) because they aren't in its known class groups. If you pass a colour override via `className`, both classes will remain in the DOM and the winner is determined by CSS source order — which is environment-dependent. The fix is to expose a `variant` prop on the component using `cva`, so the correct colour is set at the component level from the start.
+
 ## Colour Tokens
 
 All tokens follow the shadcn/ui convention: the base token is the background/surface colour, `-foreground` is the text colour on that surface.
