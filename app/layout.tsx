@@ -7,9 +7,8 @@ import { Header } from './_components/Header';
 import './globals.css';
 
 export const metadata: Metadata = {
-  description:
-    'A modern web application for storing and sharing family recipes',
-  title: 'Family Recipes',
+  description: 'Your family recipes and meal planner, all in one place',
+  title: 'Kitchen Companion',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

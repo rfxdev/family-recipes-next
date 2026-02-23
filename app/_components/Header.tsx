@@ -11,6 +11,7 @@ import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
 import { cn } from '@/_lib/utils/cn';
 
+import { NavDrawer } from './NavDrawer';
 import { Button } from './ui/button';
 import {
   Collapsible,
@@ -28,6 +29,7 @@ export function Header() {
   const mobileInputRef = useRef<HTMLInputElement>(null);
 
   const isRecipesActive = pathname.startsWith('/recipes');
+  const isPlannerActive = pathname.startsWith('/planner');
   const isOnSearchPage = pathname.startsWith(routes.search);
   const effectiveOpen = isSearchOpen || isOnSearchPage;
 
@@ -71,12 +73,18 @@ export function Header() {
       <header className="border-border bg-background border-b">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between gap-4">
-            <Link
-              className="text-foreground text-xl font-semibold"
-              href={routes.home}
-            >
-              Family Recipes
-            </Link>
+            {/* Left: hamburger (mobile) + logo */}
+            <div className="flex items-center gap-1">
+              <div className="sm:hidden">
+                <NavDrawer />
+              </div>
+              <Link
+                className="text-accent-foreground text-xl font-semibold"
+                href={routes.home}
+              >
+                Kitchen Companion
+              </Link>
+            </div>
 
             {/* Desktop search — always visible on sm+ */}
             <form
@@ -96,6 +104,7 @@ export function Header() {
               />
             </form>
 
+            {/* Right: search icon (mobile) + desktop nav links */}
             <div className="flex items-center gap-4">
               {/* Mobile search trigger — hidden on sm+ */}
               <CollapsibleTrigger
@@ -108,9 +117,10 @@ export function Header() {
                 <span className="sr-only">Search</span>
               </CollapsibleTrigger>
 
+              {/* Desktop nav links — hidden on mobile */}
               <Link
                 className={cn(
-                  'transition-colors',
+                  'hidden transition-colors sm:block',
                   isRecipesActive
                     ? 'text-accent-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground',
@@ -118,6 +128,18 @@ export function Header() {
                 href={routes.recipes}
               >
                 Recipes
+              </Link>
+
+              <Link
+                className={cn(
+                  'hidden transition-colors sm:block',
+                  isPlannerActive
+                    ? 'text-accent-foreground font-semibold'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+                href={routes.planner}
+              >
+                Planner
               </Link>
             </div>
           </nav>

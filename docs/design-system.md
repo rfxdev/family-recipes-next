@@ -110,6 +110,18 @@ Uses `accent-foreground` for border and checked fill, with `accent` as the check
 
 Bottom-sheet component built on `vaul` (`app/_components/ui/drawer.tsx`). Note: `@radix-ui/react-dialog` appears in `package.json` as a peer dependency of `vaul`, not a direct dependency of our wrapper. Slides up from the bottom on mobile, with a backdrop overlay. Max height `85dvh` with `overflow-y-auto` for scrollable content. Rounded top corners (`rounded-t-2xl`). Uses `tw-animate-css` slide/fade animations.
 
+`DrawerContent` accepts a `direction` prop (`'bottom' | 'top' | 'left' | 'right'`, default `'bottom'`). Side drawers use `inset-y-0 left-0/right-0 h-full w-4/5 max-w-sm`; the drag handle is suppressed for left/right directions.
+
+**Note:** vaul keeps `DrawerContent` mounted when closed (hides via CSS transform, not unmount). Uncontrolled components inside it will not reinitialise on re-open — use `key={derivedValue}` to force remount when needed.
+
+## Nav Drawer
+
+Mobile-only side navigation (`app/_components/NavDrawer.tsx`). Opens from the left via `Drawer direction="left"`. Contains a `Tabs` mode toggle (Recipes / Planner) styled with `bg-accent-foreground` active state. Active tab is derived from `pathname` and passed as both `defaultValue` and `key` to reset the uncontrolled Tabs on section change. Nav content is driven by `CATEGORY_SECTIONS` (recipes tab) and `PLANNER_NAV_LINKS` from `app/_config/planner.ts` (planner tab). Hidden on `sm+` — desktop uses inline nav links in the Header.
+
+## Tabs
+
+Shadcn wrapper over Radix Tabs (`app/_components/ui/tabs.tsx`). Exports `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`. `TabsList` supports a `variant` prop: `default` (filled pill container) or `line` (underline indicator). Override `TabsTrigger` active state with `data-[state=active]:` classes — e.g. `data-[state=active]:bg-accent-foreground data-[state=active]:text-background` for the brand red style used in `NavDrawer`.
+
 ## Filter Pills
 
 Active filter pills use `Button variant="accent" className="rounded-full"` with a × icon for removal. Displayed in a horizontally-scrollable row (`overflow-x-auto`) on mobile only (`lg:hidden`).

@@ -15,22 +15,35 @@ const DrawerClose = DrawerPrimitive.Close;
 
 const DrawerTitle = DrawerPrimitive.Title;
 
+type DrawerDirection = 'bottom' | 'left' | 'right' | 'top';
+
 function DrawerContent({
   children,
   className,
+  direction = 'bottom',
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: React.ComponentProps<typeof DrawerPrimitive.Content> & {
+  direction?: DrawerDirection;
+}) {
   return (
     <DrawerPortal>
       <DrawerOverlay />
       <DrawerPrimitive.Content
         className={cn(
-          'bg-background fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col rounded-t-2xl shadow-lg',
+          'bg-background fixed z-50 flex flex-col shadow-lg',
+          direction === 'bottom' &&
+            'inset-x-0 bottom-0 max-h-[85dvh] rounded-t-2xl',
+          direction === 'top' && 'inset-x-0 top-0 max-h-[85dvh] rounded-b-2xl',
+          direction === 'left' && 'inset-y-0 left-0 h-full w-4/5 max-w-sm',
+          direction === 'right' && 'inset-y-0 right-0 h-full w-4/5 max-w-sm',
           className,
         )}
         {...props}
       >
-        <div className="bg-muted mx-auto mt-4 h-1 w-[100px] shrink-0 rounded-full" />
+        {/* Drag handle for top/bottom sheet drawers only */}
+        {(direction === 'bottom' || direction === 'top') && (
+          <div className="bg-muted mx-auto mt-4 h-1 w-25 shrink-0 rounded-full" />
+        )}
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>

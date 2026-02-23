@@ -270,28 +270,35 @@ Mobile-specific filter UI with visibility layer on the search route.
 - Desktop sort and filters update URL immediately; mobile filters are batched via drawer
 - `FilterContent` is render-only for filter sections only — sort is never passed through it
 
-### 2.6 Header Menu Updates
+### ✅ 2.6 Planner Scaffold
 
-Curated navigation entry points (distinct from search).
+- [x] Route structure: `/planner`, `/planner/week`, `/planner/shopping`, `/planner/tracker`
+- [x] Placeholder pages — `/planner` is a dashboard with feature cards; sub-pages are stubs
+- [x] `PLANNER_NAV_LINKS` config in `app/_config/planner.ts`
+- [x] Routes added to `routes.ts`: `planner`, `plannerWeek`, `plannerShopping`, `plannerTracker`
 
-**Mobile Menu (Hamburger)**
+### 2.7 Header Navigation
 
-- [ ] Add "Recipes" accordion item
-- [ ] Sections from `CATEGORY_SECTIONS` where `showInMenu === true`
-  - "By Cuisine" → British, Chinese, French, Indian, Italian, Moroccan
-  - "By Meal Type" → Breakfast, Main, Pudding
-  - "By Dietary" → Vegetarian, Vegan, Gluten-Free
-- [ ] Links to `/recipes?{filter}` via `buildRecipeUrl()`
-  - Clears any existing filters (fresh curated experience)
-- [ ] "Recipes" top-level → `/recipes` (homepage)
+Curated navigation entry points (distinct from search). App rebranded to **Kitchen Companion**.
 
-**Desktop Menu (Mega Dropdown)**
+**✅ Mobile Navigation Drawer**
 
-- [ ] Dropdown on "Recipes" nav item
-- [ ] Three-column layout from `CATEGORY_SECTIONS`
-- [ ] Same category links as mobile
+Implemented as a left-side sheet (`Drawer direction="left"`) with a Recipes/Planner mode toggle
+(Radix Tabs, `bg-accent-foreground` active state). Differs from original accordion spec.
+
+- [x] Hamburger trigger left of logo on mobile, hidden on `sm+`
+- [x] Recipes tab: All Recipes + `CATEGORY_SECTIONS` where `showInMenu === true`, links via `buildRecipeUrl()`
+- [x] Planner tab: Overview, Week View, Shopping List, Tracker
+- [x] Active tab derived from `pathname`; drawer closes on link tap
+
+**✅ Desktop Navigation**
+
+- [x] Inline Recipes and Planner links in Header (hidden on mobile)
+
+**Desktop Mega Dropdown**
+
+- [ ] Dropdown on "Recipes" nav item, three-column layout from `CATEGORY_SECTIONS`
 - [ ] Closes on link click or outside click
-- [ ] "Recipes" nav link → `/recipes`
 
 **Interaction with Search**
 
@@ -299,7 +306,7 @@ Curated navigation entry points (distinct from search).
   - If on `/recipes/search?q=curry`, clicking "Italian" → `/recipes?cuisine=italian`
 - [ ] Menu provides fresh start for curated browsing
 
-### 2.7 Empty States & Polish
+### 2.8 Empty States & Polish
 
 Context-aware empty states for different scenarios.
 
@@ -329,7 +336,7 @@ Context-aware empty states for different scenarios.
 - [ ] Search: "12 results for 'curry'"
 - [ ] Both reflect combined state
 
-### 2.8 Testing & Polish
+### 2.9 Testing & Polish
 
 Comprehensive testing across both routes.
 
@@ -472,11 +479,11 @@ Import methods and user experience improvements.
 
 ## Phase 5: Meal Planning & Extensions
 
-Build incrementally: meal planner → shopping list → meal tracker.
+Build incrementally: meal planner → meal tracker → shopping list.
 
 - [ ] Meal planner (assign recipes to dates/meal slots)
-- [ ] Shopping list generation from planned meals
 - [ ] Meal history tracker with usage statistics
+- [ ] Shopping list generation from planned meals
 - [ ] Discovery prompts (try new recipes, revisit favourites)
 
 ## Phase 6: Flutter Mobile App - Future
