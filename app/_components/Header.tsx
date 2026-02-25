@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
 import { cn } from '@/_lib/utils/cn';
 
@@ -53,13 +52,8 @@ export function Header() {
     const trimmedQuery = query.trim();
     if (!trimmedQuery) return;
 
-    // Carry over active category filters from the current URL
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams);
     params.set('q', trimmedQuery);
-    for (const key of CATEGORY_FILTER_KEYS) {
-      const value = searchParams.get(key);
-      if (value) params.set(key, value);
-    }
 
     if (!isOnSearchPage) {
       setQuery('');

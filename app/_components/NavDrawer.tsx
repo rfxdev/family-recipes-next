@@ -10,6 +10,7 @@ import { CATEGORY_SECTIONS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
 import { buildRecipeUrl } from '@/_lib/utils/buildRecipeUrl';
 import { cn } from '@/_lib/utils/cn';
+import { sortCategoryItems } from '@/_lib/utils/sortCategoryItems';
 
 import { Button } from './ui/button';
 import {
@@ -101,13 +102,11 @@ export function NavDrawer() {
                   <p className="text-muted-foreground mb-2.5 text-xs font-semibold tracking-wider uppercase">
                     {section.title}
                   </p>
-                  {section.items.map((item) => (
+                  {sortCategoryItems(section.items).map((item) => (
                     <Link
                       className="text-foreground hover:text-accent-foreground flex items-center py-1.5 text-sm transition-colors"
-                      href={buildRecipeUrl({
-                        [item.filter.key]: item.filter.value,
-                      })}
-                      key={item.filter.value}
+                      href={buildRecipeUrl(item.filters)}
+                      key={item.label}
                       onClick={close}
                     >
                       {item.label}

@@ -1,41 +1,26 @@
-import type {
-  Cuisine,
-  DietaryRestriction,
-  Difficulty,
-  MealType,
-  TimeCategory,
-} from './recipe';
-
 /** Metadata fields that can be used as filter or browse keys. */
 export type FilterableMetadataKey =
   | 'cuisine'
   | 'dietary_restrictions'
   | 'difficulty'
+  | 'dish_style'
   | 'meal_type'
+  | 'proteins'
+  | 'special_occasions'
   | 'time_category';
 
-/** Maps each filterable key to its value union. */
-export type FilterableMetadataValue<K extends FilterableMetadataKey> =
-  K extends 'cuisine'
-    ? Cuisine
-    : K extends 'meal_type'
-      ? MealType
-      : K extends 'dietary_restrictions'
-        ? DietaryRestriction
-        : K extends 'difficulty'
-          ? Difficulty
-          : K extends 'time_category'
-            ? TimeCategory
-            : never;
-
 export interface CategoryItem {
-  filter: { key: FilterableMetadataKey; value: string };
+  /** Filter params to apply when the item is selected. Supports multi-key (Pick Your Pace) and multi-value (repeated params) filters. */
+  filters: Record<string, string | string[]>;
   image: string;
   label: string;
+  /** Number of matching recipes. Items with order === 0 are hidden. */
+  order: number;
 }
 
 export interface CategorySection {
-  id: FilterableMetadataKey;
+  /** Section identifier. Usually matches a metadata field, but may be a computed view ID (e.g. 'pick_your_pace'). */
+  id: string;
   items: CategoryItem[];
   order: number;
   showInMenu: boolean;

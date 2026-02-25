@@ -44,45 +44,57 @@ Write 1–2 sentences that capture what makes the recipe appealing. Focus on fla
 
 ## Metadata
 
-### Ingredient Categories
+### Ingredients (Proteins)
 
-Tag ingredients that define what type of dish this is or what you'd search for when looking for recipes. Don't tag incidental supporting ingredients.
+Tag the star protein — the ingredient that defines what the dish is built around. This drives the "Ingredients" browsing view (e.g. "Poultry", "Seafood", "Legumes"). Dish format and style are captured separately in `dish_style`.
 
 **Tag these:**
 
-- Star proteins: the seafood in this linguine, the chicken in a curry, the beef in a stew
-- Pasta in pasta dishes: linguine, penne, lasagne — pasta defines the dish type
-- Rice cooked into the dish: risotto, paella, biryani, fried rice — rice is the main component, not an accompaniment
+- Star proteins: the chicken in a curry, the beef in a stew, the prawns in a pasta
 - Main legumes: the chickpeas in a chickpea curry, the lentils in dal
-- Hero ingredients: the cheese in mac & cheese, the eggs in a frittata
+- Eggs when they are the hero: a frittata, shakshuka, an omelette — not eggs as binder in a cake
 
 **Don't tag these:**
 
-- Rice served on the side: curry with rice, chilli served over rice — rice is just the vehicle
-- Incidental additions: cheese sprinkled on top of soup, eggs as binder in cakes
-- Generic aromatics: onions, garlic, ginger, celery — these are in everything
-- Condiments and seasonings: soy sauce, stock, herbs, spices
+- Supporting proteins: chorizo as a flavouring, bacon as a garnish
 
 **Examples:**
 
-- Chicken biryani → tag `poultry` and `rice` (rice is cooked into the dish)
-- Thai green curry → tag `poultry` only (rice is served alongside)
-- Mushroom risotto → tag `rice` only (rice is the star, mushrooms are the flavouring)
-- This clam linguine → tag `seafood` and `pasta` (both define the dish)
-- Lasagne → tag `pasta` and `beef` (or just `pasta` if vegetarian)
-- Mac & cheese → tag `cheese` and `pasta` (cheese is the hero, pasta is the vehicle)
+- Chicken biryani → tag `poultry` (rice is the format, captured in `dish_style: rice-dish`)
+- Clam linguine → tag `seafood` (pasta is the format, captured in `dish_style: pasta`)
+- Lamb tagine → tag `lamb` (stew format, captured in `dish_style: stew-casserole`)
+- Curried lentil pie → tag `legumes` (pie format, captured in `dish_style: pie`)
+- Shakshuka → tag `eggs`
+- Mushroom risotto → no protein tag (rice format, captured in `dish_style: rice-dish`)
 
-The test: "Would someone searching for [category] recipes want to find this dish?" If yes, tag it.
+The test: "Would someone browsing by [protein] want to find this dish?" If yes, tag it.
+
+### Dish Style
+
+Tag the format or character of the dish — what it is, not what's in it. This drives the "In the Mood For" browsing view. Allowed values: `curry`, `pasta`, `noodles`, `pizza`, `soup`, `pie`, `salad`, `rice-dish`, `stew-casserole`, `roast`.
+
+**One tag only.** Choose the most defining format. A curried lentil pie is a `pie`; a pasta dish with a curry-style sauce is `pasta`.
+
+**Examples:**
+
+- Chicken tikka masala → `curry`
+- Spaghetti bolognese → `pasta`
+- Pad thai → `noodles`
+- Margherita pizza → `pizza`
+- Lamb tagine → `stew-casserole`
+- Chicken biryani → `rice-dish`
+- Roast chicken with vegetables → `roast`
+- Shepherd's pie → `pie`
+
+Leave unset if the dish doesn't clearly fit a category — a pan-fried steak, a simple side dish, or a pudding typically won't have a `dish_style`.
 
 ### Dietary Restrictions
 
-Tag recipes for filtering purposes only. Mark what the recipe satisfies as-written, not potential substitutions.
+Tag recipes for filtering purposes only. Mark what the recipe satisfies as-written, not potential substitutions. Allowed values: `vegetarian`, `vegan`, `gluten-free`, `dairy-free`.
 
-**Hierarchy:** If a recipe is `vegan`, tag only as vegan (it's inherently vegetarian, dairy-free, and egg-free). If `vegetarian`, tag only as vegetarian unless it also happens to be `dairy-free`, `gluten-free`, etc.
+**Tag all that apply.** A vegan recipe should be tagged `vegan`, `vegetarian`, and `dairy-free`.
 
 **Be accurate:** A vegetable soup made with chicken stock is not vegetarian. Pasta with butter is vegetarian but not vegan or dairy-free.
-
-**Other tags:** Apply `pescatarian`, `nut-free`, `gluten-free`, `low-carb` independently based on ingredients and preparation.
 
 ---
 

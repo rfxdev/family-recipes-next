@@ -17,6 +17,7 @@ const makeRecipe = (overrides: Partial<Recipe> = {}): Recipe => ({
     },
   ],
   metadata: {
+    author_id: 'test',
     cuisine: 'british',
     difficulty: 'easy',
     meal_type: 'main',
@@ -35,6 +36,7 @@ const recipes: Recipe[] = [
   makeRecipe({
     id: 'r1',
     metadata: {
+      author_id: 'test',
       cuisine: 'british',
       difficulty: 'easy',
       meal_type: 'main',
@@ -44,6 +46,7 @@ const recipes: Recipe[] = [
   makeRecipe({
     id: 'r2',
     metadata: {
+      author_id: 'test',
       cuisine: 'italian',
       difficulty: 'moderate',
       meal_type: 'main',
@@ -53,6 +56,7 @@ const recipes: Recipe[] = [
   makeRecipe({
     id: 'r3',
     metadata: {
+      author_id: 'test',
       cuisine: 'british',
       dietary_restrictions: ['vegetarian'],
       difficulty: 'easy',
@@ -63,6 +67,7 @@ const recipes: Recipe[] = [
   makeRecipe({
     id: 'r4',
     metadata: {
+      author_id: 'test',
       cuisine: 'italian',
       dietary_restrictions: ['vegetarian', 'gluten-free'],
       difficulty: 'challenging',

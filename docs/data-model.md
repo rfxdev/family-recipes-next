@@ -51,7 +51,7 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
     "difficulty": "moderate",
     "time_category": "long",
     "dietary_restrictions": ["vegetarian"],
-    "ingredient_categories": ["pasta", "beef", "cheese"],
+    "proteins": ["beef"],
     "special_occasions": ["christmas"],
     "recipe_author": "Grandma Maria",
     "source_name": "handwritten note",
@@ -156,7 +156,7 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **cuisine** (required, single-select):
 
-- Allowed values: `american`, `british`, `chinese`, `french`, `indian`, `italian`, `japanese`, `mediterranean`, `mexican`, `moroccan`, `thai`, `other`
+- Allowed values: `american`, `british`, `chinese`, `french`, `greek`, `indian`, `italian`, `japanese`, `mexican`, `moroccan`, `spanish`, `thai`, `turkish`
 
 **meal_type** (required, single-select):
 
@@ -175,23 +175,57 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **dietary_restrictions** (optional, multi-select array):
 
-- Allowed values: `dairy-free`, `egg-free`, `gluten-free`, `low-carb`, `nut-free`, `pescatarian`, `vegan`, `vegetarian`
+- Allowed values: `dairy-free`, `gluten-free`, `vegan`, `vegetarian`
 
-**ingredient_categories** (optional, multi-select array):
+**proteins** (optional, multi-select array):
 
-- Allowed values: `beef`, `cheese`, `eggs`, `fish`, `lamb`, `legumes`, `pasta`, `pork`, `poultry`, `rice`, `seafood`
+- Allowed values: `beef`, `eggs`, `fish`, `lamb`, `legumes`, `pork`, `poultry`, `seafood`
 - Used for queries like "what can I make with chicken?"
+
+**dish_style** (optional, single-select):
+
+- Allowed values: `curry`, `noodles`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `soup`, `stew-casserole`
+- Captures the format or character of the dish — what it is, not what's in it. See [`style-guide.md`](style-guide.md) for tagging guidance. Leave unset for dishes that don't clearly fit a category (sides, puddings, pan-fried proteins, etc.).
 
 **special_occasions** (optional, multi-select array):
 
-- Allowed values: `barbecue`, `birthday`, `christmas`, `easter`, `fathers-day`, `mothers-day`, `new-year`, `picnic`, `sunday-roast`, `thanksgiving`, `valentines`
+- Allowed values: `bbq`, `christmas`, `sunday-roast`
 
 #### Supplementary Information (Optional)
 
-**recipe_author** (optional, freeform string): Who created the recipe originally. Examples: "Grandma Maria", "Jamie Oliver"
+**author_id** (required, string): References an `Author` document by `id`. See [Authors](#authors) below.
 
 **source_name** (optional, freeform string): Where the recipe came from. Examples: "handwritten note", "BBC Good Food", "30 Minute Meals cookbook"
 
 **source_url** (optional, string): URL if recipe was imported from a website.
 
 **source_details** (optional, freeform string): Additional context about the recipe's origin. Examples: "Page 42", "From recipe box, 1985", "Adapted from original"
+
+---
+
+## Authors
+
+A separate collection of known recipe authors, referenced by `author_id` on a recipe.
+
+### Author Fields
+
+**id** (required string): URL-safe slug used as the document ID and reference key. Examples: `tom-kerridge`, `dishoom`, `family-grandma`.
+
+**name** (required string): Display name shown in the UI. Examples: "Tom Kerridge", "Dishoom", "Grandma Maria".
+
+**type** (required string): Category used for grouping in the author browsing view.
+
+- Allowed values: `chef`, `family`, `restaurant`, `unknown`
+
+### Author Types
+
+| Value        | Description                         | Examples                     |
+| ------------ | ----------------------------------- | ---------------------------- |
+| `chef`       | Professional cooks and food writers | Tom Kerridge, Nigella Lawson |
+| `family`     | Family members and personal recipes | Grandma Maria, Mum           |
+| `restaurant` | Restaurants and food brands         | Dishoom, Ottolenghi          |
+| `unknown`    | No known author                     | —                            |
+
+### Storage
+
+During the dummy data phase, authors are stored in `app/_lib/data/authors.ts`. When Firebase is integrated in Phase 3, authors move to their own Firestore collection and `author_id` becomes a document reference.

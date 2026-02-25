@@ -84,7 +84,9 @@ Architecture decisions and specifications:
 - [`data-model.md`](docs/data-model.md) - Database schemas and field definitions
 - [`design-system.md`](docs/design-system.md) - Colour tokens, component variants, and layout conventions
 - [`recipe-management.md`](docs/recipe-management.md) - Manual entry, editing, import methods, and shared utilities
+- [`recipe-views.md`](docs/recipe-views.md) - Browse groups, category children, and homepage structure
 - [`roadmap.md`](docs/roadmap.md) - Development phases and priorities
+- [`routes.md`](docs/routes.md) - URL conventions and filter param patterns
 - [`security-rules.md`](docs/security-rules.md) - Firebase security and authentication
 - [`style-guide.md`](docs/style-guide.md) - Conventions for writing recipe content
 

@@ -23,6 +23,7 @@ const makeRecipe = (overrides: Partial<Recipe> = {}): Recipe => ({
     },
   ],
   metadata: {
+    author_id: 'test',
     cuisine: 'british',
     difficulty: 'easy',
     meal_type: 'main',

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import type { Recipe } from '@/_types/recipe';
 
 import { Checkbox } from '@/_components/ui/checkbox';
+import { authors } from '@/_lib/data/authors';
 import { cn } from '@/_lib/utils/cn';
 import { formatIngredient } from '@/_lib/utils/formatIngredient';
 import { formatLabel } from '@/_lib/utils/formatLabel';
@@ -21,6 +22,10 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
   const [checkedIngredients, setCheckedIngredients] = useState<Set<string>>(
     new Set(),
   );
+
+  const authorName = authors.find(
+    (a) => a.id === recipe.metadata.author_id,
+  )?.name;
 
   const toggleIngredient = (id: string) => {
     setCheckedIngredients((prev) => {
@@ -44,15 +49,11 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
           </h1>
 
           {/* Source attribution */}
-          {(recipe.metadata.recipe_author || recipe.metadata.source_name) && (
+          {authorName && (
             <p className="text-muted-foreground text-xs italic">
-              {recipe.metadata.recipe_author &&
-                `By ${recipe.metadata.recipe_author}`}
-              {recipe.metadata.recipe_author &&
-                recipe.metadata.source_name &&
-                ' · '}
+              {`By ${authorName}`}
               {recipe.metadata.source_name &&
-                `From ${recipe.metadata.source_name}`}
+                ` · From ${recipe.metadata.source_name}`}
               {recipe.metadata.source_details &&
                 `, ${recipe.metadata.source_details}`}
             </p>

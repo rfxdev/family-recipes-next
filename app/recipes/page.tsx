@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 
-import { CATEGORY_FILTER_KEYS } from '@/_config/recipes';
 import { dummyRecipes } from '@/_lib/data/dummy-recipes';
 
 import { RecipeHomepage } from './_components/RecipeHomepage';
@@ -12,11 +11,8 @@ interface RecipesPageProps {
 
 export default async function RecipesPage({ searchParams }: RecipesPageProps) {
   const params = await searchParams;
-  // Show the recipe list when ?all is set (browse all) or a category filter
-  // is active (e.g. ?cuisine=italian). Otherwise show the homepage grid.
-  const hasFilter =
-    params.all !== undefined ||
-    CATEGORY_FILTER_KEYS.some((key) => params[key] !== undefined);
+  // Show the recipe list when any params are present, homepage grid otherwise.
+  const hasFilter = Object.keys(params).length > 0;
 
   return (
     <>

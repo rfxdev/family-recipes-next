@@ -16,12 +16,13 @@ export interface Recipe {
 }
 
 export interface RecipeMetadata {
+  author_id: string; // References an Author document by id
   cuisine: Cuisine;
   dietary_restrictions?: DietaryRestriction[];
   difficulty: Difficulty;
-  ingredient_categories?: IngredientCategory[];
+  dish_style?: DishStyle;
   meal_type: MealType;
-  recipe_author?: string; // Freeform: "Grandma Maria", "Jamie Oliver"
+  proteins?: Protein[];
   source_details?: string; // Additional context
   source_name?: string; // Freeform: "BBC Good Food", "handwritten note"
   source_url?: string; // URL if imported
@@ -47,14 +48,15 @@ export type Cuisine =
   | 'british'
   | 'chinese'
   | 'french'
+  | 'greek'
   | 'indian'
   | 'italian'
   | 'japanese'
-  | 'mediterranean'
   | 'mexican'
   | 'moroccan'
-  | 'other'
-  | 'thai';
+  | 'spanish'
+  | 'thai'
+  | 'turkish';
 
 export type MealType =
   | 'appetiser'
@@ -72,39 +74,33 @@ export type TimeCategory = 'long' | 'medium' | 'quick';
 
 export type DietaryRestriction =
   | 'dairy-free'
-  | 'egg-free'
   | 'gluten-free'
-  | 'low-carb'
-  | 'nut-free'
-  | 'pescatarian'
   | 'vegan'
   | 'vegetarian';
 
-export const INGREDIENT_CATEGORIES = [
+export const PROTEINS = [
   'beef',
-  'cheese',
   'eggs',
   'fish',
   'lamb',
   'legumes',
-  'pasta',
   'pork',
   'poultry',
-  'rice',
   'seafood',
 ] as const;
 
-export type IngredientCategory = (typeof INGREDIENT_CATEGORIES)[number];
+export type Protein = (typeof PROTEINS)[number];
 
-export type SpecialOccasion =
-  | 'barbecue'
-  | 'birthday'
-  | 'christmas'
-  | 'easter'
-  | 'fathers-day'
-  | 'mothers-day'
-  | 'new-year'
-  | 'picnic'
-  | 'sunday-roast'
-  | 'thanksgiving'
-  | 'valentines';
+export type DishStyle =
+  | 'curry'
+  | 'noodles'
+  | 'pasta'
+  | 'pie'
+  | 'pizza'
+  | 'rice-dish'
+  | 'roast'
+  | 'salad'
+  | 'soup'
+  | 'stew-casserole';
+
+export type SpecialOccasion = 'bbq' | 'christmas' | 'sunday-roast';

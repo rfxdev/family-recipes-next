@@ -18,6 +18,7 @@ const makeRecipe = (overrides: Partial<Recipe> = {}): Recipe => ({
     },
   ],
   metadata: {
+    author_id: 'test',
     cuisine: 'british',
     difficulty: 'easy',
     meal_type: 'main',
@@ -37,6 +38,7 @@ describe('computeFilterCounts', () => {
     makeRecipe({
       id: 'r1',
       metadata: {
+        author_id: 'test',
         cuisine: 'british',
         difficulty: 'easy',
         meal_type: 'main',
@@ -46,6 +48,7 @@ describe('computeFilterCounts', () => {
     makeRecipe({
       id: 'r2',
       metadata: {
+        author_id: 'test',
         cuisine: 'italian',
         difficulty: 'moderate',
         meal_type: 'main',
@@ -55,6 +58,7 @@ describe('computeFilterCounts', () => {
     makeRecipe({
       id: 'r3',
       metadata: {
+        author_id: 'test',
         cuisine: 'british',
         difficulty: 'easy',
         meal_type: 'pudding',
@@ -82,6 +86,7 @@ describe('computeFilterCounts', () => {
       makeRecipe({
         id: 'd1',
         metadata: {
+          author_id: 'test',
           cuisine: 'british',
           dietary_restrictions: ['vegetarian', 'gluten-free'],
           difficulty: 'easy',
@@ -92,6 +97,7 @@ describe('computeFilterCounts', () => {
       makeRecipe({
         id: 'd2',
         metadata: {
+          author_id: 'test',
           cuisine: 'italian',
           dietary_restrictions: ['vegetarian'],
           difficulty: 'easy',
@@ -102,6 +108,7 @@ describe('computeFilterCounts', () => {
       makeRecipe({
         id: 'd3',
         metadata: {
+          author_id: 'test',
           cuisine: 'french',
           difficulty: 'moderate',
           meal_type: 'main',

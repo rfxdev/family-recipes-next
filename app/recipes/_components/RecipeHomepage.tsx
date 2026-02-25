@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CATEGORY_SECTIONS } from '@/_config/recipes';
 import { buildRecipeUrl } from '@/_lib/utils/buildRecipeUrl';
 import { sortByOrder } from '@/_lib/utils/sortByOrder';
+import { sortCategoryItems } from '@/_lib/utils/sortCategoryItems';
 
 import { RecipeCategoryCard } from './RecipeCategoryCard';
 
@@ -16,13 +17,11 @@ export function RecipeHomepage() {
           </h2>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {section.items.map((item) => (
+            {sortCategoryItems(section.items).map((item) => (
               <RecipeCategoryCard
-                href={buildRecipeUrl({
-                  [item.filter.key]: item.filter.value,
-                })}
+                href={buildRecipeUrl(item.filters)}
                 image={item.image}
-                key={item.filter.value}
+                key={item.label}
                 label={item.label}
               />
             ))}

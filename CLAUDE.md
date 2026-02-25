@@ -4,9 +4,11 @@
 
 Comprehensive specs live in `docs/` — read these before making changes:
 
-- `docs/roadmap.md` — Current phase and priorities
+- `docs/roadmap.md` — Current phase and priorities. Items describe user-facing features and behaviour — not components, utilities, or config. No implementation detail.
 - `docs/data-model.md` — Database schemas and field definitions
 - `docs/recipe-management.md` — Entry, editing, and import specs
+- `docs/recipe-views.md` — Browse groups, category children, and homepage structure
+- `docs/routes.md` — URL conventions and filter param patterns
 - `docs/security-rules.md` — Firebase security and authentication
 - `docs/design-system.md` — Colour tokens, badge variants, and component styling
 - `docs/style-guide.md` — Recipe presentation and writing style conventions
@@ -21,7 +23,7 @@ These are platform-agnostic (shared with a planned Flutter app) — keep them in
 - **Import ordering** — enforced alphabetically by `eslint-plugin-perfectionist`; the linter will auto-fix ordering, so don't manually rearrange.
 - **Tailwind class merging** via `cn()` utility (clsx + tailwind-merge)
 - **Component variants** via `cva()` from `class-variance-authority` — use this when a component has multiple visual variants (see `app/_components/ui/badge.tsx`)
-- **Single source of truth** — reuse existing constants, arrays, and types rather than duplicating values. Derive new constants from existing ones (e.g. `CATEGORY_FILTER_KEYS` is derived from `CATEGORY_SECTIONS`), never hardcode the same list in two places
+- **Single source of truth** — reuse existing constants, arrays, and types rather than duplicating values. Derive new constants from existing ones, never hardcode the same list in two places
 - **Code organisation** — keep files focused on one concern:
   - `app/_config/` — static configuration data (routes, category sections, filter sections, sort options, navigation links). If a component contains a hardcoded static array or object, move it here — especially if it could be reused or extended elsewhere.
   - `app/_lib/utils/` — utility/helper functions (one function per file). Extract non-trivial logic from components into utils so it can be tested independently
