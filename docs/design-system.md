@@ -4,6 +4,8 @@ Colour tokens and component variants are defined in `app/globals.css` using oklc
 
 ## Layout
 
+**Multi-column keyboard navigation** — use `columns-N gap-x-*` with `break-inside-avoid` on each item group rather than `grid grid-cols-N` when Tab order should go down each column before moving to the next. CSS grid keeps DOM (row-first) order regardless of visual layout; CSS columns naturally matches both. Used in `MobileFilterSections.tsx` and `DesktopNav.tsx`.
+
 Page-level container styles are defined once on `<main>` in `app/layout.tsx`:
 
 ```
@@ -24,6 +26,10 @@ Primitive UI components live in `app/_components/ui/`. These are thin wrappers o
 **Do not** put bespoke application components in this folder. Components with business logic, application-specific props, or that compose multiple primitives belong elsewhere in `app/_components/`.
 
 **Colour overrides via `className` — use `cva` variants instead.** tailwind-merge cannot detect conflicts between custom CSS variable colour classes (e.g. `bg-background` vs `bg-accent-foreground`) because they aren't in its known class groups. If you pass a colour override via `className`, both classes will remain in the DOM and the winner is determined by CSS source order — which is environment-dependent. The fix is to expose a `variant` prop on the component using `cva`, so the correct colour is set at the component level from the start.
+
+**`asChild` Slot boundary** — when Radix renders a child via `asChild`, the Slot concatenates the wrapper's resolved className with the child's className as a plain string, without tailwind-merge. Overrides on the child element's `className` are not deduplicated against the wrapper's base styles. Put all overrides on the wrapper's own `className` prop so they go through `cn(base, className)` inside the component.
+
+**Focus rings in wrappers** — avoid global focus suppressors like `**:data-[slot=...]:focus:ring-0` in wrapper component base styles. Nested selectors have higher specificity than `focus-visible:ring-*` utilities and will silently suppress keyboard focus rings. Manage focus styles per-variant in `cva` instead.
 
 ## Colour Tokens
 
@@ -116,9 +122,21 @@ Bottom-sheet component built on `vaul` (`app/_components/ui/drawer.tsx`). Note: 
 
 **Note:** vaul keeps `DrawerContent` mounted when closed (hides via CSS transform, not unmount). Uncontrolled components inside it will not reinitialise on re-open — use `key={derivedValue}` to force remount when needed.
 
+## Desktop Nav
+
+Desktop-only navigation (`app/_components/DesktopNav.tsx`), hidden on mobile via the wrapping `hidden sm:block` div in `Header.tsx`. A single `NavigationMenu` root contains two `NavigationMenuItem`s: a Recipes mega-menu trigger (dropdown with banner, category grid, footer link) and a Planner link.
+
+`NavigationMenuLink` in `app/_components/ui/navigation-menu.tsx` accepts a `variant` prop — a custom extension to the shadcn wrapper. Use the appropriate variant rather than overriding via `className` (see tailwind-merge / asChild notes above):
+
+| Variant        | Use for                                                | Styles                                                              |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------------------- |
+| `default`      | Standalone top-level nav links (e.g. Planner)          | bg fill + padding + active state                                    |
+| `content-link` | Text links inside menu content (category grid, footer) | colour change only, `py-0.5`, focus ring with `px-1` breathing room |
+| `banner`       | Featured card link at top of menu content              | bordered card, accent bg, stacked flex, hover border + bg           |
+
 ## Nav Drawer
 
-Mobile-only side navigation (`app/_components/NavDrawer.tsx`). Opens from the left via `Drawer direction="left"`. Contains a `Tabs` mode toggle (Recipes / Planner) styled with `bg-accent-foreground` active state. Active tab is derived from `pathname` and passed as both `defaultValue` and `key` to reset the uncontrolled Tabs on section change. Nav content is driven by `CATEGORY_SECTIONS` (recipes tab) and `PLANNER_NAV_LINKS` from `app/_config/planner.ts` (planner tab). Hidden on `sm+` — desktop uses inline nav links in the Header.
+Mobile-only side navigation (`app/_components/NavDrawer.tsx`). Opens from the left via `Drawer direction="left"`. Contains a `Tabs` mode toggle (Recipes / Planner) styled with `bg-accent-foreground` active state. Active tab is derived from `pathname` and passed as both `defaultValue` and `key` to reset the uncontrolled Tabs on section change. Nav content is driven by `CATEGORY_SECTIONS` (recipes tab) and `PLANNER_NAV_LINKS` from `app/_config/planner.ts` (planner tab). Hidden on `sm+` — desktop uses `DesktopNav`.
 
 ## Tabs
 

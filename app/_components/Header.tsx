@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { routes } from '@/_config/routes';
 import { cn } from '@/_lib/utils/cn';
 
+import { DesktopNav } from './DesktopNav';
 import { NavDrawer } from './NavDrawer';
 import { Button } from './ui/button';
 import {
@@ -27,8 +28,6 @@ export function Header() {
   const [prevSearchParams, setPrevSearchParams] = useState(searchParams);
   const mobileInputRef = useRef<HTMLInputElement>(null);
 
-  const isRecipesActive = pathname.startsWith('/recipes');
-  const isPlannerActive = pathname.startsWith('/planner');
   const isOnSearchPage = pathname.startsWith(routes.search);
   const effectiveOpen = isSearchOpen || isOnSearchPage;
 
@@ -111,30 +110,10 @@ export function Header() {
                 <span className="sr-only">Search</span>
               </CollapsibleTrigger>
 
-              {/* Desktop nav links — hidden on mobile */}
-              <Link
-                className={cn(
-                  'hidden transition-colors sm:block',
-                  isRecipesActive
-                    ? 'text-accent-foreground font-semibold'
-                    : 'text-muted-foreground hover:text-foreground',
-                )}
-                href={routes.recipes}
-              >
-                Recipes
-              </Link>
-
-              <Link
-                className={cn(
-                  'hidden transition-colors sm:block',
-                  isPlannerActive
-                    ? 'text-accent-foreground font-semibold'
-                    : 'text-muted-foreground hover:text-foreground',
-                )}
-                href={routes.planner}
-              >
-                Planner
-              </Link>
+              {/* Desktop nav — hidden on mobile */}
+              <div className="hidden sm:block">
+                <DesktopNav />
+              </div>
             </div>
           </nav>
         </div>

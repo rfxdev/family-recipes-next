@@ -2,7 +2,7 @@
 
 ## Documentation
 
-Comprehensive specs live in `docs/` — read these before making changes:
+Comprehensive specs live in `docs/` — **read the relevant doc(s) before starting any task**. Known patterns, gotchas, and conventions are documented there; re-discovering them from first principles wastes time and causes regressions.
 
 - `docs/roadmap.md` — Current phase and priorities. Items describe user-facing features and behaviour — not components, utilities, or config. No implementation detail.
 - `docs/data-model.md` — Database schemas and field definitions
@@ -10,10 +10,10 @@ Comprehensive specs live in `docs/` — read these before making changes:
 - `docs/recipe-views.md` — Browse groups, category children, and homepage structure
 - `docs/routes.md` — URL conventions and filter param patterns
 - `docs/security-rules.md` — Firebase security and authentication
-- `docs/design-system.md` — Colour tokens, badge variants, and component styling
+- `docs/design-system.md` — Colour tokens, badge variants, component styling, and Radix/Tailwind patterns
 - `docs/style-guide.md` — Recipe presentation and writing style conventions
 
-These are platform-agnostic (shared with a planned Flutter app) — keep them in sync when making changes that deviate from the specs.
+**Where to document new learnings:** `docs/` is the default for anything useful to both humans and Claude — patterns, conventions, gotchas, design decisions. CLAUDE.md is reserved for instructions that are Claude-specific (workflow, tool use, repo conventions). When in doubt, prefer `docs/`.
 
 ## Conventions
 

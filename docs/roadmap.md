@@ -26,7 +26,7 @@ Development phases for the Kitchen Companion application.
 - [x] Filter drawer (mobile) — bottom sheet with active filter pills above results, immediate URL updates
 - [x] Planner scaffold — placeholder pages for week view, shopping list, and tracker
 - [ ] Navigation
-  - [ ] Desktop: mega dropdown on Recipes nav with category sections
+  - [x] Desktop: mega dropdown on Recipes nav with category sections
   - [ ] Mobile: grouped nav with recipe categories listed under Recipes
   - [ ] Clicking a category clears active search and navigates to filtered browse
 - [ ] Browse context

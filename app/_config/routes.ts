@@ -8,5 +8,6 @@ export const routes = {
   plannerWeek: '/planner/week',
   recipeDetail: (id: string) => `/recipes/${id}`,
   recipes: '/recipes',
+  recipesAll: '/recipes?all=true',
   search: '/recipes/search',
 } as const;
