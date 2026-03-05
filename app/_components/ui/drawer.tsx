@@ -1,6 +1,7 @@
 'use client';
 
-import * as React from 'react';
+import type { ComponentProps } from 'react';
+
 import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/_lib/utils/cn';
@@ -22,7 +23,7 @@ function DrawerContent({
   className,
   direction = 'bottom',
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content> & {
+}: ComponentProps<typeof DrawerPrimitive.Content> & {
   direction?: DrawerDirection;
 }) {
   return (
@@ -50,13 +51,13 @@ function DrawerContent({
   );
 }
 
-function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
+function DrawerFooter({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div className={cn('mt-auto border-t px-4 py-3', className)} {...props} />
   );
 }
 
-function DrawerHeader({ className, ...props }: React.ComponentProps<'div'>) {
+function DrawerHeader({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={cn(
@@ -71,7 +72,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<'div'>) {
 function DrawerOverlay({
   className,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
+}: ComponentProps<typeof DrawerPrimitive.Overlay>) {
   return (
     <DrawerPrimitive.Overlay
       className={cn('fixed inset-0 z-50 bg-black/50', className)}

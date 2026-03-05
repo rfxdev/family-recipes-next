@@ -1,9 +1,9 @@
 import type { VariantProps } from 'class-variance-authority';
+import type { ComponentProps } from 'react';
 
 import { cva } from 'class-variance-authority';
 import { ChevronDownIcon } from 'lucide-react';
 import { NavigationMenu as NavigationMenuPrimitive } from 'radix-ui';
-import * as React from 'react';
 
 import { cn } from '@/_lib/utils/cn';
 
@@ -13,7 +13,7 @@ function NavigationMenu({
   viewport = true,
   viewportContainerClassName,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
+}: ComponentProps<typeof NavigationMenuPrimitive.Root> & {
   viewport?: boolean;
   viewportContainerClassName?: string;
 }) {
@@ -40,7 +40,7 @@ function NavigationMenu({
 function NavigationMenuItem({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Item>) {
   return (
     <NavigationMenuPrimitive.Item
       className={cn('relative', className)}
@@ -53,7 +53,7 @@ function NavigationMenuItem({
 function NavigationMenuList({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.List>) {
   return (
     <NavigationMenuPrimitive.List
       className={cn(
@@ -73,7 +73,7 @@ const navigationMenuTriggerStyle = cva(
 function NavigationMenuContent({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Content>) {
   return (
     <NavigationMenuPrimitive.Content
       className={cn(
@@ -90,7 +90,7 @@ function NavigationMenuContent({
 function NavigationMenuIndicator({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {
   return (
     <NavigationMenuPrimitive.Indicator
       className={cn(
@@ -129,7 +129,7 @@ function NavigationMenuLink({
   className,
   variant,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link> &
+}: ComponentProps<typeof NavigationMenuPrimitive.Link> &
   VariantProps<typeof navigationMenuLinkVariants>) {
   return (
     <NavigationMenuPrimitive.Link
@@ -144,7 +144,7 @@ function NavigationMenuTrigger({
   children,
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
   return (
     <NavigationMenuPrimitive.Trigger
       className={cn(navigationMenuTriggerStyle(), 'group', className)}
@@ -164,7 +164,7 @@ function NavigationMenuViewport({
   className,
   containerClassName,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport> & {
+}: ComponentProps<typeof NavigationMenuPrimitive.Viewport> & {
   containerClassName?: string;
 }) {
   return (

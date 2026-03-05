@@ -1,6 +1,7 @@
 import vitest from '@vitest/eslint-plugin';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
+import importPlugin from 'eslint-plugin-import';
 import perfectionist from 'eslint-plugin-perfectionist';
 import prettier from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -11,6 +12,14 @@ const eslintConfig = defineConfig([
   ...nextTs,
   prettier,
   perfectionist.configs['recommended-natural'],
+
+  // No namespace imports (import * as X) in any file
+  {
+    plugins: { import: importPlugin },
+    rules: {
+      'import/no-namespace': 'error',
+    },
+  },
 
   // TypeScript enhancements
   {
@@ -40,6 +49,20 @@ const eslintConfig = defineConfig([
   {
     files: ['**/*.tsx'],
     rules: {
+      // No default React import
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              importNames: ['default'],
+              message:
+                'Default React import not needed with the new JSX transform. Use named imports instead.',
+              name: 'react',
+            },
+          ],
+        },
+      ],
       // No unnecessary curly braces in JSX
       'react/jsx-curly-brace-presence': ['error', 'never'],
       // Self-closing tags when no children
