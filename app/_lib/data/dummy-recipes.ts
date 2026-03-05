@@ -1673,4 +1673,207 @@ export const dummyRecipes: Recipe[] = [
     updated_at: '2026-02-23T00:00:00Z',
     uploaded_by: 'user_placeholder',
   },
+  {
+    cook_time_minutes: 15,
+    created_at: '2026-03-05T00:00:00Z',
+    description:
+      'Crispy, sticky chilli beef made in the air fryer — quick, easy, and completely gluten free. Marinate the beef overnight for the best flavour.',
+    id: 'air-fryer-crispy-chilli-beef',
+    image_path: '/images/recipes/air-fryer-crispy-chilli-beef.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'spray oil',
+            order: 1,
+          },
+          {
+            item: 'lean beef strips',
+            order: 2,
+            quantity_text: '700g',
+          },
+          {
+            item: 'cornflour',
+            order: 3,
+            quantity_text: '120g',
+          },
+        ],
+        name: '',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'garlic paste',
+            order: 1,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'ginger paste',
+            order: 2,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'toasted sesame oil',
+            order: 3,
+            quantity_text: '2 tsp',
+          },
+          {
+            item: 'tamari',
+            order: 4,
+            quantity_text: '2 tbsp',
+          },
+        ],
+        name: 'Marinade',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'sweet chilli sauce',
+            order: 1,
+          },
+          {
+            item: 'spring onions',
+            order: 2,
+            preparation: 'chopped',
+            quantity_text: '4',
+          },
+        ],
+        name: 'To Serve',
+        order: 3,
+      },
+    ],
+    metadata: {
+      author_id: 'sarah-howells',
+      cuisine: 'chinese',
+      dietary_restrictions: ['gluten-free'],
+      difficulty: 'easy',
+      meal_type: 'main',
+      proteins: ['beef'],
+      source_name: 'The Gluten Free Blogger',
+      source_url:
+        'https://www.theglutenfreeblogger.com/air-fryer-crispy-chilli-beef/#wprm-recipe-container-47653',
+      time_category: 'quick',
+    },
+    method: [
+      'Combine all the marinade ingredients in a bowl, then pour over the beef strips and mix well until fully coated. Refrigerate overnight for maximum flavour, or continue straight to the next step.',
+      'Pour the cornflour over the marinated beef and mix together until it forms a thick, sticky batter that coats all the pieces.',
+      'Liberally spray the air fryer basket with spray oil. Lay the beef strips out in a single layer with space between each piece — this is essential for the beef to go crispy. Cook in batches if needed.',
+      'Air fry at 220°C for 6 minutes, then open the drawer and turn the beef strips over. Air fry for a further 4-5 minutes until crispy and sizzling.',
+      'Tip into a bowl and serve topped with sweet chilli sauce and chopped spring onions. Great with noodles or rice.',
+    ],
+    notes:
+      'Store leftovers before adding the sauce — the sauce will soften the coating. Reheat in the air fryer to bring the crunch back. Freezes well; air fry from frozen to reheat.',
+    prep_time_minutes: 5,
+    servings: 4,
+    title: 'Air Fryer Crispy Chilli Beef',
+    updated_at: '2026-03-05T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
+  {
+    cook_time_minutes: 45,
+    created_at: '2026-03-05T00:00:00Z',
+    description:
+      'A rich, deeply spiced chilli with tender mince, kidney beans, and a homemade spice blend that beats any packet mix. Gluten-free and easy enough for a midweek dinner.',
+    id: 'gluten-free-chilli-con-carne',
+    image_path: '/images/recipes/gluten-free-chilli-con-carne.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          { item: 'oregano', order: 1, quantity_text: '2 tsp' },
+          { item: 'cumin', order: 2, quantity_text: '2 tsp' },
+          { item: 'smoked paprika', order: 3, quantity_text: '2 tsp' },
+          { item: 'chilli powder', order: 4, quantity_text: '1 tsp' },
+          {
+            item: 'dried chilli flakes',
+            order: 5,
+            preparation: 'optional',
+            quantity_text: '½ tsp',
+          },
+          { item: 'brown sugar', order: 6, quantity_text: '½ tsp' },
+          {
+            item: 'gluten-free plain flour',
+            order: 7,
+            quantity_text: '3 tbsp',
+          },
+          { item: 'salt', order: 8, quantity_text: '½ tsp' },
+          { item: 'black pepper', order: 9, quantity_text: '½ tsp' },
+        ],
+        name: 'Spice Blend',
+        order: 1,
+      },
+      {
+        ingredients: [
+          { item: 'garlic-infused oil', order: 1, quantity_text: '2 tbsp' },
+          {
+            item: 'red pepper',
+            order: 2,
+            preparation: 'chopped into large chunks',
+            quantity_text: '1',
+          },
+          {
+            item: 'courgette',
+            order: 3,
+            preparation:
+              'chopped into large chunks, or replace with 1 diced onion if preferred',
+            quantity_text: '1',
+          },
+          { item: 'minced beef', order: 4, quantity_text: '500g' },
+          {
+            item: 'gluten-free beef stock cube',
+            order: 5,
+            preparation: 'dissolved in 165ml boiling water',
+            quantity_text: '1',
+          },
+          { item: 'chopped tomatoes', order: 6, quantity_text: '400g' },
+          { item: 'tomato purée', order: 7, quantity_text: '3 tbsp' },
+          {
+            item: 'canned kidney beans',
+            order: 8,
+            preparation: 'drained',
+            quantity_text: '250g',
+          },
+          { item: 'dried bay leaves', order: 9, quantity_text: '2' },
+        ],
+        name: 'Chilli',
+        order: 2,
+      },
+      {
+        ingredients: [
+          { item: 'spring onions', order: 1, preparation: 'chopped' },
+          { item: 'extra mature cheddar', order: 2, preparation: 'grated' },
+          { item: 'long-grain rice or potato wedges', order: 3 },
+        ],
+        name: 'To Serve',
+        order: 3,
+      },
+    ],
+    metadata: {
+      author_id: 'becky-excell',
+      cuisine: 'mexican',
+      dietary_restrictions: ['gluten-free'],
+      difficulty: 'easy',
+      dish_style: 'stew-casserole',
+      meal_type: 'main',
+      proteins: ['beef', 'legumes'],
+      source_name: 'Gluten Free Cup of Tea',
+      source_url:
+        'https://glutenfreecuppatea.co.uk/2018/05/24/gluten-free-chilli-con-carne-recipe-dairy-free-low-fodmap/',
+      time_category: 'medium',
+    },
+    method: [
+      'Mix together all the spice blend ingredients in a small bowl until well combined.',
+      'Heat the garlic-infused oil in a large pan over a medium heat. Add the pepper and courgette and fry briefly until lightly browned. Add the minced beef, breaking it up with a spoon, and cook for 2-3 minutes until slightly browned.',
+      'Add the spice blend, stir well, and cook for 2-3 minutes until fragrant.',
+      'Pour in the stock, chopped tomatoes, and tomato purée, stirring thoroughly to combine.',
+      'Bring to the boil, then reduce to a simmer. Add the kidney beans and bay leaves and simmer for 30-45 minutes until the sauce has thickened. Remove and discard the bay leaves.',
+      'Serve with rice or potato wedges, topped with grated cheddar and chopped spring onions.',
+    ],
+    prep_time_minutes: 15,
+    servings: 4,
+    title: 'Chilli Con Carne',
+    updated_at: '2026-03-05T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
 ];

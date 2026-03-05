@@ -53,7 +53,7 @@ See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
     "dietary_restrictions": ["vegetarian"],
     "proteins": ["beef"],
     "special_occasions": ["christmas"],
-    "recipe_author": "Grandma Maria",
+    "author_id": "grandma-maria",
     "source_name": "handwritten note",
     "source_details": "From recipe box, 1985"
   },
@@ -125,6 +125,12 @@ Field definitions for the Recipe type (implemented in `app/_types/recipe.ts`).
 
 **id** (required string): URL-safe slug used as both Firestore document ID and URL path. Lowercase alphanumeric with hyphens only. Must be unique. See [`recipe-management.md`](recipe-management.md) for the generation algorithm.
 
+**title** (required string): Display name of the recipe.
+
+**description** (required string): Short summary shown in recipe cards and at the top of the recipe page.
+
+**servings** (required number): Number of people the recipe serves.
+
 **uploaded_by** (required string): Firebase Auth UID of the user who owns this recipe. Used for edit permissions in security rules.
 
 **notes** (optional string): User's personal modifications or cooking tips, distinct from source attribution.
@@ -184,16 +190,18 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **dish_style** (optional, single-select):
 
-- Allowed values: `curry`, `noodles`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `soup`, `stew-casserole`
+- Allowed values: `curry`, `noodles`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `soup`, `stew-casserole`, `stir-fry`
 - Captures the format or character of the dish — what it is, not what's in it. See [`style-guide.md`](style-guide.md) for tagging guidance. Leave unset for dishes that don't clearly fit a category (sides, puddings, pan-fried proteins, etc.).
 
 **special_occasions** (optional, multi-select array):
 
 - Allowed values: `bbq`, `christmas`, `sunday-roast`
 
-#### Supplementary Information (Optional)
+#### Author Reference (Required)
 
 **author_id** (required, string): References an `Author` document by `id`. See [Authors](#authors) below.
+
+#### Supplementary Information (Optional)
 
 **source_name** (optional, freeform string): Where the recipe came from. Examples: "handwritten note", "BBC Good Food", "30 Minute Meals cookbook"
 

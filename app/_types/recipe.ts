@@ -101,6 +101,7 @@ export type DishStyle =
   | 'roast'
   | 'salad'
   | 'soup'
-  | 'stew-casserole';
+  | 'stew-casserole'
+  | 'stir-fry';
 
 export type SpecialOccasion = 'bbq' | 'christmas' | 'sunday-roast';

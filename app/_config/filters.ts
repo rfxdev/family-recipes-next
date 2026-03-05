@@ -40,6 +40,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Salad', value: 'salad' },
       { label: 'Soup', value: 'soup' },
       { label: 'Stew & Casserole', value: 'stew-casserole' },
+      { label: 'Stir Fry', value: 'stir-fry' },
     ],
     order: 3,
     title: 'Dish Style',

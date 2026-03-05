@@ -33,6 +33,7 @@ Browsing by dish style — the form or character of the dish rather than its cui
 - Salad
 - Rice Dish
 - Stew & Casserole
+- Stir Fry
 - Roast
 
 ### Meal Type

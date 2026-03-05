@@ -104,6 +104,12 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         label: 'Stew & Casserole',
         order: 1,
       },
+      {
+        filters: { dish_style: 'stir-fry' },
+        image: '',
+        label: 'Stir Fry',
+        order: 0,
+      },
     ],
     order: 2,
     showInMenu: true,
