@@ -149,3 +149,18 @@ Active filter pills use `Button variant="accent" className="rounded-full"` with 
 ## Filter Button
 
 Mobile-only sticky button (`fixed inset-x-0 bottom-1`) using `Button variant="accent" className="rounded-full"`. Shows active filter count as a badge suffix: "Filters (3)".
+
+## Carousel
+
+`app/_components/ui/carousel.tsx` — wrapper over `embla-carousel-react`. Exposes a context API with `carouselRef`, `scrollPrev/Next`, and `canScrollPrev/Next`. Exports `Carousel`, `CarouselContent`, `CarouselItem`, `CarouselPrevious`, `CarouselNext`.
+
+**Arrows:** `CarouselPrevious` / `CarouselNext` are desktop-only (`hidden lg:flex`), positioned half-in/half-out of the carousel edge (`-left-4` / `-right-4`). The parent container must have `overflow-visible` (not the default `overflow-hidden`) so the protruding arrows aren't clipped — wrap in a `div` with `relative overflow-visible` or ensure the parent already provides space.
+
+**Standard item sizing** (from `RecipeCategoryCarousel`): `basis-[47%] sm:basis-1/3 lg:basis-1/4`.
+
+### Hero Section Layout
+
+Used for sections with `hero: true` (e.g. Pick Your Pace):
+
+- **`RecipeHeroCard`** — tall card with full-bleed image, label, and description. Used in hero sections only.
+- **Hero container** — `no-scrollbar flex snap-x snap-mandatory overflow-x-auto` on mobile → `sm:grid sm:grid-cols-3 sm:overflow-visible` on desktop (switches from scroll to 3-col grid).

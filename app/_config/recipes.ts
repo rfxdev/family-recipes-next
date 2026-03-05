@@ -6,9 +6,12 @@ import type { CategorySection } from '@/_types/filters';
 
 export const CATEGORY_SECTIONS: CategorySection[] = [
   {
+    description: 'Choose based on how much time and energy you want to spend.',
+    hero: true,
     id: 'pick_your_pace',
     items: [
       {
+        description: 'Quick, easy mains ready in under 30 minutes.',
         filters: {
           difficulty: 'easy',
           meal_type: 'main',
@@ -19,12 +22,14 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         order: 1,
       },
       {
+        description: 'Dishes that reward a bit more time in the kitchen.',
         filters: { difficulty: 'moderate', time_category: ['medium', 'long'] },
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Worth the Effort',
         order: 8,
       },
       {
+        description: 'Ambitious recipes for when you have the whole afternoon.',
         filters: { difficulty: 'challenging', time_category: 'long' },
         image: '/images/recipes/steak-rarebit.webp',
         label: 'Weekend Project',
@@ -36,6 +41,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'Pick Your Pace',
   },
   {
+    description: 'Browse by dish style — what kind of food are you craving?',
     id: 'dish_style',
     items: [
       {
@@ -104,6 +110,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'In the Mood For',
   },
   {
+    description: 'Find something for any part of the day.',
     id: 'meal_type',
     items: [
       {
@@ -160,6 +167,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'By Meal Type',
   },
   {
+    description: 'Explore flavours from around the world.',
     id: 'cuisine',
     items: [
       {
@@ -246,6 +254,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'By Cuisine',
   },
   {
+    description: "Start with what's in the fridge.",
     id: 'proteins',
     items: [
       {
@@ -302,6 +311,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'Ingredients',
   },
   {
+    description: 'Recipes for special events and gatherings.',
     id: 'special_occasions',
     items: [
       {
@@ -328,6 +338,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     title: 'Occasions',
   },
   {
+    description: 'Filter by dietary needs or preferences.',
     id: 'dietary_restrictions',
     items: [
       {

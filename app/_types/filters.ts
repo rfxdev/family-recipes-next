@@ -10,6 +10,8 @@ export type FilterableMetadataKey =
   | 'time_category';
 
 export interface CategoryItem {
+  /** Short descriptor shown on hero cards (Pick Your Pace only). */
+  description?: string;
   /** Filter params to apply when the item is selected. Supports multi-key (Pick Your Pace) and multi-value (repeated params) filters. */
   filters: Record<string, string | string[]>;
   image: string;
@@ -19,6 +21,10 @@ export interface CategoryItem {
 }
 
 export interface CategorySection {
+  /** Subtitle shown under the section heading. */
+  description?: string;
+  /** Marks this section for the hero layout (desktop 3-col grid, mobile carousel of tall cards). */
+  hero?: boolean;
   /** Section identifier. Usually matches a metadata field, but may be a computed view ID (e.g. 'pick_your_pace'). */
   id: string;
   items: CategoryItem[];
