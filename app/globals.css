@@ -5,6 +5,10 @@
 :root {
   --background: oklch(0.9429 0.0165 91.55);
   --foreground: oklch(0.3382 0.0045 219.61);
+  --footer-background: oklch(0.18 0.012 75);
+  --footer-foreground: oklch(0.92 0.01 75);
+  --footer-border: oklch(0.92 0.01 75);
+  --footer-foreground-hover: oklch(0.92 0.01 75);
   --card: var(--background);
   --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
@@ -104,6 +108,18 @@
   }
   to {
     height: 0;
+  }
+}
+
+@utility page-container {
+  margin-inline: auto;
+  max-width: 80rem; /* max-w-7xl */
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
   }
 }
 

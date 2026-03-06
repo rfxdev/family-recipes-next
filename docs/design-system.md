@@ -6,13 +6,17 @@ Colour tokens and component variants are defined in `app/globals.css` using oklc
 
 **Multi-column keyboard navigation** — use `columns-N gap-x-*` with `break-inside-avoid` on each item group rather than `grid grid-cols-N` when Tab order should go down each column before moving to the next. CSS grid keeps DOM (row-first) order regardless of visual layout; CSS columns naturally matches both. Used in `MobileFilterSections.tsx` and `DesktopNav.tsx`.
 
-Page-level container styles are defined once on `<main>` in `app/layout.tsx`:
+The `page-container` utility (defined in `globals.css`) centralises the shared horizontal container — `mx-auto max-w-7xl` plus responsive `px-4 / sm:px-6 / lg:px-8`. Use it on the outermost wrapper in `Header`, `Footer`, and `<main>`, then add vertical padding separately per element:
 
 ```
-mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8
+/* Header inner div */   page-container py-2 lg:py-4
+/* Main */               page-container pt-4 pb-6 lg:pt-6 lg:pb-8
+/* Footer inner div */   page-container py-6 lg:pt-8
 ```
 
-Individual pages and components should **not** redeclare container padding or max-width — they receive it from the layout. The Header mirrors the same horizontal padding independently since it sits outside `<main>`.
+Note: the `Footer` outer `<footer>` element holds the background colour (so it spans full width), while `page-container` sits on the inner div to constrain content. Do not put `page-container` directly on `<footer>`.
+
+Individual pages and components should **not** redeclare container padding or max-width — they receive it from the layout.
 
 ## Component Library
 
@@ -22,6 +26,8 @@ Primitive UI components live in `app/_components/ui/`. These are thin wrappers o
 
 - Run `npx shadcn add <component>` where a shadcn recipe exists, or
 - Import directly from the `radix-ui` package (already installed) and create the wrapper manually in `app/_components/ui/` — all Radix primitives are available as named namespace exports, e.g. `import { Collapsible } from 'radix-ui'`
+
+**Brand/logo icons** — lucide-react has deprecated all brand icons. Use `@icons-pack/react-simple-icons` instead (already installed, tree-shakeable). Import by name, e.g. `import { SiGithub } from '@icons-pack/react-simple-icons'`.
 
 **Do not** put bespoke application components in this folder. Components with business logic, application-specific props, or that compose multiple primitives belong elsewhere in `app/_components/`.
 

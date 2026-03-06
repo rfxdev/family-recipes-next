@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 
 import { Suspense } from 'react';
 
+import { Footer } from './_components/Footer';
 import { Header } from './_components/Header';
 import './globals.css';
 
@@ -18,9 +19,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Suspense>
           <Header />
         </Suspense>
-        <main className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+        <main className="page-container pt-4 pb-6 lg:pt-6 lg:pb-8">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

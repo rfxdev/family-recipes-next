@@ -64,7 +64,7 @@ export function Header() {
   return (
     <Collapsible asChild onOpenChange={setIsSearchOpen} open={effectiveOpen}>
       <header className="border-border bg-background border-b">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div className="page-container py-2 lg:py-4">
           <nav className="flex items-center justify-between gap-4">
             {/* Left: hamburger (mobile) + logo */}
             <div className="flex items-center gap-1">

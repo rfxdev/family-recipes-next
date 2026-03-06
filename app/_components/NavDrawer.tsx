@@ -42,7 +42,7 @@ export function NavDrawer() {
   return (
     <Drawer direction="left" onOpenChange={setOpen} open={open}>
       <DrawerTrigger asChild>
-        <Button size="icon" variant="ghost">
+        <Button className="-ml-2" size="icon" variant="ghost">
           <Menu className="size-5" />
           <span className="sr-only">Open menu</span>
         </Button>

@@ -22,6 +22,7 @@ Comprehensive specs live in `docs/` — **read the relevant doc(s) before starti
 - **Type imports** — use a separate `import type { Foo }` statement for type-only imports (not inline `import { type Foo }`). Enforced by ESLint.
 - **Import ordering** — enforced alphabetically by `eslint-plugin-perfectionist`; the linter will auto-fix ordering, so don't manually rearrange.
 - **Tailwind class merging** via `cn()` utility (clsx + tailwind-merge)
+- **CSS utilities and variables over repeated values** — when the same layout or colour value is needed in multiple files, extract it. Shared layout patterns belong in a `@utility` in `globals.css` (e.g. `page-container`); colour values belong in CSS variables in `:root` (e.g. `--footer-*`). Never hardcode `oklch(...)` values directly in components — define a named variable in `globals.css` and reference it.
 - **Component variants** via `cva()` from `class-variance-authority` — use this when a component has multiple visual variants (see `app/_components/ui/badge.tsx`). Prefer adding a `variant` prop over passing style overrides via `className` when working with primitive wrappers — tailwind-merge cannot reliably deduplicate CSS variable colour classes, and `asChild` slot boundaries don't merge classes at all. See `docs/design-system.md` for the full reasoning.
 - **Single source of truth** — reuse existing constants, arrays, and types rather than duplicating values. Derive new constants from existing ones, never hardcode the same list in two places
 - **Code organisation** — keep files focused on one concern:
