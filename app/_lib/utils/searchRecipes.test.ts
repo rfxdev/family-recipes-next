@@ -46,22 +46,8 @@ describe('searchRecipes', () => {
       id: 'r2',
       title: 'Carbonara',
     }),
-    makeRecipe({
-      id: 'r3',
-      ingredient_groups: [
-        {
-          ingredients: [{ item: 'paneer', order: 1, quantity_text: '200g' }],
-          name: 'Main',
-          order: 1,
-        },
-      ],
-      title: 'Paneer Curry',
-    }),
-    makeRecipe({
-      id: 'r4',
-      method: ['Simmer the lentils until tender.'],
-      title: 'Lentil Soup',
-    }),
+    makeRecipe({ id: 'r3', title: 'Paneer Curry' }),
+    makeRecipe({ id: 'r4', title: 'Lentil Soup' }),
   ];
 
   it('returns all recipes when no q param', () => {
@@ -84,18 +70,6 @@ describe('searchRecipes', () => {
     expect(results[0]?.id).toBe('r2');
   });
 
-  it('matches by ingredient item', () => {
-    const results = searchRecipes(recipes, params('paneer'));
-    expect(results).toHaveLength(1);
-    expect(results[0]?.id).toBe('r3');
-  });
-
-  it('matches by method step', () => {
-    const results = searchRecipes(recipes, params('lentils'));
-    expect(results).toHaveLength(1);
-    expect(results[0]?.id).toBe('r4');
-  });
-
   it('returns multiple matches', () => {
     const results = searchRecipes(recipes, params('chicken'));
     expect(results.length).toBeGreaterThanOrEqual(1);
@@ -107,18 +81,12 @@ describe('searchRecipes', () => {
     expect(results).toEqual([]);
   });
 
-  it('short-circuits on first match (title match skips other fields)', () => {
-    const results = searchRecipes(recipes, params('Carbonara'));
-    expect(results).toHaveLength(1);
-    expect(results[0]?.id).toBe('r2');
-  });
-
   it('matches whole words only, not substrings within other words', () => {
     const testRecipes = [
       makeRecipe({ id: 'pie', title: 'Steak Pie' }),
       makeRecipe({
+        description: 'Cut into pieces.',
         id: 'pieces',
-        method: ['Cut into pieces.'],
         title: 'Chicken Bites',
       }),
     ];

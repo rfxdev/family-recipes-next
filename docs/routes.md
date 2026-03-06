@@ -53,14 +53,14 @@ Menu items always clear existing filters (fresh curated experience):
 
 ## Shared Utilities
 
-| Utility               | Location                                | Description                                  |
-| --------------------- | --------------------------------------- | -------------------------------------------- |
-| `applyRecipeParams`   | `app/_lib/utils/applyRecipeParams.ts`   | Orchestrates search → filter → sort          |
-| `searchRecipes`       | `app/_lib/utils/searchRecipes.ts`       | Extracts `q`, whole-word matching            |
-| `filterRecipes`       | `app/_lib/utils/filterRecipes.ts`       | Extracts category keys, metadata matching    |
-| `sortRecipes`         | `app/_lib/utils/sortRecipes.ts`         | Immutable sort (title, date, or passthrough) |
-| `computeFilterCounts` | `app/_lib/utils/computeFilterCounts.ts` | Faceted counting per filter dimension        |
-| `buildRecipeUrl`      | `app/_lib/utils/buildRecipeUrl.ts`      | Generates filter URLs, handles multi-value   |
+| Utility               | Location                                | Description                                                              |
+| --------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
+| `applyRecipeParams`   | `app/_lib/utils/applyRecipeParams.ts`   | Orchestrates search → filter → sort                                      |
+| `searchRecipes`       | `app/_lib/utils/searchRecipes.ts`       | Extracts `q`, whole-word case-insensitive match on title and description |
+| `filterRecipes`       | `app/_lib/utils/filterRecipes.ts`       | Extracts category keys, metadata matching                                |
+| `sortRecipes`         | `app/_lib/utils/sortRecipes.ts`         | Immutable sort (title, date, or passthrough)                             |
+| `computeFilterCounts` | `app/_lib/utils/computeFilterCounts.ts` | Faceted counting per filter dimension                                    |
+| `buildRecipeUrl`      | `app/_lib/utils/buildRecipeUrl.ts`      | Generates filter URLs, handles multi-value                               |
 
 ## Filter UI Components
 

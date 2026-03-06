@@ -74,7 +74,7 @@ export const dummyRecipes: Recipe[] = [
             quantity_text: '400g can',
           },
           {
-            item: 'chicken or lamb stock',
+            item: 'lamb stock',
             order: 12,
             quantity_text: '600ml',
           },

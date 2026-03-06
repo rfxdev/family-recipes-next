@@ -5,31 +5,16 @@ export function searchRecipes(
   recipes: Recipe[],
   searchParams: URLSearchParams,
 ): Recipe[] {
-  const trimmedQuery = (searchParams.get('q') ?? '').trim().toLowerCase();
+  const trimmedQuery = (searchParams.get('q') ?? '').trim();
   if (!trimmedQuery) return recipes;
 
   // Use word boundaries so "pie" matches "pie" and "pies" but not "pieces"
   const escapedQuery = trimmedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const wordPattern = new RegExp(`\\b${escapedQuery}\\b`);
+  const wordPattern = new RegExp(`\\b${escapedQuery}\\b`, 'i');
 
-  const matches = (text: string) => wordPattern.test(text.toLowerCase());
+  const matches = (text: string) => wordPattern.test(text);
 
-  return recipes.filter((recipe) => {
-    if (matches(recipe.title)) return true;
-    if (matches(recipe.description)) return true;
-
-    // Check ingredient items across all groups
-    for (const group of recipe.ingredient_groups) {
-      for (const ingredient of group.ingredients) {
-        if (matches(ingredient.item)) return true;
-      }
-    }
-
-    // Check method steps
-    for (const step of recipe.method) {
-      if (matches(step)) return true;
-    }
-
-    return false;
-  });
+  return recipes.filter(
+    (recipe) => matches(recipe.title) || matches(recipe.description),
+  );
 }
