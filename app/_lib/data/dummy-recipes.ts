@@ -1878,4 +1878,62 @@ export const dummyRecipes: Recipe[] = [
     updated_at: '2026-03-05T00:00:00Z',
     uploaded_by: 'user_placeholder',
   },
+  {
+    cook_time_minutes: 35,
+    created_at: '2026-03-09T00:00:00Z',
+    description:
+      'A quick, warming North African-inspired dish with tender chicken, sweet dried fruit, and earthy puy lentils in a rich harissa and tomato sauce.',
+    id: 'spicy-harissa-chicken-with-lentils',
+    image_path: '/images/recipes/spicy-harissa-chicken-with-lentils.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          { item: 'harissa paste', order: 1, quantity_text: '3 tbsp' },
+          {
+            item: 'chicken thighs',
+            order: 2,
+            preparation: 'skin removed, boned, and diced',
+            quantity_text: '500g',
+          },
+          {
+            item: 'carrot',
+            order: 3,
+            preparation: 'grated',
+            quantity_text: '1 medium',
+          },
+          { item: 'sultanas', order: 4, quantity_text: '50g' },
+          {
+            item: 'dried apricots',
+            order: 5,
+            preparation: 'quartered',
+            quantity_text: '50g',
+          },
+          { item: 'cooked puy lentils', order: 6, quantity_text: '500g' },
+          { item: 'chopped tomatoes', order: 7, quantity_text: '1 x 400g can' },
+          { item: 'chicken stock', order: 8, quantity_text: '200ml' },
+        ],
+        name: '',
+        order: 1,
+      },
+    ],
+    metadata: {
+      author_id: 'rosie-mills',
+      cooking_method: 'one-pot',
+      cuisine: 'moroccan',
+      difficulty: 'easy',
+      dish_style: 'stew-casserole',
+      meal_type: 'main',
+      proteins: ['chicken', 'legumes'],
+      time_category: 'medium',
+    },
+    method: [
+      'Heat the harissa in a large pan over medium-high heat, add the chicken and cook until well browned all over.',
+      'Stir in the carrot, apricots, sultanas, tomatoes, and stock. Reduce the heat and cook uncovered for 20-25 minutes until the chicken is thoroughly cooked and the sauce has thickened.',
+      'Stir in the lentils and cook for a further 10 minutes until heated through.',
+    ],
+    servings: 4,
+    title: 'Spicy Harissa Chicken with Lentils',
+    updated_at: '2026-03-09T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
 ];

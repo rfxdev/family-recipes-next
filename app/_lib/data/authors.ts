@@ -8,4 +8,5 @@ export const authors: Author[] = [
   { id: 'tom-kerridge', name: 'Tom Kerridge', type: 'chef' },
   { id: 'waitrose', name: 'Waitrose', type: 'restaurant' },
   { id: 'sarah-howells', name: 'Sarah Howells', type: 'chef' },
+  { id: 'rosie-mills', name: 'Rosie Mills', type: 'family' },
 ];

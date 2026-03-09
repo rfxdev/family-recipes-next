@@ -132,7 +132,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'stew-and-casserole',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Stew & Casserole',
-        order: 1,
+        order: 2,
       },
       {
         description: 'High heat, fast cooking — bold flavours in minutes.',
@@ -176,7 +176,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'one-pot',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'One Pot',
-        order: 1,
+        order: 2,
       },
       {
         description: 'Crispy results with less oil and less time.',
@@ -261,7 +261,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'main',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Main',
-        order: 10,
+        order: 11,
       },
       {
         description: 'Indulgent desserts and sweet finishes.',
@@ -380,7 +380,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'moroccan',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Moroccan',
-        order: 1,
+        order: 2,
       },
       {
         description:
@@ -456,7 +456,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'legumes',
         image: '/images/recipes/curried-lentil-cottage-pie.webp',
         label: 'Legumes',
-        order: 2,
+        order: 3,
       },
       {
         description: 'Belly, chops, sausages, and beyond — pork at its best.',
@@ -473,7 +473,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
         id: 'chicken',
         image: '/images/recipes/chilli-chicken.webp',
         label: 'Chicken',
-        order: 3,
+        order: 4,
       },
       {
         description:
