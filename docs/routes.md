@@ -6,14 +6,19 @@ Route architecture, URL conventions, and navigation behaviour for Kitchen Compan
 
 ## Route Structure
 
-Four distinct routes serving different user intents:
+Five distinct routes serving different user intents:
 
-| Route                      | Purpose                                                                               |
-| -------------------------- | ------------------------------------------------------------------------------------- |
-| `/recipes`                 | Homepage with category cards (no params)                                              |
-| `/recipes?{filters}`       | Curated browsing via predefined categories — see [`recipe-views.md`](recipe-views.md) |
-| `/recipes/search?q={term}` | Free-form search, optionally refined with filters                                     |
-| `/recipes/{id}`            | Recipe detail — `id` doubles as URL slug                                              |
+| Route                       | Purpose                                                                |
+| --------------------------- | ---------------------------------------------------------------------- |
+| `/recipes`                  | Homepage with category cards                                           |
+| `/recipes/collections/{id}` | Curated collection page — title, description, and pre-filtered results |
+| `/recipes/all`              | Browse all recipes without filtering                                   |
+| `/recipes/search?q={term}`  | Free-form search, optionally refined with filters                      |
+| `/recipes/{id}`             | Recipe detail — `id` doubles as URL slug                               |
+
+Collections map to `CategoryItem` entries in `app/_config/recipes.ts`. Each item's `id` field is
+used directly as the URL path param. IDs must be unique across all items in `CATEGORY_SECTIONS`,
+not just within a single section.
 
 ## URL Conventions
 
@@ -24,6 +29,10 @@ Filter param names match metadata field names directly (e.g. `cuisine`, `meal_ty
 | Single value                 | `/recipes?cuisine=italian`                |
 | Multi-value (OR within)      | `/recipes?cuisine=italian&cuisine=indian` |
 | Multi-dimension (AND across) | `/recipes?cuisine=italian&meal_type=main` |
+
+Filter params are used internally by collection pages (via `applyRecipeParams`) and by the search
+route. They are no longer used as the primary navigation destination — curated browsing goes via
+`/recipes/collections/{id}`.
 
 ## Filter Logic
 
@@ -37,17 +46,16 @@ Filter param names match metadata field names directly (e.g. `cuisine`, `meal_ty
 
 **Search preservation**
 
-When searching from filtered browsing, active filters carry over:
+When searching from the search page, active filters carry over:
 
-- `/recipes?cuisine=italian` → search "pasta" → `/recipes/search?q=pasta&cuisine=italian`
+- `/recipes/search?q=pasta&cuisine=italian`
 - Makes sense: "search within Italian recipes"
 
 **Menu navigation**
 
-Menu items always clear existing filters (fresh curated experience):
+Menu items link to collection pages for a clean, curated starting point:
 
-- Clicking "Italian" from anywhere → `/recipes?cuisine=italian`
-- Provides a clean starting point for curated browsing
+- Clicking "Italian" → `/recipes/collections/italian`
 
 ---
 

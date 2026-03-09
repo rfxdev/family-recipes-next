@@ -11,10 +11,16 @@ export type FilterableMetadataKey =
   | 'time_category';
 
 export interface CategoryItem {
-  /** Short descriptor shown on hero cards (Pick Your Pace only). */
-  description?: string;
+  /** Short descriptor shown on hero cards and collection pages. */
+  description: string;
   /** Filter params to apply when the item is selected. Supports multi-key (Pick Your Pace) and multi-value (repeated params) filters. */
   filters: Record<string, string | string[]>;
+  /**
+   * Unique identifier used as the collection URL path param (`/recipes/collections/{id}`).
+   * Must be unique across ALL items in CATEGORY_SECTIONS, not just within a single section.
+   * Use kebab-case, e.g. 'weeknight-winners', 'pasta', 'stew-and-casserole'.
+   */
+  id: string;
   image: string;
   label: string;
   /** Number of matching recipes. Items with order === 0 are hidden. */

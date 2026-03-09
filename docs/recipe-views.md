@@ -130,7 +130,13 @@ Authors are grouped by type in the browsing view:
 
 The groups and children above are defined in `app/_config/recipes.ts` as a static configuration. The structure, labels, and ordering are hardcoded. Each child maps to a filter (or filter combination for Pick Your Pace views) and optionally a representative recipe image for display on the homepage.
 
-Each `CategorySection` has an `order` field that determines its display position on the homepage, a `hero?: boolean` flag that marks it for the tall-card hero layout, and a `description?: string` shown as a subtitle under the section heading. Each `CategoryItem` has an `order` field that holds the count of matching recipes in the current dataset, and a `description?: string` used on hero cards (e.g. Pick Your Pace).
+Each `CategorySection` has an `order` field that determines its display position on the homepage, a `hero?: boolean` flag that marks it for the tall-card hero layout, and a `description?: string` shown as a subtitle under the section heading.
+
+Each `CategoryItem` has:
+
+- `id: string` — unique identifier used as the URL path param for `/recipes/collections/{id}`. Must be unique across **all** items in `CATEGORY_SECTIONS`, not just within a section. Use kebab-case.
+- `order: number` — count of matching recipes; items with `order === 0` are hidden
+- `description?: string` — shown on the collection page and on hero cards (Pick Your Pace)
 
 ### Hiding Empty Children
 
@@ -146,11 +152,12 @@ Each `CategorySection` has a `showInMenu` boolean. Sections where `showInMenu: t
 
 ### Rendering Utilities
 
-| Utility             | Location                                     | Description                                                                                                  |
-| ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `sortCategoryItems` | `app/_lib/utils/sortCategoryItems.ts`        | Filters items with `order === 0`; sorts remainder by count desc, label asc                                   |
-| `sortByOrder`       | `app/_lib/utils/sortByOrder.ts`              | Sorts any `{ order: number }[]` ascending — used for section ordering                                        |
-| `RecipeHomepage`    | `app/recipes/_components/RecipeHomepage.tsx` | Calls `sortByOrder` on sections, then branches on `section.hero`: renders `HeroSection` or `CarouselSection` |
-| `RecipeHeroCard`    | `app/recipes/_components/RecipeHeroCard.tsx` | Tall card (full-bleed image, label, description) used in hero sections only                                  |
+| Utility              | Location                                     | Description                                                                     |
+| -------------------- | -------------------------------------------- | ------------------------------------------------------------------------------- |
+| `sortCategoryItems`  | `app/_lib/utils/sortCategoryItems.ts`        | Filters items with `order === 0`; sorts remainder by count desc, label asc      |
+| `sortByOrder`        | `app/_lib/utils/sortByOrder.ts`              | Sorts any `{ order: number }[]` ascending — used for section ordering           |
+| `getCollectionById`  | `app/_lib/utils/getCollectionById.ts`        | Finds a `CategoryItem` by `id` across all sections; returns `null` if not found |
+| `buildCollectionUrl` | `app/_lib/utils/buildCollectionUrl.ts`       | Returns `/recipes/collections/{id}` for a given item id                         |
+| `RecipeHeroCard`     | `app/recipes/_components/RecipeHeroCard.tsx` | Tall card (full-bleed image, label, description) used in hero sections only     |
 
-`RecipeHomepage` branches on `section.hero`. Hero sections render `HeroSection` (desktop: 3-col grid; mobile: horizontal scroll of tall cards via `RecipeHeroCard`). Non-hero sections render `CarouselSection` (embla carousel via `RecipeCategoryCarousel`). `NavDrawer` filters sections by `showInMenu` then calls `sortCategoryItems` on each section's items.
+The homepage (`app/recipes/page.tsx`) calls `sortByOrder` on sections and renders each via `RecipeSection`, which branches on `section.hero` to use either `RecipeHeroCard` or `RecipeCategoryCard`. All cards link to the collection page via `buildCollectionUrl(item.id)`. `NavDrawer` filters sections by `showInMenu` then calls `sortCategoryItems` on each section's items.

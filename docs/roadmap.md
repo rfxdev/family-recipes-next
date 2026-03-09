@@ -29,9 +29,9 @@ Development phases for the Kitchen Companion application.
   - [x] Desktop: mega dropdown on Recipes nav with category sections
   - [ ] Mobile: grouped nav with recipe categories listed under Recipes
   - [ ] Clicking a category clears active search and navigates to filtered browse
-- [ ] Browse context
+- [x] Browse context
   - [x] Homepage: section headings with short descriptions per category group
-  - [ ] Filtered results: active context indicator so users know what they're browsing
+  - [x] Collection pages — `/recipes/collections/{id}` with title and description per curated view
 - [ ] Empty states & result counts
   - [ ] Browse: recipe count; "no results" with clear filters option
   - [ ] Search: result count with query; "no results" with suggestions

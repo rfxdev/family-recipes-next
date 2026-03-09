@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/_components/ui/carousel';
-import { buildRecipeUrl } from '@/_lib/utils/buildRecipeUrl';
+import { buildCollectionUrl } from '@/_lib/utils/buildCollectionUrl';
 import { cn } from '@/_lib/utils/cn';
 import { sortCategoryItems } from '@/_lib/utils/sortCategoryItems';
 
@@ -49,14 +49,14 @@ export function RecipeSection({ section }: RecipeSectionProps) {
               {isHero ? (
                 <RecipeHeroCard
                   description={item.description ?? ''}
-                  href={buildRecipeUrl(item.filters)}
+                  href={buildCollectionUrl(item.id)}
                   image={item.image}
                   label={item.label}
                   priority
                 />
               ) : (
                 <RecipeCategoryCard
-                  href={buildRecipeUrl(item.filters)}
+                  href={buildCollectionUrl(item.id)}
                   image={item.image}
                   label={item.label}
                 />

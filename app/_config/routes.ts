@@ -1,4 +1,5 @@
 export const routes = {
+  collection: (id: string) => `/recipes/collections/${id}`,
   createRecipe: '/recipes/new',
   editRecipe: (id: string) => `/recipes/${id}/edit`,
   home: '/recipes',
@@ -8,6 +9,6 @@ export const routes = {
   plannerWeek: '/planner/week',
   recipeDetail: (id: string) => `/recipes/${id}`,
   recipes: '/recipes',
-  recipesAll: '/recipes?all=true',
+  recipesAll: '/recipes/all',
   search: '/recipes/search',
 } as const;

@@ -17,6 +17,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
           meal_type: 'main',
           time_category: 'quick',
         },
+        id: 'weeknight-winners',
         image: '/images/recipes/cashew-chicken.webp',
         label: 'Weeknight Winners',
         order: 1,
@@ -24,6 +25,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
       {
         description: 'Dishes that reward a bit more time in the kitchen.',
         filters: { difficulty: 'moderate', time_category: ['medium', 'long'] },
+        id: 'worth-the-effort',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Worth the Effort',
         order: 8,
@@ -31,6 +33,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
       {
         description: 'Ambitious recipes for when you have the whole afternoon.',
         filters: { difficulty: 'challenging', time_category: 'long' },
+        id: 'weekend-project',
         image: '/images/recipes/steak-rarebit.webp',
         label: 'Weekend Project',
         order: 1,
@@ -45,67 +48,96 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'dish_style',
     items: [
       {
+        description:
+          'Fragrant, spiced curries from mild and creamy to fiery and bold.',
         filters: { dish_style: 'curry' },
+        id: 'curry',
         image: '',
         label: 'Curry',
         order: 0,
       },
       {
+        description:
+          'Silky, springy noodles in broths, sauces, and stir-fries.',
         filters: { dish_style: 'noodles' },
+        id: 'noodles',
         image: '',
         label: 'Noodles',
         order: 0,
       },
       {
+        description:
+          'Classic and comforting — from quick weeknight pasta to slow-cooked sauces.',
         filters: { dish_style: 'pasta' },
+        id: 'pasta',
         image: '/images/recipes/creamy-prawn-tagliatelle.webp',
         label: 'Pasta',
         order: 3,
       },
       {
+        description: 'Hearty topped and pastry-wrapped favourites.',
         filters: { dish_style: 'pie' },
+        id: 'pie',
         image: '/images/recipes/curried-lentil-cottage-pie.webp',
         label: 'Pie',
         order: 1,
       },
       {
+        description:
+          'Homemade pizza — thin, crispy, and loaded with good things.',
         filters: { dish_style: 'pizza' },
+        id: 'pizza',
         image: '',
         label: 'Pizza',
         order: 0,
       },
       {
+        description:
+          'From fragrant pilau to sticky rice — dishes where rice takes centre stage.',
         filters: { dish_style: 'rice-dish' },
+        id: 'rice-dish',
         image: '/images/recipes/pilau-rice.webp',
         label: 'Rice Dish',
         order: 1,
       },
       {
+        description:
+          'Showstopping roasts for a leisurely Sunday or a special occasion.',
         filters: { dish_style: 'roast' },
+        id: 'roast',
         image: '',
         label: 'Roast',
         order: 0,
       },
       {
+        description:
+          'Fresh, vibrant salads that work as a side or a meal in themselves.',
         filters: { dish_style: 'salad' },
+        id: 'salad',
         image: '',
         label: 'Salad',
         order: 0,
       },
       {
+        description: 'Warming, restorative soups for any season.',
         filters: { dish_style: 'soup' },
+        id: 'soup',
         image: '',
         label: 'Soup',
         order: 0,
       },
       {
+        description: 'Slow-cooked, deeply flavoured one-pot dishes.',
         filters: { dish_style: 'stew-casserole' },
+        id: 'stew-and-casserole',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Stew & Casserole',
         order: 1,
       },
       {
+        description: 'High heat, fast cooking — bold flavours in minutes.',
         filters: { dish_style: 'stir-fry' },
+        id: 'stir-fry',
         image: '',
         label: 'Stir Fry',
         order: 0,
@@ -121,43 +153,59 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'cooking_method',
     items: [
       {
+        description:
+          'Set it and forget it — long, slow cooking with minimal effort.',
         filters: { cooking_method: 'slow-cooker' },
+        id: 'slow-cooker',
         image: '',
         label: 'Slow Cooker',
         order: 0,
       },
       {
+        description: 'Everything on one tray — easy prep, easy clean-up.',
         filters: { cooking_method: 'traybake' },
+        id: 'traybake',
         image: '',
         label: 'Traybake',
         order: 0,
       },
       {
+        description:
+          'Fewer dishes, more flavour — everything cooked in a single pot or pan.',
         filters: { cooking_method: 'one-pot' },
+        id: 'one-pot',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'One Pot',
         order: 1,
       },
       {
+        description: 'Crispy results with less oil and less time.',
         filters: { cooking_method: 'air-fryer' },
+        id: 'air-fryer',
         image: '/images/recipes/air-fryer-crispy-chilli-beef.webp',
         label: 'Air Fryer',
         order: 1,
       },
       {
+        description: 'Slow-cooker results in a fraction of the time.',
         filters: { cooking_method: 'pressure-cooker' },
+        id: 'pressure-cooker',
         image: '',
         label: 'Pressure Cooker',
         order: 0,
       },
       {
+        description: 'Charred edges and smoky flavour — inside or out.',
         filters: { cooking_method: 'grill' },
+        id: 'grill',
         image: '',
         label: 'Grill',
         order: 0,
       },
       {
+        description: "Low and slow for deep, smoky flavour you can't rush.",
         filters: { cooking_method: 'smoker' },
+        id: 'smoker',
         image: '',
         label: 'Smoker',
         order: 0,
@@ -172,49 +220,70 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'meal_type',
     items: [
       {
+        description:
+          'Small bites to start — light, shareable, and full of flavour.',
         filters: { meal_type: 'appetiser' },
+        id: 'appetiser',
         image: '',
         label: 'Appetiser',
         order: 0,
       },
       {
+        description: 'Morning recipes worth getting up for.',
         filters: { meal_type: 'breakfast' },
+        id: 'breakfast',
         image: '/images/recipes/ham-and-cheese-galettes.webp',
         label: 'Breakfast',
         order: 1,
       },
       {
+        description:
+          'Sauces, dressings, and preserves to elevate everything else.',
         filters: { meal_type: 'condiment' },
+        id: 'condiment',
         image: '',
         label: 'Condiment',
         order: 0,
       },
       {
+        description:
+          'Cocktails, mocktails, and drinks worth making from scratch.',
         filters: { meal_type: 'drink' },
+        id: 'drink',
         image: '',
         label: 'Drink',
         order: 0,
       },
       {
+        description:
+          'The centrepiece — satisfying mains for any night of the week.',
         filters: { meal_type: 'main' },
+        id: 'main',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Main',
         order: 10,
       },
       {
+        description: 'Indulgent desserts and sweet finishes.',
         filters: { meal_type: 'pudding' },
+        id: 'pudding',
         image: '/images/recipes/sticky-date-and-banana-pudding.webp',
         label: 'Pudding',
         order: 1,
       },
       {
+        description: 'The dishes that make the meal.',
         filters: { meal_type: 'side' },
+        id: 'side',
         image: '/images/recipes/gunpowder-potatoes.webp',
         label: 'Side',
         order: 2,
       },
       {
+        description:
+          'Something to keep you going — quick, easy, and satisfying.',
         filters: { meal_type: 'snack' },
+        id: 'snack',
         image: '',
         label: 'Snack',
         order: 0,
@@ -229,79 +298,113 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'cuisine',
     items: [
       {
+        description: 'Bold, comforting classics from across the States.',
         filters: { cuisine: 'american' },
+        id: 'american',
         image: '',
         label: 'American',
         order: 0,
       },
       {
+        description: 'Hearty classics and modern takes on British favourites.',
         filters: { cuisine: 'british' },
+        id: 'british',
         image: '/images/recipes/steak-rarebit.webp',
         label: 'British',
         order: 4,
       },
       {
+        description: 'Bold, balanced flavours from Chinese cooking.',
         filters: { cuisine: 'chinese' },
+        id: 'chinese',
         image: '/images/recipes/cashew-chicken.webp',
         label: 'Chinese',
         order: 1,
       },
       {
+        description: 'Elegant techniques and classic French flavours.',
         filters: { cuisine: 'french' },
+        id: 'french',
         image: '/images/recipes/ham-and-cheese-galettes.webp',
         label: 'French',
         order: 1,
       },
       {
+        description:
+          'Sun-drenched flavours — olive oil, lemon, herbs, and the sea.',
         filters: { cuisine: 'greek' },
+        id: 'greek',
         image: '',
         label: 'Greek',
         order: 0,
       },
       {
+        description:
+          'Aromatic spices and vibrant flavours from the Indian subcontinent.',
         filters: { cuisine: 'indian' },
+        id: 'indian',
         image: '/images/recipes/chicken-berry-britannia.webp',
         label: 'Indian',
         order: 4,
       },
       {
+        description:
+          'Sun-soaked simplicity — pasta, risotto, and Italian classics.',
         filters: { cuisine: 'italian' },
+        id: 'italian',
         image: '/images/recipes/creamy-prawn-tagliatelle.webp',
         label: 'Italian',
         order: 3,
       },
       {
+        description:
+          'Delicate, precise, and deeply satisfying Japanese cooking.',
         filters: { cuisine: 'japanese' },
+        id: 'japanese',
         image: '',
         label: 'Japanese',
         order: 0,
       },
       {
+        description:
+          'Bright, bold Mexican flavours — chilli, lime, and plenty of spice.',
         filters: { cuisine: 'mexican' },
+        id: 'mexican',
         image: '',
         label: 'Mexican',
         order: 0,
       },
       {
+        description: 'Fragrant tagines and North African spice.',
         filters: { cuisine: 'moroccan' },
+        id: 'moroccan',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Moroccan',
         order: 1,
       },
       {
+        description:
+          'Tapas, paella, and the bold flavours of the Iberian peninsula.',
         filters: { cuisine: 'spanish' },
+        id: 'spanish',
         image: '',
         label: 'Spanish',
         order: 0,
       },
       {
+        description:
+          'Fragrant, fresh, and balanced — the hallmarks of Thai cooking.',
         filters: { cuisine: 'thai' },
+        id: 'thai',
         image: '',
         label: 'Thai',
         order: 0,
       },
       {
+        description:
+          'Rich spices, slow braises, and the warmth of Turkish hospitality.',
         filters: { cuisine: 'turkish' },
+        id: 'turkish',
         image: '',
         label: 'Turkish',
         order: 0,
@@ -316,55 +419,75 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'proteins',
     items: [
       {
+        description: 'From quick steak to slow-braised — bold beef recipes.',
         filters: { proteins: 'beef' },
+        id: 'beef',
         image: '/images/recipes/steak-rarebit.webp',
         label: 'Beef',
         order: 1,
       },
       {
+        description: 'Endlessly versatile — eggs at the heart of the dish.',
         filters: { proteins: 'eggs' },
+        id: 'eggs',
         image: '/images/recipes/ham-and-cheese-galettes.webp',
         label: 'Eggs',
         order: 1,
       },
       {
+        description: 'Fresh and simple fish recipes for any night.',
         filters: { proteins: 'fish' },
+        id: 'fish',
         image: '/images/recipes/cod-with-roasted-chilli-butter.webp',
         label: 'Fish',
         order: 1,
       },
       {
+        description: 'Rich, flavourful lamb from quick chops to slow shoulder.',
         filters: { proteins: 'lamb' },
+        id: 'lamb',
         image: '/images/recipes/lamb-tagine.jpg',
         label: 'Lamb',
         order: 1,
       },
       {
+        description: 'Hearty pulses — lentils, chickpeas, and beans.',
         filters: { proteins: 'legumes' },
+        id: 'legumes',
         image: '/images/recipes/curried-lentil-cottage-pie.webp',
         label: 'Legumes',
         order: 2,
       },
       {
+        description: 'Belly, chops, sausages, and beyond — pork at its best.',
         filters: { proteins: 'pork' },
+        id: 'pork',
         image: '',
         label: 'Pork',
         order: 0,
       },
       {
+        description:
+          'The weeknight staple — quick, easy, and always satisfying.',
         filters: { proteins: 'chicken' },
+        id: 'chicken',
         image: '/images/recipes/chilli-chicken.webp',
         label: 'Chicken',
         order: 3,
       },
       {
+        description:
+          'Leaner than chicken, just as versatile — turkey beyond Christmas.',
         filters: { proteins: 'turkey' },
+        id: 'turkey',
         image: '',
         label: 'Turkey',
         order: 0,
       },
       {
+        description: 'Prawns, clams, and the best of the sea.',
         filters: { proteins: 'seafood' },
+        id: 'seafood',
         image: '/images/recipes/clam-prawn-chorizo-linguine.webp',
         label: 'Seafood',
         order: 3,
@@ -379,19 +502,26 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'special_occasions',
     items: [
       {
+        description:
+          'Crowd-pleasing recipes built for the grill and the garden.',
         filters: { special_occasions: 'bbq' },
+        id: 'bbq',
         image: '',
         label: 'BBQ',
         order: 0,
       },
       {
+        description: 'Festive recipes for the most indulgent time of year.',
         filters: { special_occasions: 'christmas' },
+        id: 'christmas',
         image: '',
         label: 'Christmas',
         order: 0,
       },
       {
+        description: 'All the trimmings — the full Sunday roast spread.',
         filters: { special_occasions: 'sunday-roast' },
+        id: 'sunday-roast',
         image: '',
         label: 'Sunday Roast',
         order: 0,
@@ -406,19 +536,26 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     id: 'dietary_restrictions',
     items: [
       {
+        description: 'Great cooking that happens to be gluten free.',
         filters: { dietary_restrictions: 'gluten-free' },
+        id: 'gluten-free',
         image: '/images/recipes/ham-and-cheese-galettes.webp',
         label: 'Gluten Free',
         order: 1,
       },
       {
+        description:
+          'Fish and seafood, no meat — flavourful pescatarian cooking.',
         filters: { dietary_restrictions: 'pescatarian' },
+        id: 'pescatarian',
         image: '',
         label: 'Pescatarian',
         order: 0,
       },
       {
+        description: 'Meat-free recipes that are anything but boring.',
         filters: { dietary_restrictions: 'vegetarian' },
+        id: 'vegetarian',
         image: '/images/recipes/curried-lentil-cottage-pie.webp',
         label: 'Vegetarian',
         order: 3,
