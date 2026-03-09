@@ -495,7 +495,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     ],
     order: 6,
     showInMenu: true,
-    title: 'Ingredients',
+    title: 'By Ingredient',
   },
   {
     description: 'Recipes for special events and gatherings.',
@@ -529,7 +529,7 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     ],
     order: 7,
     showInMenu: true,
-    title: 'Occasions',
+    title: 'By Occasion',
   },
   {
     description: 'Filter by dietary needs or preferences.',
@@ -563,6 +563,6 @@ export const CATEGORY_SECTIONS: CategorySection[] = [
     ],
     order: 8,
     showInMenu: true,
-    title: 'By Dietary',
+    title: 'By Diet',
   },
 ];

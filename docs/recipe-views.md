@@ -79,7 +79,7 @@ Browsing by national cuisine. Maps to the `cuisine` metadata field.
 - Thai
 - Turkish
 
-### Ingredients
+### By Ingredient
 
 Browsing by the star protein — the ingredient the dish is built around. Maps to the `proteins` metadata field. Supporting ingredients (aromatics, condiments, garnishes) are not tagged.
 
@@ -93,7 +93,7 @@ Browsing by the star protein — the ingredient the dish is built around. Maps t
 - Eggs
 - Legumes
 
-### Occasions
+### By Occasion
 
 Cross-cutting views for recipes suited to a specific event or setting. A single occasion may span multiple cuisines and meal types — a BBQ spread might include a salsa, a slaw, and a pudding. Maps to the `special_occasions` metadata field.
 
@@ -101,7 +101,7 @@ Cross-cutting views for recipes suited to a specific event or setting. A single 
 - Christmas
 - Sunday Roast
 
-### By Dietary
+### By Diet
 
 Browsing by dietary restriction. Maps to the `dietary_restrictions` metadata field.
 
