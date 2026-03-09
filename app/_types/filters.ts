@@ -1,5 +1,6 @@
 /** Metadata fields that can be used as filter or browse keys. */
 export type FilterableMetadataKey =
+  | 'cooking_method'
   | 'cuisine'
   | 'dietary_restrictions'
   | 'difficulty'

@@ -120,6 +120,7 @@ export const dummyRecipes: Recipe[] = [
     ],
     metadata: {
       author_id: 'tom-kerridge',
+      cooking_method: 'one-pot',
       cuisine: 'moroccan',
       difficulty: 'moderate',
       dish_style: 'stew-casserole',
@@ -225,7 +226,7 @@ export const dummyRecipes: Recipe[] = [
       cuisine: 'chinese',
       difficulty: 'easy',
       meal_type: 'main',
-      proteins: ['poultry'],
+      proteins: ['chicken'],
       source_name: 'Pinch of Yum',
       source_url: 'https://pinchofyum.com/cashew-chicken',
       time_category: 'medium',
@@ -477,7 +478,7 @@ export const dummyRecipes: Recipe[] = [
       difficulty: 'challenging',
       dish_style: 'rice-dish',
       meal_type: 'main',
-      proteins: ['poultry'],
+      proteins: ['chicken'],
       source_details: 'Page 232',
       source_name: 'Dishoom cookbook',
       time_category: 'long',
@@ -1561,7 +1562,7 @@ export const dummyRecipes: Recipe[] = [
       cuisine: 'indian',
       difficulty: 'moderate',
       meal_type: 'main',
-      proteins: ['poultry'],
+      proteins: ['chicken'],
       source_name: 'Dishoom',
       source_url:
         'https://www.dishoom.com/journal/recipes/dishoom-chilli-chicken-recipe/',
@@ -1746,6 +1747,7 @@ export const dummyRecipes: Recipe[] = [
     ],
     metadata: {
       author_id: 'sarah-howells',
+      cooking_method: 'air-fryer',
       cuisine: 'chinese',
       dietary_restrictions: ['gluten-free'],
       difficulty: 'easy',

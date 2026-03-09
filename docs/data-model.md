@@ -185,8 +185,13 @@ All descriptive and categorisation data about the recipe, including both structu
 
 **proteins** (optional, multi-select array):
 
-- Allowed values: `beef`, `eggs`, `fish`, `lamb`, `legumes`, `pork`, `poultry`, `seafood`
+- Allowed values: `beef`, `chicken`, `eggs`, `fish`, `lamb`, `legumes`, `pork`, `seafood`, `turkey`
 - Used for queries like "what can I make with chicken?"
+
+**cooking_method** (optional, single-select):
+
+- Allowed values: `air-fryer`, `grill`, `one-pot`, `pressure-cooker`, `slow-cooker`, `smoker`, `traybake`
+- The primary equipment or technique the recipe is built around. Used to group recipes by method (e.g. "Slow Cooker" collection). Omit for recipes that don't have a distinctive method — standard hob or oven cooking is assumed.
 
 **dish_style** (optional, single-select):
 

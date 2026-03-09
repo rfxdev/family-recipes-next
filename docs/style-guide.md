@@ -60,7 +60,7 @@ Tag the star protein — the ingredient that defines what the dish is built arou
 
 **Examples:**
 
-- Chicken biryani → tag `poultry` (rice is the format, captured in `dish_style: rice-dish`)
+- Chicken biryani → tag `chicken` (rice is the format, captured in `dish_style: rice-dish`)
 - Clam linguine → tag `seafood` (pasta is the format, captured in `dish_style: pasta`)
 - Lamb tagine → tag `lamb` (stew format, captured in `dish_style: stew-casserole`)
 - Curried lentil pie → tag `legumes` (pie format, captured in `dish_style: pie`)
@@ -87,6 +87,36 @@ Tag the format or character of the dish — what it is, not what's in it. This d
 - Shepherd's pie → `pie`
 
 Leave unset if the dish doesn't clearly fit a category — a pan-fried steak, a simple side dish, or a pudding typically won't have a `dish_style`.
+
+### Cooking Method
+
+Tag when the recipe is defined by a specific piece of equipment or technique — one that a cook would actively seek out when choosing what to make. Allowed values: `slow-cooker`, `traybake`, `one-pot`, `air-fryer`, `pressure-cooker`, `grill`, `smoker`.
+
+**One tag only.** The field is optional — omit it for recipes where standard hob or oven cooking is assumed.
+
+**Tag these:**
+
+- Recipes that only work in the named equipment (slow cooker, pressure cooker, smoker)
+- Recipes where the method is a selling point or defines the dish (traybake, one-pot, grill)
+
+**Don't tag these:**
+
+- Recipes that happen to use an oven or hob — these are the default and need no tag
+- Recipes with optional appliance shortcuts ("or use a slow cooker") — tag only when it's the primary method
+
+**Examples:**
+
+- Slow cooker pulled pork → `slow-cooker`
+- Sheet-pan chicken and vegetables → `traybake`
+- One-pot pasta → `one-pot`
+- Air fryer chips → `air-fryer`
+- Pressure cooker beef stew → `pressure-cooker`
+- Grilled salmon → `grill`
+- Smoked brisket → `smoker`
+- Roast chicken (conventional oven) → no tag
+- Pan-fried steak → no tag
+
+The test: "Would someone browsing by [method] specifically want to find this dish?" If yes, tag it.
 
 ### Dietary Restrictions
 

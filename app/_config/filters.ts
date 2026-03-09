@@ -4,6 +4,20 @@ import type { FilterSection, SortValue } from '@/_types/filters';
 
 export const FILTER_SECTIONS: FilterSection[] = [
   {
+    id: 'cooking_method',
+    items: [
+      { label: 'Air Fryer', value: 'air-fryer' },
+      { label: 'Grill', value: 'grill' },
+      { label: 'One Pot', value: 'one-pot' },
+      { label: 'Pressure Cooker', value: 'pressure-cooker' },
+      { label: 'Slow Cooker', value: 'slow-cooker' },
+      { label: 'Smoker', value: 'smoker' },
+      { label: 'Traybake', value: 'traybake' },
+    ],
+    order: 4,
+    title: 'Cooking Method',
+  },
+  {
     id: 'cuisine',
     items: [
       { label: 'British', value: 'british' },
@@ -49,15 +63,16 @@ export const FILTER_SECTIONS: FilterSection[] = [
     id: 'proteins',
     items: [
       { label: 'Beef', value: 'beef' },
+      { label: 'Chicken', value: 'chicken' },
       { label: 'Eggs', value: 'eggs' },
       { label: 'Fish', value: 'fish' },
       { label: 'Lamb', value: 'lamb' },
       { label: 'Legumes', value: 'legumes' },
       { label: 'Pork', value: 'pork' },
-      { label: 'Poultry', value: 'poultry' },
       { label: 'Seafood', value: 'seafood' },
+      { label: 'Turkey', value: 'turkey' },
     ],
-    order: 4,
+    order: 5,
     title: 'Protein',
   },
   {
@@ -67,7 +82,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Christmas', value: 'christmas' },
       { label: 'Sunday Roast', value: 'sunday-roast' },
     ],
-    order: 5,
+    order: 6,
     title: 'Occasion',
   },
   {
@@ -77,7 +92,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Pescatarian', value: 'pescatarian' },
       { label: 'Vegetarian', value: 'vegetarian' },
     ],
-    order: 6,
+    order: 7,
     title: 'Dietary',
   },
   {
@@ -87,7 +102,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Moderate', value: 'moderate' },
       { label: 'Challenging', value: 'challenging' },
     ],
-    order: 7,
+    order: 8,
     title: 'Difficulty',
   },
   {
@@ -97,7 +112,7 @@ export const FILTER_SECTIONS: FilterSection[] = [
       { label: 'Medium', value: 'medium' },
       { label: 'Long', value: 'long' },
     ],
-    order: 8,
+    order: 9,
     title: 'Cook Time',
   },
 ];

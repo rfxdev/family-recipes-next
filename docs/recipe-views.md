@@ -36,6 +36,18 @@ Browsing by dish style — the form or character of the dish rather than its cui
 - Stir Fry
 - Roast
 
+### How Do You Want to Cook It?
+
+Browsing by the primary cooking equipment or technique. Maps to the `cooking_method` metadata field (single-select). Omit for recipes where standard hob or oven cooking is assumed.
+
+- Slow Cooker
+- Traybake
+- One Pot
+- Air Fryer
+- Pressure Cooker
+- Grill
+- Smoker
+
 ### Meal Type
 
 Browsing by when in a meal the dish is served. Maps to the `meal_type` metadata field.
@@ -72,9 +84,10 @@ Browsing by national cuisine. Maps to the `cuisine` metadata field.
 Browsing by the star protein — the ingredient the dish is built around. Maps to the `proteins` metadata field. Supporting ingredients (aromatics, condiments, garnishes) are not tagged.
 
 - Beef
+- Chicken
+- Turkey
 - Lamb
 - Pork
-- Poultry
 - Fish
 - Seafood
 - Eggs

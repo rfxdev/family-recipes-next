@@ -17,6 +17,7 @@ export interface Recipe {
 
 export interface RecipeMetadata {
   author_id: string; // References an Author document by id
+  cooking_method?: CookingMethod;
   cuisine: Cuisine;
   dietary_restrictions?: DietaryRestriction[];
   difficulty: Difficulty;
@@ -80,13 +81,14 @@ export type DietaryRestriction =
 
 export const PROTEINS = [
   'beef',
+  'chicken',
   'eggs',
   'fish',
   'lamb',
   'legumes',
   'pork',
-  'poultry',
   'seafood',
+  'turkey',
 ] as const;
 
 export type Protein = (typeof PROTEINS)[number];
@@ -105,3 +107,12 @@ export type DishStyle =
   | 'stir-fry';
 
 export type SpecialOccasion = 'bbq' | 'christmas' | 'sunday-roast';
+
+export type CookingMethod =
+  | 'air-fryer'
+  | 'grill'
+  | 'one-pot'
+  | 'pressure-cooker'
+  | 'slow-cooker'
+  | 'smoker'
+  | 'traybake';
