@@ -136,6 +136,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--footer-background);
+    @apply text-foreground;
   }
 }

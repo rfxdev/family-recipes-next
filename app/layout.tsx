@@ -19,8 +19,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Suspense>
           <Header />
         </Suspense>
-        <main className="page-container pt-4 pb-6 lg:pt-6 lg:pb-8">
-          {children}
+        <main className="bg-background">
+          <div className="page-container pt-4 pb-6 lg:pt-6 lg:pb-8">
+            {children}
+          </div>
         </main>
         <Footer />
       </body>

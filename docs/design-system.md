@@ -14,7 +14,7 @@ The `page-container` utility (defined in `globals.css`) centralises the shared h
 /* Footer inner div */   page-container py-6 lg:pt-8
 ```
 
-Note: the `Footer` outer `<footer>` element holds the background colour (so it spans full width), while `page-container` sits on the inner div to constrain content. Do not put `page-container` directly on `<footer>`.
+**Background colours must go on a full-width outer element — never on the same element as `page-container`.** `page-container` constrains width, so a background applied to it only fills the constrained box. The pattern is: background on the outer element (e.g. `<header>`, `<main>`, `<footer>`), `page-container` on an inner wrapper `<div>`. See `app/layout.tsx` for the canonical example.
 
 Individual pages and components should **not** redeclare container padding or max-width — they receive it from the layout.
 
