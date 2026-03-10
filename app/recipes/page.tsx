@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Button } from '@/_components/ui/button';
 import { CATEGORY_SECTIONS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
 import { sortByOrder } from '@/_lib/utils/sortByOrder';
@@ -12,25 +13,32 @@ export default function RecipesPage() {
     (s) => sortCategoryItems(s.items).length > 0,
   );
 
+  const heroSection = sections.find((s) => s.hero);
+  const otherSections = sections.filter((s) => !s.hero);
+
   return (
     <>
-      <h1 className="text-foreground mb-4 text-3xl font-bold">Recipes</h1>
+      <h1 className="text-foreground mb-4 text-center text-3xl font-bold">
+        Recipes
+      </h1>
 
-      <div className="space-y-10">
-        <p className="text-muted-foreground">
-          Browse by how much time you have, what you fancy, or who made it.
+      <div className="space-y-6">
+        <p className="text-foreground text-center">
+          Whether you&#39;ve got 20 minutes or the whole afternoon, there&#39;s
+          something here worth cooking.
         </p>
 
-        {sections.map((section) => (
+        {heroSection && <RecipeSection section={heroSection} />}
+
+        <div className="flex justify-center">
+          <Button asChild className="rounded-full" size="lg" variant="accent">
+            <Link href={routes.recipesAll}>Browse All Recipes →</Link>
+          </Button>
+        </div>
+
+        {otherSections.map((section) => (
           <RecipeSection key={section.id} section={section} />
         ))}
-
-        <Link
-          className="text-accent-foreground hover:underline"
-          href={routes.recipesAll}
-        >
-          Browse All Recipes
-        </Link>
       </div>
     </>
   );

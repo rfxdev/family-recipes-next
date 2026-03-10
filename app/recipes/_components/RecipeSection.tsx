@@ -25,48 +25,49 @@ export function RecipeSection({ section }: RecipeSectionProps) {
 
   return (
     <section>
-      <div className="mb-4">
-        <h2 className="text-foreground text-2xl font-bold">{section.title}</h2>
-        {section.description && (
-          <p className="text-muted-foreground mt-1 text-sm">
-            {section.description}
-          </p>
-        )}
-      </div>
+      {!isHero && (
+        <h2 className="text-foreground mb-4 text-2xl font-bold">
+          {section.title}
+        </h2>
+      )}
 
-      <Carousel opts={{ align: 'start' }}>
-        <CarouselContent className="-ml-4">
-          {sortCategoryItems(section.items).map((item) => (
-            <CarouselItem
+      {isHero ? (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {sortCategoryItems(section.items).map((item, index) => (
+            <RecipeHeroCard
               className={cn(
-                'pl-4',
-                isHero
-                  ? 'basis-4/5 sm:basis-1/3'
-                  : 'basis-[47%] sm:basis-1/3 lg:basis-1/4',
+                index === 0 &&
+                  'col-span-2 aspect-video sm:col-span-1 sm:aspect-3/4',
               )}
+              description={item.description ?? ''}
+              href={buildCollectionUrl(item.id)}
+              image={item.image}
               key={item.label}
-            >
-              {isHero ? (
-                <RecipeHeroCard
-                  description={item.description ?? ''}
-                  href={buildCollectionUrl(item.id)}
-                  image={item.image}
-                  label={item.label}
-                  priority
-                />
-              ) : (
+              label={item.label}
+              priority
+            />
+          ))}
+        </div>
+      ) : (
+        <Carousel opts={{ align: 'start' }}>
+          <CarouselContent className="-ml-4">
+            {sortCategoryItems(section.items).map((item) => (
+              <CarouselItem
+                className="basis-[47%] pl-4 sm:basis-1/3 lg:basis-1/4"
+                key={item.label}
+              >
                 <RecipeCategoryCard
                   href={buildCollectionUrl(item.id)}
                   image={item.image}
                   label={item.label}
                 />
-              )}
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      )}
     </section>
   );
 }

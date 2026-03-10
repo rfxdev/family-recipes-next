@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { cn } from '@/_lib/utils/cn';
+
 interface RecipeHeroCardProps {
+  className?: string;
   description: string;
   href: string;
   image: string;
@@ -10,6 +13,7 @@ interface RecipeHeroCardProps {
 }
 
 export function RecipeHeroCard({
+  className,
   description,
   href,
   image,
@@ -18,7 +22,10 @@ export function RecipeHeroCard({
 }: RecipeHeroCardProps) {
   return (
     <Link
-      className="group border-border bg-card relative flex aspect-3/4 items-end overflow-hidden rounded-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg lg:border"
+      className={cn(
+        'group border-border bg-card relative flex aspect-3/4 items-end overflow-hidden rounded-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg lg:border',
+        className,
+      )}
       href={href}
     >
       <Image

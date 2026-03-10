@@ -11,6 +11,8 @@ export type FilterableMetadataKey =
   | 'time_category';
 
 export interface CategoryItem {
+  /** Number of matching recipes. Items with count === 0 are hidden. */
+  count: number;
   /** Short descriptor shown on hero cards and collection pages. */
   description: string;
   /** Filter params to apply when the item is selected. Supports multi-key (Pick Your Pace) and multi-value (repeated params) filters. */
@@ -23,13 +25,11 @@ export interface CategoryItem {
   id: string;
   image: string;
   label: string;
-  /** Number of matching recipes. Items with order === 0 are hidden. */
-  order: number;
+  /** Optional explicit display position. Takes precedence over count-based ordering. */
+  order?: number;
 }
 
 export interface CategorySection {
-  /** Subtitle shown under the section heading. */
-  description?: string;
   /** Marks this section for the hero layout (desktop 3-col grid, mobile carousel of tall cards). */
   hero?: boolean;
   /** Section identifier. Usually matches a metadata field, but may be a computed view ID (e.g. 'pick_your_pace'). */

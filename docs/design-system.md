@@ -128,6 +128,20 @@ Bottom-sheet component built on `vaul` (`app/_components/ui/drawer.tsx`). Note: 
 
 **Note:** vaul keeps `DrawerContent` mounted when closed (hides via CSS transform, not unmount). Uncontrolled components inside it will not reinitialise on re-open — use `key={derivedValue}` to force remount when needed.
 
+## Header
+
+`app/_components/Header.tsx` — client component rendered in `app/layout.tsx` inside a `<Suspense>` boundary (no DOM wrapper). The component returns a React fragment, making `<header>` an effective direct child of `<body>`. This is what makes `sticky top-0 z-10` on `<header>` persist for the full page — sticky is bounded by the containing block's extent, and with `<body>` as the containing block it sticks for the entire scroll height.
+
+**Nav layout** — uses `grid grid-cols-[1fr_auto_1fr]` so the centre column (logo) sizes to its content and the left/right columns share the remaining space equally. This keeps the logo truly centred regardless of what's in the left column.
+
+| Column | Content                                        |
+| ------ | ---------------------------------------------- |
+| Left   | `NavDrawer` on mobile, `DesktopNav` on desktop |
+| Centre | Site logo / home link                          |
+| Right  | Reserved for future user account controls      |
+
+**Search sub-header** — a separate `<div>` rendered as a sibling to `<header>` in the fragment. Conditionally shown on recipe pages (`pathname.startsWith('/recipes')`). It is not sticky — it sits in normal document flow and scrolls out of view as the user scrolls down, while the nav remains fixed. Uses `page-container` for consistent horizontal padding.
+
 ## Desktop Nav
 
 Desktop-only navigation (`app/_components/DesktopNav.tsx`), hidden on mobile via the wrapping `hidden sm:block` div in `Header.tsx`. A single `NavigationMenu` root contains two `NavigationMenuItem`s: a Recipes mega-menu trigger (dropdown with banner, category grid, footer link) and a Planner link.

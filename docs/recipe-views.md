@@ -130,21 +130,22 @@ Authors are grouped by type in the browsing view:
 
 The groups and children above are defined in `app/_config/recipes.ts` as a static configuration. The structure, labels, and ordering are hardcoded. Each child maps to a filter (or filter combination for Pick Your Pace views) and optionally a representative recipe image for display on the homepage.
 
-Each `CategorySection` has an `order` field that determines its display position on the homepage, a `hero?: boolean` flag that marks it for the tall-card hero layout, and a `description?: string` shown as a subtitle under the section heading.
+Each `CategorySection` has an `order` field that determines its display position on the homepage, and a `hero?: boolean` flag that marks it for the tall-card hero layout.
 
 Each `CategoryItem` has:
 
 - `id: string` — unique identifier used as the URL path param for `/recipes/collections/{id}`. Must be unique across **all** items in `CATEGORY_SECTIONS`, not just within a section. Use kebab-case.
-- `order: number` — count of matching recipes; items with `order === 0` are hidden
-- `description?: string` — shown on the collection page and on hero cards (Pick Your Pace)
+- `count: number` — number of matching recipes; items with `count === 0` are hidden
+- `order?: number` — optional manual display position; takes precedence over count-based ordering when set
+- `description?: string` — shown on the collection page
 
 ### Hiding Empty Children
 
 Children with no matching recipes should not appear on the homepage or in the navigation. This prevents sparse or misleading browsing categories.
 
-**Mechanism:** The `order` field on each `CategoryItem` stores the count of matching recipes. Items with `order === 0` are hidden at render time; items with a count greater than zero are shown, sorted by count descending then label ascending. After adding recipes, update the `order` values in `app/_config/recipes.ts` to reflect the new counts.
+**Mechanism:** The `count` field on each `CategoryItem` stores the number of matching recipes. Items with `count === 0` are hidden at render time. Visible items are sorted by explicit `order` (ascending) if set, then `count` descending, then label ascending. To pin a specific item to the front of a section, set its `order` field. After adding recipes, update the `count` values in `app/_config/recipes.ts` to reflect the new counts.
 
-**Threshold:** A child is considered active when it has at least one matching recipe (`order > 0`). This may be revised to a higher threshold if single-recipe categories feel sparse in practice.
+**Threshold:** A child is considered active when it has at least one matching recipe (`count > 0`). This may be revised to a higher threshold if single-recipe categories feel sparse in practice.
 
 ### Navigation Visibility
 
@@ -152,12 +153,12 @@ Each `CategorySection` has a `showInMenu` boolean. Sections where `showInMenu: t
 
 ### Rendering Utilities
 
-| Utility              | Location                                     | Description                                                                     |
-| -------------------- | -------------------------------------------- | ------------------------------------------------------------------------------- |
-| `sortCategoryItems`  | `app/_lib/utils/sortCategoryItems.ts`        | Filters items with `order === 0`; sorts remainder by count desc, label asc      |
-| `sortByOrder`        | `app/_lib/utils/sortByOrder.ts`              | Sorts any `{ order: number }[]` ascending — used for section ordering           |
-| `getCollectionById`  | `app/_lib/utils/getCollectionById.ts`        | Finds a `CategoryItem` by `id` across all sections; returns `null` if not found |
-| `buildCollectionUrl` | `app/_lib/utils/buildCollectionUrl.ts`       | Returns `/recipes/collections/{id}` for a given item id                         |
-| `RecipeHeroCard`     | `app/recipes/_components/RecipeHeroCard.tsx` | Tall card (full-bleed image, label, description) used in hero sections only     |
+| Utility              | Location                                     | Description                                                                             |
+| -------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `sortCategoryItems`  | `app/_lib/utils/sortCategoryItems.ts`        | Filters items with `count === 0`; sorts by `order` asc, then count desc, then label asc |
+| `sortByOrder`        | `app/_lib/utils/sortByOrder.ts`              | Sorts any `{ order: number }[]` ascending — used for section ordering                   |
+| `getCollectionById`  | `app/_lib/utils/getCollectionById.ts`        | Finds a `CategoryItem` by `id` across all sections; returns `null` if not found         |
+| `buildCollectionUrl` | `app/_lib/utils/buildCollectionUrl.ts`       | Returns `/recipes/collections/{id}` for a given item id                                 |
+| `RecipeHeroCard`     | `app/recipes/_components/RecipeHeroCard.tsx` | Tall card (full-bleed image, label) used in hero sections only                          |
 
-The homepage (`app/recipes/page.tsx`) calls `sortByOrder` on sections and renders each via `RecipeSection`, which branches on `section.hero` to use either `RecipeHeroCard` or `RecipeCategoryCard`. All cards link to the collection page via `buildCollectionUrl(item.id)`. `NavDrawer` filters sections by `showInMenu` then calls `sortCategoryItems` on each section's items.
+The homepage (`app/recipes/page.tsx`) calls `sortByOrder` on sections, then splits into `heroSection` (first section with `hero: true`) and `otherSections`. The hero section is rendered first using the snap-scroll/grid layout, followed by a "Browse All Recipes" CTA linking to `/recipes/all`, then the remaining sections as carousels. `RecipeSection` branches on `section.hero` to use either `RecipeHeroCard` (hero) or `RecipeCategoryCard` (standard). All cards link to the collection page via `buildCollectionUrl(item.id)`. `NavDrawer` filters sections by `showInMenu` then calls `sortCategoryItems` on each section's items.
