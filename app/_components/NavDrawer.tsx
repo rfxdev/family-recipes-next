@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { PLANNER_NAV_LINKS } from '@/_config/planner';
 import { CATEGORY_SECTIONS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
-import { buildRecipeUrl } from '@/_lib/utils/buildRecipeUrl';
 import { cn } from '@/_lib/utils/cn';
 import { sortCategoryItems } from '@/_lib/utils/sortCategoryItems';
 
@@ -105,7 +104,7 @@ export function NavDrawer() {
                   {sortCategoryItems(section.items).map((item) => (
                     <Link
                       className="text-foreground hover:text-accent-foreground flex items-center py-1.5 text-sm transition-colors"
-                      href={buildRecipeUrl(item.filters)}
+                      href={routes.collection(item.id)}
                       key={item.label}
                       onClick={close}
                     >

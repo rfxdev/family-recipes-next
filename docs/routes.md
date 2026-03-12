@@ -68,7 +68,6 @@ Menu items link to collection pages for a clean, curated starting point:
 | `filterRecipes`       | `app/_lib/utils/filterRecipes.ts`       | Extracts category keys, metadata matching                                |
 | `sortRecipes`         | `app/_lib/utils/sortRecipes.ts`         | Immutable sort (title, date, or passthrough)                             |
 | `computeFilterCounts` | `app/_lib/utils/computeFilterCounts.ts` | Faceted counting per filter dimension                                    |
-| `buildRecipeUrl`      | `app/_lib/utils/buildRecipeUrl.ts`      | Generates filter URLs, handles multi-value                               |
 
 ## Filter UI Components
 

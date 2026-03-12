@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 
 import { CATEGORY_SECTIONS } from '@/_config/recipes';
 import { routes } from '@/_config/routes';
-import { buildRecipeUrl } from '@/_lib/utils/buildRecipeUrl';
 import { cn } from '@/_lib/utils/cn';
 import { sortByOrder } from '@/_lib/utils/sortByOrder';
 import { sortCategoryItems } from '@/_lib/utils/sortCategoryItems';
@@ -30,7 +29,7 @@ export function DesktopNav() {
   ).filter((s) => sortCategoryItems(s.items).length > 0);
 
   return (
-    <NavigationMenu viewportContainerClassName="right-0 left-auto">
+    <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger
@@ -69,7 +68,7 @@ export function DesktopNav() {
                         {items.map((item) => (
                           <li key={item.label}>
                             <NavigationMenuLink asChild variant="content-link">
-                              <Link href={buildRecipeUrl(item.filters)}>
+                              <Link href={routes.collection(item.id)}>
                                 {item.label}
                               </Link>
                             </NavigationMenuLink>
