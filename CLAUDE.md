@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+@AGENTS.md
+
 ## Documentation
 
 Comprehensive specs live in `docs/` — **read the relevant doc(s) before starting any task**. Known patterns, gotchas, and conventions are documented there; re-discovering them from first principles wastes time and causes regressions.
