@@ -89,7 +89,7 @@ export function Header() {
                   'focus:ring-ring focus:ring-2 focus:outline-none',
                 )}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="What would you like to cook?"
+                placeholder="What are you in the mood for?"
                 type="search"
                 value={query}
               />
