@@ -1949,4 +1949,230 @@ export const dummyRecipes: Recipe[] = [
     updated_at: '2026-03-09T00:00:00Z',
     uploaded_by: 'user_placeholder',
   },
+  {
+    cook_time_minutes: 30,
+    created_at: '2026-04-21T00:00:00Z',
+    description:
+      'A foolproof showstopper that comes together quickly from storecupboard ingredients. Two light sponges sandwiched and topped with a rich caramel buttercream.',
+    id: 'easy-caramel-cake',
+    image_path: '/images/recipes/easy-caramel-cake.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'salted butter',
+            order: 1,
+            preparation: 'softened, plus extra for the tins',
+            quantity_text: '225g',
+          },
+          {
+            item: 'golden caster sugar',
+            order: 2,
+            quantity_text: '125g',
+          },
+          {
+            item: 'light brown soft sugar',
+            order: 3,
+            quantity_text: '100g',
+          },
+          {
+            item: 'vanilla extract',
+            order: 4,
+            quantity_text: '1 tsp',
+          },
+          {
+            item: 'large eggs',
+            order: 5,
+            quantity_text: '4',
+          },
+          {
+            item: 'self-raising flour',
+            order: 6,
+            quantity_text: '225g',
+          },
+          {
+            item: 'milk',
+            order: 7,
+            quantity_text: '2 tbsp',
+          },
+        ],
+        name: 'Sponge',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'salted butter',
+            order: 1,
+            preparation: 'softened',
+            quantity_text: '200g',
+          },
+          {
+            item: 'icing sugar',
+            order: 2,
+            preparation: 'golden icing sugar if available',
+            quantity_text: '400g',
+          },
+          {
+            item: 'caramel sauce, dulce de leche or caramel spread',
+            order: 3,
+            preparation: 'plus 3 tbsp to serve',
+            quantity_text: '70g',
+          },
+          {
+            item: 'toffee, chocolate or caramel pieces',
+            order: 4,
+            preparation: 'optional, to decorate',
+          },
+        ],
+        name: 'Icing',
+        order: 2,
+      },
+    ],
+    metadata: {
+      author_id: 'anna-glover',
+      cuisine: 'british',
+      dietary_restrictions: ['vegetarian'],
+      difficulty: 'easy',
+      meal_type: 'pudding',
+      source_name: 'BBC Good Food',
+      source_url: 'https://www.bbcgoodfood.com/recipes/easy-caramel-cake',
+      time_category: 'medium',
+    },
+    method: [
+      'Heat the oven to 180°C (160°C fan). Butter two 20cm springform tins and line the bases with baking parchment.',
+      'Beat the butter and both sugars with an electric whisk for a few minutes until pale and fluffy. Add the vanilla, then the eggs one at a time, beating briefly between each addition and adding a spoonful of flour to prevent curdling. Fold in the remaining flour and the milk until just combined.',
+      'Divide the batter evenly between the tins and bake for 25-30 minutes, until golden, springy to the touch, and a skewer inserted into the centre comes out clean. Cool in the tins for a few minutes, then turn out onto a wire rack and leave to cool completely.',
+      'While the sponges cool, beat the butter and icing sugar together for a few minutes until light and airy. Whisk in the caramel sauce, adding 1 tbsp of boiling water to loosen if needed. Set aside — do not assemble until the sponges are completely cool or the icing will melt.',
+      'Spread half the icing over one sponge and sandwich the cakes together. Spread the remainder over the top, smoothing with a knife or the back of a spoon. Drizzle over the extra 3 tbsp caramel sauce, letting it drip down the sides if you like, and scatter over toffee, chocolate or caramel pieces to serve.',
+    ],
+    prep_time_minutes: 30,
+    servings: 12,
+    title: 'Easy Caramel Cake',
+    updated_at: '2026-04-21T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
+  {
+    cook_time_minutes: 120,
+    created_at: '2026-04-21T00:00:00Z',
+    description:
+      'A showstopping pavlova filled with lemon curd cream, piped meringue nests, and chocolate mini-eggs.',
+    id: 'easter-lemon-pavlova',
+    image_path: '/images/recipes/easter-lemon-pavlova.webp',
+    ingredient_groups: [
+      {
+        ingredients: [
+          {
+            item: 'caster sugar',
+            order: 1,
+            preparation: 'plus extra for coating',
+            quantity_text: '100g',
+          },
+          {
+            item: 'lemons',
+            order: 2,
+            preparation:
+              'zest only, pared into long thin strips — reserve the juice for the curd',
+            quantity_text: '4',
+          },
+        ],
+        name: 'Candied Lemon Zest',
+        order: 1,
+      },
+      {
+        ingredients: [
+          {
+            item: 'free-range egg whites',
+            order: 1,
+            quantity_text: '6',
+          },
+          {
+            item: 'caster sugar',
+            order: 2,
+            quantity_text: '350g',
+          },
+          {
+            item: 'white wine vinegar',
+            order: 3,
+            quantity_text: '2 tsp',
+          },
+          {
+            item: 'cornflour',
+            order: 4,
+            quantity_text: '2 tsp',
+          },
+        ],
+        name: 'Meringue',
+        order: 2,
+      },
+      {
+        ingredients: [
+          {
+            item: 'free-range egg yolks',
+            order: 1,
+            quantity_text: '6',
+          },
+          {
+            item: 'caster sugar',
+            order: 2,
+            quantity_text: '350g',
+          },
+          {
+            item: 'butter',
+            order: 3,
+            quantity_text: '225g',
+          },
+          {
+            item: 'double cream',
+            order: 4,
+            quantity_text: '450ml',
+          },
+        ],
+        name: 'Lemon Curd & Cream',
+        order: 3,
+      },
+      {
+        ingredients: [
+          {
+            item: 'chocolate mini-eggs',
+            order: 1,
+            quantity_text: '30',
+          },
+        ],
+        name: 'To Serve',
+        order: 4,
+      },
+    ],
+    metadata: {
+      author_id: 'mary-berry',
+      cuisine: 'british',
+      dietary_restrictions: ['vegetarian', 'gluten-free'],
+      difficulty: 'challenging',
+      meal_type: 'pudding',
+      proteins: ['eggs'],
+      source_name: 'BBC Food',
+      source_url:
+        'https://www.bbc.co.uk/food/recipes/easter_lemon_pavlova_99601',
+      time_category: 'long',
+    },
+    method: [
+      'To make the candied lemon zest, put 100ml water and the caster sugar in a small pan. Bring to the boil, stirring to dissolve the sugar. Add the lemon zest and boil for 2–3 minutes until syrupy. Drain on baking paper, roll in extra caster sugar, and leave to dry in a warm place for a couple of hours, or overnight.',
+      'Preheat the oven to 160°C (140°C fan). Lay a sheet of baking paper on a large baking tray and draw a 25cm circle on it.',
+      'To make the meringue, whisk the egg whites in a large bowl on the fastest speed until they reach stiff peaks. Still whisking on maximum speed, gradually add the caster sugar a generous teaspoon at a time until fully incorporated and the mixture is stiff, shiny, and holds firm peaks.',
+      'Mix the white wine vinegar and cornflour together until smooth, then fold into the meringue.',
+      'Dab a little of the meringue under the corners of the baking paper to anchor it to the tray. Spread half the meringue over the drawn circle. Fit a piping bag with a rose or star nozzle, fill with the remaining meringue, and pipe about 10 small nests equally spaced around the edge of the circle.',
+      'Place the meringue on the middle shelf of the oven, immediately reduce the temperature to 150°C (130°C fan), and bake for 1½–2 hours, checking after 1 hour. The pavlova is ready when it lifts cleanly from the paper and is a pale creamy colour rather than white. Turn off the oven and leave the pavlova inside to cool and dry for at least 1 hour, or overnight.',
+      "To make the lemon curd, set a heatproof bowl over a pan of gently simmering water — the bowl should not touch the water. Add the egg yolks, caster sugar, and the reserved lemon juice and whisk together. Gradually add the butter, whisking continuously for about 10 minutes until the curd is thick enough to coat the back of a spoon. Don't rush this — the curd can split over too high a heat. Remove from the heat and leave to cool completely.",
+      'Whisk the double cream to soft peaks. Gently swirl through the cooled lemon curd, leaving some streaks of curd visible rather than fully combining.',
+      'Spoon the lemon curd cream into the centre of the pavlova and spread a little into each meringue nest.',
+      'Place three chocolate mini-eggs in each nest around the edge of the pavlova, pile the candied lemon zest in the centre, and serve.',
+    ],
+    notes:
+      'To skip making the lemon curd, use a 320–350g jar of good shop-bought lemon curd instead — swirl it through the whipped cream as per the method. You will need an electric mixer and a piping bag fitted with a rose or star nozzle. To anchor the baking paper to the tray, dab a little of the meringue mixture underneath the corners before spreading.',
+    prep_time_minutes: 45,
+    servings: 10,
+    title: 'Easter Lemon Pavlova',
+    updated_at: '2026-04-21T00:00:00Z',
+    uploaded_by: 'user_placeholder',
+  },
 ];
