@@ -24,17 +24,20 @@ Computed views based on combinations of `time_category`, `difficulty`, and optio
 
 Browsing by dish style — the form or character of the dish rather than its cuisine or protein. Maps to the `dish_style` metadata field.
 
+- Crispy Fried
 - Curry
-- Pasta
 - Noodles
-- Pizza
-- Soup
+- Pancakes
+- Pasta
 - Pie
-- Salad
+- Pizza
 - Rice Dish
+- Roast
+- Salad
+- Sandwich
+- Soup
 - Stew & Casserole
 - Stir Fry
-- Roast
 
 ### How Do You Want to Cook It?
 
@@ -106,8 +109,11 @@ Cross-cutting views for recipes suited to a specific event or setting. A single 
 Browsing by dietary restriction. Maps to the `dietary_restrictions` metadata field.
 
 - Gluten Free
-- Pescatarian
 - Vegetarian
+- Vegan
+- Dairy Free
+
+**Collection page layout:** Because dietary collections span mains, sides, puddings, and more, results are grouped by `meal_type` and displayed as labelled carousels — one carousel per meal type. Groups with no matching recipes are hidden. Sparse groups (1–2 recipes) are acceptable. Ordering follows the standard meal-type display order: Main → Side → Pudding → Snack → Breakfast → Appetiser → Condiment. Drinks are excluded — dietary restrictions are not captured on drink recipes.
 
 ### Author
 

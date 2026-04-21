@@ -54,7 +54,7 @@ Editing uses the same form as manual entry, pre-populated with the existing reci
 
 ### Ingredient Input
 
-Three text fields per ingredient row: **Quantity** (optional), **Item** (required), and **Preparation** (optional). See [`style-guide.md`](style-guide.md) for content formatting conventions.
+Three text fields per ingredient row: **Quantity** (optional), **Item** (required), and **Preparation** (optional). See [`recipe-style-guide.md`](recipe-style-guide.md) for content formatting conventions.
 
 - **Add to group** button: Creates new ingredient row
 - **Reorder** controls: Drag handles or up/down buttons

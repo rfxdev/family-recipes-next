@@ -88,6 +88,6 @@ Architecture decisions and specifications:
 - [`roadmap.md`](docs/roadmap.md) - Development phases and priorities
 - [`routes.md`](docs/routes.md) - URL conventions and filter param patterns
 - [`security-rules.md`](docs/security-rules.md) - Firebase security and authentication
-- [`style-guide.md`](docs/style-guide.md) - Conventions for writing recipe content
+- [`recipe-style-guide.md`](docs/recipe-style-guide.md) - Conventions for writing recipe content
 
 Documentation is platform-agnostic where possible, applicable to both the web and planned mobile implementations.

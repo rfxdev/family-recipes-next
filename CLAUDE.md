@@ -13,7 +13,7 @@ Comprehensive specs live in `docs/` — **read the relevant doc(s) before starti
 - `docs/routes.md` — URL conventions and filter param patterns
 - `docs/security-rules.md` — Firebase security and authentication
 - `docs/design-system.md` — Colour tokens, badge variants, component styling, and Radix/Tailwind patterns
-- `docs/style-guide.md` — Recipe presentation and writing style conventions
+- `docs/recipe-style-guide.md` — Recipe presentation and writing style conventions
 
 **Where to document new learnings:** `docs/` is the default for anything useful to both humans and Claude — patterns, conventions, gotchas, design decisions. CLAUDE.md is reserved for instructions that are Claude-specific (workflow, tool use, repo conventions). When in doubt, prefer `docs/`.
 

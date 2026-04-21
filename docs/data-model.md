@@ -150,13 +150,13 @@ Each ingredient within a group has:
 - **preparation** (optional string): How to prepare the ingredient, e.g., "chopped", "drained", "at room temperature"
 - **order** (required number): Display order within the group
 
-The free-text `quantity_text` approach handles complex real-world quantities that don't fit structured formats. This simplifies input and display at the cost of programmatic scaling and unit conversion. See [`style-guide.md`](style-guide.md) for formatting conventions and examples.
+The free-text `quantity_text` approach handles complex real-world quantities that don't fit structured formats. This simplifies input and display at the cost of programmatic scaling and unit conversion. See [`recipe-style-guide.md`](recipe-style-guide.md) for formatting conventions and examples.
 
 **Display format:** `[quantity_text ][item][, preparation]` — e.g., "2 x 400g tinned tomatoes, drained", "salt"
 
 ### Metadata Object
 
-All descriptive and categorisation data about the recipe, including both structured filters and supplementary information.
+All descriptive and categorisation data about the recipe, including both structured filters and supplementary information. For tagging guidance on all metadata fields, see [`recipe-style-guide.md`](recipe-style-guide.md).
 
 #### Structured Filters (Required)
 
@@ -186,17 +186,15 @@ All descriptive and categorisation data about the recipe, including both structu
 **proteins** (optional, multi-select array):
 
 - Allowed values: `beef`, `chicken`, `eggs`, `fish`, `lamb`, `legumes`, `pork`, `seafood`, `turkey`
-- Used for queries like "what can I make with chicken?"
 
 **cooking_method** (optional, single-select):
 
 - Allowed values: `air-fryer`, `grill`, `one-pot`, `pressure-cooker`, `slow-cooker`, `smoker`, `traybake`
-- The primary equipment or technique the recipe is built around. Used to group recipes by method (e.g. "Slow Cooker" collection). Omit for recipes that don't have a distinctive method — standard hob or oven cooking is assumed.
 
 **dish_style** (optional, single-select):
 
-- Allowed values: `curry`, `noodles`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `soup`, `stew-casserole`, `stir-fry`
-- Captures the format or character of the dish — what it is, not what's in it. See [`style-guide.md`](style-guide.md) for tagging guidance. Leave unset for dishes that don't clearly fit a category (sides, puddings, pan-fried proteins, etc.).
+- Allowed values: `crispy-fried`, `curry`, `noodles`, `pancakes`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `sandwich`, `soup`, `stew-casserole`, `stir-fry`
+- Captures the format or character of the dish — what it is, not what's in it.
 
 **special_occasions** (optional, multi-select array):
 

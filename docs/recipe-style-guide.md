@@ -71,7 +71,7 @@ The test: "Would someone browsing by [protein] want to find this dish?" If yes, 
 
 ### Dish Style
 
-Tag the format or character of the dish — what it is, not what's in it. This drives the "In the Mood For" browsing view. Allowed values: `curry`, `pasta`, `noodles`, `pizza`, `soup`, `pie`, `salad`, `rice-dish`, `stew-casserole`, `roast`.
+Tag the format or character of the dish — what it is, not what's in it. This drives the "In the Mood For" browsing view. Allowed values: `crispy-fried`, `curry`, `noodles`, `pancakes`, `pasta`, `pie`, `pizza`, `rice-dish`, `roast`, `salad`, `sandwich`, `soup`, `stew-casserole`, `stir-fry`.
 
 **One tag only.** Choose the most defining format. A curried lentil pie is a `pie`; a pasta dish with a curry-style sauce is `pasta`.
 
@@ -85,8 +85,11 @@ Tag the format or character of the dish — what it is, not what's in it. This d
 - Chicken biryani → `rice-dish`
 - Roast chicken with vegetables → `roast`
 - Shepherd's pie → `pie`
+- Chilli chicken → `crispy-fried`
+- Ham & cheese galettes → `pancakes`
+- Steak rarebit → `sandwich`
 
-Leave unset if the dish doesn't clearly fit a category — a pan-fried steak, a simple side dish, or a pudding typically won't have a `dish_style`.
+All values are implicitly savoury. Puddings should always leave `dish_style` unset — never tag a dessert. Leave unset for other dishes that don't clearly fit a category (a pan-fried steak, a simple side dish, etc.).
 
 ### Cooking Method
 
@@ -120,11 +123,13 @@ The test: "Would someone browsing by [method] specifically want to find this dis
 
 ### Dietary Restrictions
 
-Tag recipes for filtering purposes only. Mark what the recipe satisfies as-written, not potential substitutions. Allowed values: `vegetarian`, `vegan`, `gluten-free`, `dairy-free`.
+Tag what the recipe satisfies as-written — not potential substitutions. Allowed values: `vegetarian`, `vegan`, `gluten-free`, `dairy-free`.
 
 **Tag all that apply.** A vegan recipe should be tagged `vegan`, `vegetarian`, and `dairy-free`.
 
-**Be accurate:** A vegetable soup made with chicken stock is not vegetarian. Pasta with butter is vegetarian but not vegan or dairy-free.
+**Be accurate.** Only tag a restriction when the recipe genuinely meets it throughout — don't infer from the main ingredients alone. A vegetable soup made with chicken stock is not vegetarian. A "vegetarian" pasta that calls for anchovies in the sauce should not be tagged. Pasta with butter is vegetarian but not vegan or dairy-free.
+
+**Don't tag drinks.** Dietary restrictions are virtually redundant for drinks and should be left unset.
 
 ---
 

@@ -94,14 +94,17 @@ export const PROTEINS = [
 export type Protein = (typeof PROTEINS)[number];
 
 export type DishStyle =
+  | 'crispy-fried'
   | 'curry'
   | 'noodles'
+  | 'pancakes'
   | 'pasta'
   | 'pie'
   | 'pizza'
   | 'rice-dish'
   | 'roast'
   | 'salad'
+  | 'sandwich'
   | 'soup'
   | 'stew-casserole'
   | 'stir-fry';
